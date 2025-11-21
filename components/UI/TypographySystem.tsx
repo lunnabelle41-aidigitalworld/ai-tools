@@ -1,4 +1,4 @@
-import { ReactNode, ElementType } from 'react';
+import { ReactNode } from 'react';
 
 interface TypographyProps {
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'caption';
@@ -24,14 +24,27 @@ export const Typography: React.FC<TypographyProps> = ({
     caption: 'text-sm text-gray-500 dark:text-gray-400',
   };
 
-  // Create a proper type for the component
-  const Tag: ElementType = Component;
+  // Use a more specific typing approach
+  const props = {
+    className: `${baseStyles} ${variantStyles[variant]} ${className}`,
+  };
 
-  return (
-    <Tag className={`${baseStyles} ${variantStyles[variant]} ${className}`}>
-      {children}
-    </Tag>
-  );
+  switch (Component) {
+    case 'h1':
+      return <h1 {...props}>{children}</h1>;
+    case 'h2':
+      return <h2 {...props}>{children}</h2>;
+    case 'h3':
+      return <h3 {...props}>{children}</h3>;
+    case 'h4':
+      return <h4 {...props}>{children}</h4>;
+    case 'p':
+      return <p {...props}>{children}</p>;
+    case 'span':
+      return <span {...props}>{children}</span>;
+    default:
+      return <p {...props}>{children}</p>;
+  }
 };
 
 export const TypographySystem: React.FC<{ children: ReactNode }> = ({ children }) => {
