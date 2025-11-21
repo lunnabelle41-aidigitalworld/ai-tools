@@ -8,10 +8,21 @@ import { FiArrowLeft, FiSearch, FiExternalLink, FiStar, FiArrowRight } from 'rea
 // Import tools data
 import { tools } from '../../../../data/tools';
 
-// Custom GlassCard component
+// Custom GlassCard component with enhanced styling
 const GlassCard = ({ children, className = '', ...props }: { children: React.ReactNode; className?: string; [key: string]: any }) => (
   <div 
     className={`bg-white/5 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg border border-white/10 hover:shadow-xl transition-all duration-300 ${className}`}
+    style={{
+      backdropFilter: 'blur(10px)',
+      WebkitBackdropFilter: 'blur(10px)',
+      background: 'rgba(255, 255, 255, 0.05)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      // Fallback styles in case CSS variables aren't loaded
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+      borderColor: 'rgba(255, 255, 255, 0.1)',
+      borderRadius: '0.75rem',
+      boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    }}
     {...props}
   >
     {children}
@@ -58,9 +69,69 @@ export default function SubcategoryPage() {
       // Format category and subcategory names to match the data
       // Handle special characters and formatting
       const formatName = (name: string) => {
-        return name
-          .split('-')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        // Special case handling for remaining patterns
+        const specialCases: { [key: string]: string } = {
+          'ai': 'AI',
+          'e': 'E',
+          'seo': 'SEO',
+          'iot': 'IoT',
+          'hr': 'HR',
+          'api': 'API',
+          'ui': 'UI',
+          'ux': 'UX',
+          'crm': 'CRM',
+          'erp': 'ERP',
+          '3d': '3D',
+          '2d': '2D'
+        };
+        
+        // Words that should remain lowercase (except first letter if at start)
+        const lowercaseWords = ['for', 'and', 'the', 'of', 'in', 'on', 'at', 'to', 'by', 'with'];
+        
+        // Split by '-' and process each part
+        const parts = name.split('-');
+        const resultParts = [];
+        let i = 0;
+        
+        while (i < parts.length) {
+          const part = parts[i];
+          const lowerPart = part.toLowerCase();
+          
+          // Special handling for specific phrases
+          // Check for "ai-for" pattern
+          if (lowerPart === 'ai' && i + 1 < parts.length && parts[i + 1].toLowerCase() === 'for') {
+            resultParts.push('AI for');
+            i += 2; // Skip both parts
+            continue;
+          }
+          
+          // Check for "e-commerce" pattern
+          if (lowerPart === 'e' && i + 1 < parts.length && parts[i + 1].toLowerCase() === 'commerce') {
+            resultParts.push('E-commerce');
+            i += 2; // Skip both parts
+            continue;
+          }
+          
+          // Check for special cases first
+          if (specialCases[lowerPart]) {
+            resultParts.push(specialCases[lowerPart]);
+            i++;
+            continue;
+          }
+          
+          // Handle lowercase words (except when they're the first word)
+          if (i > 0 && lowercaseWords.includes(lowerPart)) {
+            resultParts.push(lowerPart);
+            i++;
+            continue;
+          }
+          
+          // Capitalize first letter
+          resultParts.push(part.charAt(0).toUpperCase() + part.slice(1));
+          i++;
+        }
+        
+        return resultParts
           .join(' ')
           .replace(/&amp;/g, '&') // Handle HTML entities
           .replace(/&/g, '&'); // Handle HTML entities
@@ -225,7 +296,11 @@ export default function SubcategoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 sm:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 sm:p-8"
+         style={{
+           // Fallback background gradient
+           background: 'linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a)'
+         }}>
       <Head>
         <title>{subcategoryName} | {categoryName} | AI Tools Directory</title>
         <meta name="description" content={`Explore ${subcategoryName} tools and discover the best AI solutions for ${categoryName}.`} />
@@ -282,6 +357,17 @@ export default function SubcategoryPage() {
               type="text"
               placeholder="Search tools..."
               className="block w-full pl-10 pr-3 py-3 border border-gray-700 rounded-lg bg-gray-800/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+              style={{
+                // Fallback styles
+                backgroundColor: 'rgba(30, 41, 59, 0.5)',
+                borderColor: '#334155',
+                borderRadius: '0.5rem',
+                color: 'white',
+                paddingLeft: '2.5rem',
+                paddingRight: '0.75rem',
+                paddingTop: '0.75rem',
+                paddingBottom: '0.75rem',
+              }}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />

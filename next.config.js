@@ -54,8 +54,6 @@ const nextConfig = {
   },
   // Enable SWC minification
   swcMinify: true,
-  // Enable static HTML export
-  output: 'standalone',
   // Enable static optimization for all pages
   reactStrictMode: true,
   // Enable production browser source maps
