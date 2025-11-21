@@ -262,7 +262,7 @@ const BestTools: NextPage = () => {
         />
         <div 
           className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900/80"
-          style={{ opacity }}
+          style={{ opacity: opacity as any }}
         />
       </div>
 

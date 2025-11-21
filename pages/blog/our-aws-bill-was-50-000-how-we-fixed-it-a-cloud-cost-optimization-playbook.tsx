@@ -546,7 +546,7 @@ aws cloudwatch put-metric-data \
                     </div>
                     <div className="border-t pt-3 mt-3">
                       <div className="flex justify-between text-lg">
-                        <span class="font-semibold">Total:</span>
+                        <span className="font-semibold">Total:</span>
                         <span className="font-bold text-red-600">$50,342</span>
                       </div>
                     </div>
@@ -719,7 +719,7 @@ aws cloudwatch put-metric-data \
                 </div>
 
                 <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-yellow-800">Lesson 4: Savings Plans > Reserved Instances</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-yellow-800">Lesson 4: Savings Plans {'>'} Reserved Instances</h3>
                   <p className="text-yellow-700">Savings Plans offer the same discounts as Reserved Instances but with much more flexibility. They're perfect for dynamic environments.</p>
                 </div>
 

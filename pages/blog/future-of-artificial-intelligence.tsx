@@ -2,9 +2,10 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import SEOArticleWrapper from '../../components/SEOArticleWrapper';
+import { KnowledgeNode } from '../../lib/adaptive-stream';
 
 const FutureOfArtificialIntelligence: React.FC = () => {
-  const blogPost = {
+  const blogPost: KnowledgeNode = {
     id: 'future-of-artificial-intelligence',
     title: 'The Future of Artificial Intelligence: Predictions for 2025-2030',
     content: `
@@ -428,11 +429,11 @@ The question is not whether AI will transform our world—it already is. The que
     `,
     excerpt: 'Comprehensive analysis of AI trends and predictions for 2025-2030, covering technology breakthroughs, societal impacts, and industry transformations.',
     author: 'AI Vault Team',
-    publishedAt: '2024-01-05',
-    updatedAt: '2024-01-05',
+    publishedAt: '2025-01-05',
+    updatedAt: '2025-01-05',
     category: 'AI Future',
     tags: ['AI Future', 'Predictions', 'Technology Trends', 'AGI', 'Innovation'],
-    difficulty: 'advanced',
+    difficulty: 'advanced' as const,
     readTime: 30,
     engagementScore: 95,
     trending: true,

@@ -409,7 +409,7 @@ const BeyondFeatureLists = () => {
                       <td className="border border-gray-300 px-3 py-2 text-center">10%</td>
                       <td className="border border-gray-300 px-3 py-2 text-center">1-10</td>
                     </tr>
-                    <tr>
+                    <tr className="bg-gray-50">
                       <td className="border border-gray-300 px-3 py-2 font-semibold">Total Cost of Ownership</td>
                       <td className="border border-gray-300 px-3 py-2 text-xs">
                         Hidden costs, price increases, implementation fees, support costs
@@ -434,7 +434,7 @@ const BeyondFeatureLists = () => {
               <div className="bg-yellow-50 p-4 rounded-lg">
                 <h4 className="font-semibold text-yellow-800 mb-3">Red Flags to Watch For</h4>
                 <ul className="text-sm text-gray-700 space-y-1">
-                  <li>• High customer churn rates (>15% annually)</li>
+                  <li>• High customer churn rates (&gt;15% annually)</li>
                   <li>• Recent funding troubles or revenue decline</li>
                   <li>• Frequent leadership changes</li>
                   <li>• Poor customer support response times</li>
@@ -446,8 +446,8 @@ const BeyondFeatureLists = () => {
               <div className="bg-green-50 p-4 rounded-lg">
                 <h4 className="font-semibold text-green-800 mb-3">Positive Indicators</h4>
                 <ul className="text-sm text-gray-700 space-y-1">
-                  <li>• Consistent revenue growth (>20% annually)</li>
-                  <li>• High customer retention (>90%)</li>
+                  <li>• Consistent revenue growth (&gt;20% annually)</li>
+                  <li>• High customer retention (&gt;90%)</li>
                   <li>• Strong product innovation pipeline</li>
                   <li>• Enterprise reference customers</li>
                   <li>• Comprehensive security certifications</li>

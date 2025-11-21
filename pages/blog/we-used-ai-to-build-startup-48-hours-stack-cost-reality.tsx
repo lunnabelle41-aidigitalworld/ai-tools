@@ -594,7 +594,7 @@ export default function TaskDashboard({ project }) {
                       <td className="border border-gray-300 px-4 py-2">Included with Vercel Pro</td>
                     </tr>
                     <tr className="bg-green-100 font-bold">
-                      <td className="border border-gray-300 px-4 py-2" colSpan="2">TOTAL</td>
+                      <td className="border border-gray-300 px-4 py-2" colSpan={2}>TOTAL</td>
                       <td className="border border-gray-300 px-4 py-2">$40.84</td>
                       <td className="border border-gray-300 px-4 py-2">$~210</td>
                       <td className="border border-gray-300 px-4 py-2"></td>

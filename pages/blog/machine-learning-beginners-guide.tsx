@@ -2,9 +2,10 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import SEOArticleWrapper from '../../components/SEOArticleWrapper';
+import { KnowledgeNode } from '../../lib/adaptive-stream';
 
 const MachineLearningBeginnersGuide: React.FC = () => {
-  const blogPost = {
+  const blogPost: KnowledgeNode = {
     id: 'machine-learning-beginners-guide',
     title: 'Machine Learning for Beginners: A Complete 2024 Guide',
     content: `
@@ -449,7 +450,7 @@ Your ML journey starts today. Take that first step, stay curious, and enjoy the 
     updatedAt: '2024-01-12',
     category: 'Machine Learning',
     tags: ['Machine Learning', 'Beginners', 'Tutorial', 'Python', 'Data Science'],
-    difficulty: 'beginner',
+    difficulty: 'beginner' as const,
     readTime: 20,
     engagementScore: 88,
     trending: true,

@@ -56138,5 +56138,4 @@ export const tools = [
     "url": "https://www.hrcomplypro.com",
     "favicon": "https://www.hrcomplypro.com/favicon.ico"
   }
-,
 ];

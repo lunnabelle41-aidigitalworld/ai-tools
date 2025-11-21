@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+const webpack = require('webpack');
+
 const securityHeaders = [
   {
     key: 'X-DNS-Prefetch-Control',
@@ -76,6 +79,20 @@ const nextConfig = {
         'three/examples/jsm/loaders/GLTFLoader': 'three/examples/jsm/loaders/GLTFLoader.js',
       };
     }
+
+    // Add Monaco Editor support
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'monaco-editor': path.resolve(__dirname, 'node_modules/monaco-editor'),
+    };
+
+    // Add Monaco Editor plugin
+    config.plugins.push(
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^((fs)|(path)|(os)|(crypto)|(buffer)|(vm)|(child_process))$/,
+        contextRegExp: /monaco-editor/
+      })
+    );
 
     return config;
   },

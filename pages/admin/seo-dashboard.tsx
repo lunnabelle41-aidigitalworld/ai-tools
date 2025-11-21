@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import SEOAutomationEngine from '../../lib/seo-automation';
-import VoiceSearchOptimizer from '../../lib/voice-search-optimization';
-import EEATEnhancer from '../../lib/eeat-enhancement';
+import { VoiceSearchOptimizer } from '../../lib/voice-search-optimization';
+import { EEATEnhancer } from '../../lib/eeat-enhancement';
 import { KnowledgeNode } from '../../lib/adaptive-stream';
 
 interface SEOMetrics {
