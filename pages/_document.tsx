@@ -35,6 +35,9 @@ export default function Document() {
         {/* Google Search Console Verification */}
         <meta name="google-site-verification" content="_xAnSYTjZ9yWZeJ4e2YXlHtZ7Of6p3A5TFCMbgDeO-I" />
         
+        {/* Bing Webmaster Tools Verification */}
+        <meta name="msvalidate.01" content="843BA93192F072AE3F606EF8C86137D2" />
+        
         {/* Google AdSense */}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2894915343289598"
           crossOrigin="anonymous"></script>
