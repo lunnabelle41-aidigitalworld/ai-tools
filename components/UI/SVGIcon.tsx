@@ -51,19 +51,32 @@ interface SVGIconProps {
 const hoverVariants: Record<string, Variants> = {
   scale: {
     scale: 1.1,
-    transition: { type: 'spring', stiffness: 400, damping: 10 },
+    transition: { 
+      type: 'spring' as const, 
+      stiffness: 400, 
+      damping: 10 
+    },
   },
   rotate: {
     rotate: 360,
-    transition: { duration: 1, ease: 'linear' },
+    transition: { 
+      duration: 1, 
+      ease: 'linear' as const 
+    },
   },
   pulse: {
     scale: [1, 1.2, 1],
-    transition: { duration: 0.5, repeat: Infinity },
+    transition: { 
+      duration: 0.5, 
+      repeat: Infinity as unknown as number 
+    },
   },
   bounce: {
     y: [0, -10, 0],
-    transition: { duration: 0.5, repeat: Infinity },
+    transition: { 
+      duration: 0.5, 
+      repeat: Infinity as unknown as number 
+    },
   },
   none: {},
 };
