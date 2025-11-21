@@ -62,44 +62,79 @@ export default function SubcategoryPage() {
           .split('-')
           .map(word => word.charAt(0).toUpperCase() + word.slice(1))
           .join(' ')
+          .replace(/&amp;/g, '&') // Handle HTML entities
           .replace(/&/g, '&'); // Handle HTML entities
       };
       
       const formattedCategoryName = formatName(decodedCategory);
       const formattedSubcategoryName = formatName(decodedSubcategory);
       
-      // Try multiple matching approaches
-      let matchedTools = tools.filter(tool => {
-        // Direct match
-        if (tool.category === formattedCategoryName && tool.subcategory === formattedSubcategoryName) {
-          return true;
-        }
-        
-        // Case insensitive match
-        if (tool.category.toLowerCase() === formattedCategoryName.toLowerCase() && 
-            tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase()) {
-          return true;
-        }
-        
-        // Partial match for categories with special characters
-        const categoryMatch = tool.category.toLowerCase().includes(formattedCategoryName.toLowerCase()) ||
-                             formattedCategoryName.toLowerCase().includes(tool.category.toLowerCase());
-        
-        const subcategoryMatch = tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase() ||
-                                formattedSubcategoryName.toLowerCase().includes(tool.subcategory.toLowerCase());
-        
-        return categoryMatch && subcategoryMatch;
-      });
+      console.log('Debug - URL params:', { category, subcategory });
+      console.log('Debug - Decoded params:', { decodedCategory, decodedSubcategory });
+      console.log('Debug - Formatted names:', { formattedCategoryName, formattedSubcategoryName });
       
-      // If no matches found, try a broader search
-      if (matchedTools.length === 0) {
-        // Try matching just the beginning of the category name
-        const categorySearchTerm = formattedCategoryName.toLowerCase().replace(/&/g, 'and');
-        matchedTools = tools.filter(tool => {
-          const toolCategory = tool.category.toLowerCase().replace(/&/g, 'and');
-          return toolCategory.includes(categorySearchTerm) && 
-                 tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase();
-        });
+      // Special handling for "AI & Generative Art" subcategory
+      // The tools are actually in the "Image Generation" category, not "AI & Generative Art" category
+      let matchedTools: Tool[] = [];
+      
+      // Try multiple matching approaches in order of specificity
+      const matchingApproaches: (() => Tool[])[] = [
+        // Approach 1: Direct exact match
+        () => tools.filter(tool => 
+          tool.category === formattedCategoryName && 
+          tool.subcategory === formattedSubcategoryName
+        ),
+        
+        // Approach 2: Special case for "AI & Generative Art" subcategory
+        () => {
+          if (formattedSubcategoryName === 'AI & Generative Art') {
+            // Look for tools in the "Image Generation" category with "AI & Generative Art" subcategory
+            return tools.filter(tool => 
+              tool.category === 'Image Generation' && 
+              tool.subcategory === 'AI & Generative Art'
+            );
+          }
+          return [];
+        },
+        
+        // Approach 3: Case insensitive exact match
+        () => tools.filter(tool => 
+          tool.category.toLowerCase() === formattedCategoryName.toLowerCase() && 
+          tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase()
+        ),
+        
+        // Approach 4: Partial matching for categories with special characters
+        () => tools.filter(tool => {
+          const categoryMatch = tool.category.toLowerCase() === formattedCategoryName.toLowerCase() ||
+                              tool.category.toLowerCase().includes(formattedCategoryName.toLowerCase()) ||
+                              formattedCategoryName.toLowerCase().includes(tool.category.toLowerCase());
+          
+          const subcategoryMatch = tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase() ||
+                                  tool.subcategory.toLowerCase().includes(formattedSubcategoryName.toLowerCase()) ||
+                                  formattedSubcategoryName.toLowerCase().includes(tool.subcategory.toLowerCase());
+          
+          return categoryMatch && subcategoryMatch;
+        }),
+        
+        // Approach 5: Broader search with &/and replacement
+        () => {
+          const categorySearchTerm = formattedCategoryName.toLowerCase().replace(/&/g, 'and');
+          return tools.filter(tool => {
+            const toolCategory = tool.category.toLowerCase().replace(/&/g, 'and');
+            return toolCategory.includes(categorySearchTerm) && 
+                   tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase();
+          });
+        }
+      ];
+      
+      // Try each approach until we find matches
+      for (let i = 0; i < matchingApproaches.length; i++) {
+        matchedTools = matchingApproaches[i]();
+        console.log(`Debug - Approach ${i + 1} match count:`, matchedTools.length);
+        if (matchedTools.length > 0) {
+          console.log(`Debug - Using approach ${i + 1}`);
+          break;
+        }
       }
       
       console.log('Category from URL (decoded):', decodedCategory);
