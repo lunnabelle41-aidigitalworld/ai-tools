@@ -3,6 +3,7 @@ import { MockAuthProvider } from '../contexts/MockAuthContext';
 import { ComparisonProvider } from '../contexts/ComparisonContext';
 import Layout from '../components/Layout/Layout';
 import '../styles/globals.css';
+import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -10,9 +11,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ComparisonProvider>
         <Layout>
           <Component {...pageProps} />
+          <Analytics />
         </Layout>
       </ComparisonProvider>
-    </MockAuthProvider>
+      </MockAuthProvider>
   );
 }
 
