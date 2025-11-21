@@ -228,6 +228,7 @@ export interface AdoptionRadar {
   nps_score: number;
   churn_rate: number;
   expansion_rate: number;
+  market_position: MarketPosition[];
 }
 
 export interface UserSegment {
