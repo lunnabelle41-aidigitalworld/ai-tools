@@ -25,7 +25,7 @@ export const Typography: React.FC<TypographyProps> = ({
   };
 
   // Create a proper type for the component
-  const Tag = Component as ElementType;
+  const Tag: ElementType = Component;
 
   return (
     <Tag className={`${baseStyles} ${variantStyles[variant]} ${className}`}>

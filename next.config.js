@@ -48,12 +48,6 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['three', 'd3', 'framer-motion'],
-    // Enable React 18 concurrent features
-    reactRoot: true,
-    // Enable the new Next.js image component
-    images: {
-      allowFutureImage: true,
-    },
   },
   // Enable SWC minification
   swcMinify: true,

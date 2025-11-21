@@ -60,7 +60,7 @@
     "@types/bluebird": "^3.5.42",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/knex": "^0.15.2",
-    "@types/next": "^9.0.0",
+
     "@types/node": "^24.10.1",
     "@types/prop-types": "^15.7.15",
     "@types/qrcode": "^1.5.5",
