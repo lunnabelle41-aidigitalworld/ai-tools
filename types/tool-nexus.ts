@@ -206,7 +206,10 @@ export interface GrowthTrajectory {
   current_growth: number; // percentage
   projected_growth: number; // percentage
   market_share_projection: number; // percentage in 1 year
-  historical_data: number[]; // monthly growth data points
+  historical_data: Array<{
+    value: number; // monthly growth data point
+    date?: string; // optional date for the data point
+  }> | number[]; // support both formats for backward compatibility
 }
 
 export interface AdoptionRadar {
@@ -229,6 +232,34 @@ export interface AdoptionRadar {
   churn_rate: number;
   expansion_rate: number;
   market_position: MarketPosition[];
+  growth_trajectory: GrowthTrajectory[];
+  competitive_insights: CompetitiveInsight[];
+  summary: {
+    key_metrics: {
+      total_users: number;
+      growth_rate: number;
+      market_share: number;
+      user_satisfaction: number;
+    };
+    market_position: {
+      current: string;
+      trend: 'improving' | 'stable' | 'declining';
+      competitors: string[];
+    };
+    growth_outlook: {
+      rating: 'strong' | 'moderate' | 'weak';
+      factors: string[];
+      projected_growth: number; // percentage
+    };
+    competitive_threat: {
+      level: 'high' | 'medium' | 'low';
+      main_competitors: string[];
+      key_risks: string[];
+    };
+    trend_analysis: string;
+    recommendations: string[];
+    last_updated: string;
+  };
 }
 
 export interface UserSegment {

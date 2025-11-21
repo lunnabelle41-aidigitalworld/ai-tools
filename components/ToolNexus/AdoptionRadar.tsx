@@ -264,9 +264,10 @@ const AdoptionRadar: React.FC<AdoptionRadarProps> = ({ radar }) => {
                   fill="none"
                   stroke="url(#gradient)"
                   strokeWidth="2"
-                  points={trajectory.historical_data.map((value, i) => 
-                    `${i * 20},${50 - (value * 40)}`
-                  ).join(' ')}
+                  points={trajectory.historical_data.map((dataPoint, i) => {
+                    const value = typeof dataPoint === 'number' ? dataPoint : dataPoint.value;
+                    return `${i * 20},${50 - (value * 40)}`;
+                  }).join(' ')}
                 />
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -300,15 +301,46 @@ const AdoptionRadar: React.FC<AdoptionRadarProps> = ({ radar }) => {
         ))}
       </div>
       
-      <div className="mt-6 p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
-        <div className="text-sm text-purple-300">
-          <strong>Market Position:</strong> {radar.summary.market_position}
+      <div className="mt-6 p-4 bg-purple-500/10 rounded-lg border border-purple-500/20 space-y-3">
+        <div>
+          <div className="text-sm font-medium text-purple-200">Market Position</div>
+          <div className="text-sm text-purple-300">
+            {radar.summary.market_position.current} ({radar.summary.market_position.trend})
+          </div>
+          {radar.summary.market_position.competitors.length > 0 && (
+            <div className="text-xs text-purple-400 mt-1">
+              Main competitors: {radar.summary.market_position.competitors.join(', ')}
+            </div>
+          )}
         </div>
-        <div className="text-sm text-purple-300 mt-1">
-          <strong>Growth Outlook:</strong> {radar.summary.growth_outlook}
+
+        <div>
+          <div className="text-sm font-medium text-purple-200">Growth Outlook</div>
+          <div className="text-sm text-purple-300">
+            {radar.summary.growth_outlook.rating} ({radar.summary.growth_outlook.projected_growth}% projected)
+          </div>
+          {radar.summary.growth_outlook.factors.length > 0 && (
+            <div className="text-xs text-purple-400 mt-1">
+              Key factors: {radar.summary.growth_outlook.factors.join(', ')}
+            </div>
+          )}
         </div>
-        <div className="text-sm text-purple-300 mt-1">
-          <strong>Competitive Threat:</strong> {radar.summary.competitive_threat}
+
+        <div>
+          <div className="text-sm font-medium text-purple-200">Competitive Threat</div>
+          <div className="text-sm text-purple-300">
+            {radar.summary.competitive_threat.level}
+          </div>
+          {radar.summary.competitive_threat.main_competitors.length > 0 && (
+            <div className="text-xs text-purple-400 mt-1">
+              Main competitors: {radar.summary.competitive_threat.main_competitors.join(', ')}
+            </div>
+          )}
+          {radar.summary.competitive_threat.key_risks.length > 0 && (
+            <div className="text-xs text-purple-400 mt-1">
+              Key risks: {radar.summary.competitive_threat.key_risks.join(', ')}
+            </div>
+          )}
         </div>
       </div>
     </div>
