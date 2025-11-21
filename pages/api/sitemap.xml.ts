@@ -72,12 +72,14 @@ const staticPages = [
   { url: '/new-tools', priority: '0.8', changefreq: 'daily' },
   { url: '/suggest-tool', priority: '0.7', changefreq: 'monthly' },
   { url: '/about', priority: '0.6', changefreq: 'monthly' },
-  { url: '/contact', priority: '0.5', changefreq: 'yearly' }
+  { url: '/contact', priority: '0.5', changefreq: 'monthly' },
+  { url: '/terms', priority: '0.4', changefreq: 'yearly' },
+  { url: '/privacy', priority: '0.4', changefreq: 'yearly' }
 ];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const baseUrl = 'https://ai-vault.com';
+    const baseUrl = 'https://aether-nexus.vercel.app';
     const currentDate = new Date().toISOString();
     
     // Generate XML sitemap

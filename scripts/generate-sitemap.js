@@ -2,10 +2,9 @@ const fs = require('fs');
 const { glob } = require('glob');
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { Readable } = require('stream');
-const { tools } = require('../data/tools');
-const { categories } = require('../data/categories');
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ai-vault.example.com';
+// Since we don't have the exact tools and categories structure, we'll create a simpler version
+const SITE_URL = 'https://aether-nexus.vercel.app';
 const PAGES_DIR = 'pages';
 const EXCLUDED_PATHS = [
   '/_app.js',
@@ -25,6 +24,8 @@ const STATIC_PATHS = [
   { url: '/categories', changefreq: 'weekly', priority: 0.8 },
   { url: '/about', changefreq: 'monthly', priority: 0.7 },
   { url: '/contact', changefreq: 'monthly', priority: 0.7 },
+  { url: '/terms', changefreq: 'yearly', priority: 0.6 },
+  { url: '/privacy', changefreq: 'yearly', priority: 0.6 }
 ];
 
 // Generate sitemap
@@ -47,21 +48,6 @@ async function generateSitemap() {
       })
       .filter(path => !EXCLUDED_PATHS.some(excluded => path.startsWith(excluded)));
 
-    // Add dynamic routes
-    const toolRoutes = tools.map(tool => ({
-      url: `/tools/${tool.slug}`,
-      changefreq: 'weekly',
-      priority: 0.8,
-      lastmod: tool.updatedAt || new Date().toISOString()
-    }));
-
-    const categoryRoutes = categories.map(category => ({
-      url: `/categories/${category.slug}`,
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date().toISOString()
-    }));
-
     // Combine all routes
     const allRoutes = [
       ...STATIC_PATHS,
@@ -69,9 +55,7 @@ async function generateSitemap() {
         url: path,
         changefreq: 'weekly',
         priority: path === '/' ? 1.0 : 0.5
-      })),
-      ...toolRoutes,
-      ...categoryRoutes
+      }))
     ];
 
     // Create sitemap
