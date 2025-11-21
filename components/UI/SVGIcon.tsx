@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, Variant } from 'framer-motion';
 
 // Common SVG icon paths
 const ICONS = {
@@ -48,11 +48,11 @@ interface SVGIconProps {
   onClick?: () => void;
 }
 
-const hoverVariants: Record<string, Variants> = {
+const hoverVariants: Record<string, Variant> = {
   scale: {
     scale: 1.1,
     transition: { 
-      type: 'spring' as const, 
+      type: 'spring',
       stiffness: 400, 
       damping: 10 
     },
@@ -61,25 +61,25 @@ const hoverVariants: Record<string, Variants> = {
     rotate: 360,
     transition: { 
       duration: 1, 
-      ease: 'linear' as const 
+      ease: 'linear'
     },
   },
   pulse: {
     scale: [1, 1.2, 1],
     transition: { 
       duration: 0.5, 
-      repeat: Infinity as unknown as number 
+      repeat: Infinity
     },
   },
   bounce: {
     y: [0, -10, 0],
     transition: { 
       duration: 0.5, 
-      repeat: Infinity as unknown as number 
+      repeat: Infinity
     },
   },
   none: {},
-};
+} as const;
 
 const SVGIcon: React.FC<SVGIconProps> = ({
   name,
@@ -118,8 +118,9 @@ const SVGIcon: React.FC<SVGIconProps> = ({
   if (animate || hoverEffect !== 'none') {
     return (
       <motion.div
-        whileHover={hoverEffect !== 'none' ? hoverVariants[hoverEffect] : undefined}
-        animate={animate ? hoverVariants[hoverEffect] : undefined}
+        whileHover={hoverEffect !== 'none' ? hoverEffect : undefined}
+        animate={animate ? hoverEffect : undefined}
+        variants={hoverVariants}
         style={{ display: 'inline-flex' }}
       >
         {icon}
