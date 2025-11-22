@@ -122,16 +122,17 @@ export default function HomePage() {
     <>
       <NextHead>
         <title>AI Tools Directory - Digital Superorganism</title>
-        <meta name="description" content="Not a Website – A Digital Superorganism. 1000+ Battle-Tested Digital Weapons - Zero Mercy Edition." />
+        <meta name="description" content="Discover 1000+ battle-tested AI tools across 300+ categories. Find the perfect AI solutions for writing, image generation, video animation, productivity, and more. Zero mercy edition." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="keywords" content="AI tools, artificial intelligence, machine learning, digital tools, productivity tools, AI directory" />
+        <meta name="keywords" content="AI tools, artificial intelligence, machine learning, digital tools, productivity tools, AI directory, image generation, writing tools, video animation" />
+        <meta name="author" content="AI Vault Team" />
         <link rel="canonical" href="https://aether-nexus.vercel.app" />
         <link rel="alternate" hrefLang="en-US" href="https://aether-nexus.vercel.app" />
         <link rel="alternate" hrefLang="x-default" href="https://aether-nexus.vercel.app" />
         
         {/* Open Graph meta tags */}
         <meta property="og:title" content="AI Tools Directory - Digital Superorganism" />
-        <meta property="og:description" content="Not a Website – A Digital Superorganism. 1000+ Battle-Tested Digital Weapons - Zero Mercy Edition." />
+        <meta property="og:description" content="Discover 1000+ battle-tested AI tools across 300+ categories. Find the perfect AI solutions for writing, image generation, video animation, productivity, and more." />
         <meta property="og:url" content="https://aether-nexus.vercel.app" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="AI Tools Directory" />
@@ -143,7 +144,7 @@ export default function HomePage() {
         {/* Twitter meta tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AI Tools Directory - Digital Superorganism" />
-        <meta name="twitter:description" content="Not a Website – A Digital Superorganism. 1000+ Battle-Tested Digital Weapons - Zero Mercy Edition." />
+        <meta name="twitter:description" content="Discover 1000+ battle-tested AI tools across 300+ categories. Find the perfect AI solutions for writing, image generation, video animation, productivity, and more." />
         <meta name="twitter:image" content="/twitter-image.jpg" />
         <meta name="twitter:site" content="@aitoolsdirectory" />
         
@@ -159,7 +160,8 @@ export default function HomePage() {
               "https://twitter.com/aitoolsdirectory",
               "https://www.linkedin.com/company/aitoolsdirectory",
               "https://www.facebook.com/aitoolsdirectory"
-            ]
+            ],
+            "description": "Comprehensive directory of AI tools with detailed comparisons, user reviews, and expert recommendations to help you find the perfect AI solution."
           })}
         </script>
         
@@ -189,6 +191,40 @@ export default function HomePage() {
               "name": "Home",
               "item": "https://aether-nexus.vercel.app"
             }]
+          })}
+        </script>
+        
+        {/* Structured Data - FAQ for Answer Engine Optimization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What are the best AI tools for content creation?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our directory features top AI tools for content creation including ChatGPT for writing, Midjourney for image generation, and Runway ML for video editing. Each tool is rated and reviewed by our expert team to help you find the perfect solution for your content needs."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I choose the right AI tool for my business?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Consider your specific needs, budget, and technical requirements. Our AI Tools Directory categorizes tools by function, pricing, and user ratings. Use our smart search and filtering features to find tools that match your exact requirements."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the latest AI tools in 2025?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "2025 has seen breakthrough AI tools in areas like agentic AI, multimodal models, and specialized industry solutions. Our 'New Tools' section highlights the latest additions to our directory with detailed reviews and comparisons."
+                }
+              }
+            ]
           })}
         </script>
       </NextHead>

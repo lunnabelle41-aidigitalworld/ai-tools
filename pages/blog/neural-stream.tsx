@@ -812,6 +812,40 @@ export default function NeuralStream() {
             }]
           })}
         </script>
+        
+        {/* Structured Data - FAQ for Answer Engine Optimization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is Neural Stream and how does it work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Neural Stream is AI Vault's interactive blog experience that visualizes content in a 3D neural network. It connects related knowledge nodes in real-time, allowing users to explore AI topics through an immersive, interactive interface with dynamic knowledge connections."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can Neural Stream improve my understanding of AI topics?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Neural Stream enhances learning by showing connections between related concepts, providing multiple perspectives on topics, and allowing interactive exploration. The 3D visualization helps users see how different AI concepts relate to each other in a more intuitive way than traditional text."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What makes Neural Stream different from traditional blogs?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Unlike traditional linear blogs, Neural Stream presents content as interconnected knowledge nodes in a 3D space. Users can explore topics non-linearly, see real-time connections between concepts, and experience content through interactive visualizations that adapt to their interests."
+                }
+              }
+            ]
+          })}
+        </script>
       </Head>
 
       <div className="min-h-screen bg-black text-white overflow-hidden">

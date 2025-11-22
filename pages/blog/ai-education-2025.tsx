@@ -90,6 +90,48 @@ const AiEducation2025 = () => {
             }]
           })}
         </script>
+        
+        {/* Structured Data - FAQ for Answer Engine Optimization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How is AI transforming education in 2025?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AI is revolutionizing education through personalized learning platforms, intelligent tutoring systems, automated assessment tools, and accessibility features. These technologies improve learning outcomes by 35-45% and increase student engagement significantly."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the benefits of AI-powered tutoring systems?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AI tutors provide 24/7 personalized instruction, immediate feedback, and adaptive learning paths. They improve learning outcomes by 35-45% on average and can accommodate different learning styles and paces automatically."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does AI improve accessibility in education?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AI systems automatically adjust content presentation for students with disabilities, providing text-to-speech, visual aids, and alternative input methods. These platforms improve learning access by 60-70% and increase inclusion by 50-60%."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Will AI replace teachers in the future?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AI will augment rather than replace teachers. While AI handles content delivery and assessment, teachers provide emotional support, mentorship, and complex problem-solving guidance. The most effective approaches combine AI tutors with human teachers."
+                }
+              }
+            ]
+          })}
+        </script>
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">

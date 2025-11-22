@@ -1208,6 +1208,40 @@ const BlogPage = () => {
             }]
           })}
         </script>
+        
+        {/* Structured Data - FAQ for Answer Engine Optimization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What are the latest AI trends in 2025?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "2025 has seen significant advancements in agentic AI, multimodal models, and specialized industry solutions. Key trends include the rise of autonomous AI agents, improved reasoning capabilities, and integration of AI across all business functions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can businesses implement AI tools effectively?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Start by identifying specific business challenges that AI can address. Begin with pilot projects, ensure proper data infrastructure, train your team, and gradually scale successful implementations. Our blog provides detailed guides on AI implementation strategies for different industries."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the best AI tools for content creation?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Top AI tools for content creation in 2025 include advanced language models for writing, image generation tools like Midjourney and DALL-E 3, and video editing AI tools. Our blog features comprehensive reviews and comparisons of these tools."
+                }
+              }
+            ]
+          })}
+        </script>
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">

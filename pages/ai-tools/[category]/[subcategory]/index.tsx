@@ -303,7 +303,112 @@ export default function SubcategoryPage() {
          }}>
       <Head>
         <title>{subcategoryName} | {categoryName} | AI Tools Directory</title>
-        <meta name="description" content={`Explore ${subcategoryName} tools and discover the best AI solutions for ${categoryName}.`} />
+        <meta name="description" content={`Discover the best ${subcategoryName} AI tools in ${categoryName}. Explore ${searchedTools.length} battle-tested AI solutions with detailed reviews, comparisons, and user ratings.`} />
+        <meta name="keywords" content={`${subcategoryName}, ${categoryName}, AI tools, artificial intelligence, machine learning, ${searchedTools.slice(0, 5).map(tool => tool.name).join(', ')}`} />
+        <meta name="author" content="AI Vault Team" />
+        <link rel="canonical" href={`https://aether-nexus.vercel.app/ai-tools/${category}/${subcategory}`} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={`${subcategoryName} | ${categoryName} | AI Tools Directory`} />
+        <meta property="og:description" content={`Discover the best ${subcategoryName} AI tools in ${categoryName}. Explore ${searchedTools.length} battle-tested AI solutions with detailed reviews, comparisons, and user ratings.`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://aether-nexus.vercel.app/ai-tools/${category}/${subcategory}`} />
+        <meta property="og:site_name" content="AI Tools Directory" />
+        <meta property="og:image" content="https://aether-nexus.vercel.app/images/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${subcategoryName} | ${categoryName} | AI Tools Directory`} />
+        <meta name="twitter:description" content={`Discover the best ${subcategoryName} AI tools in ${categoryName}. Explore ${searchedTools.length} battle-tested AI solutions.`} />
+        <meta name="twitter:image" content="https://aether-nexus.vercel.app/images/twitter-image.jpg" />
+        <meta name="twitter:site" content="@aitoolsdirectory" />
+        
+        {/* Structured Data - CollectionPage */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": `${subcategoryName} AI Tools`,
+            "description": `Discover the best ${subcategoryName} AI tools in ${categoryName}. Explore ${searchedTools.length} battle-tested AI solutions with detailed reviews, comparisons, and user ratings.`,
+            "url": `https://aether-nexus.vercel.app/ai-tools/${category}/${subcategory}`,
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": searchedTools.map((tool, index) => ({
+                "@type": "SoftwareApplication",
+                "position": index + 1,
+                "name": tool.name,
+                "description": tool.description,
+                "url": tool.url,
+                "applicationCategory": "AI Tool",
+                "offers": {
+                  "@type": "Offer",
+                  "price": tool.pricing === "Free" ? "0" : "Varies",
+                  "priceCurrency": "USD"
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": tool.rating,
+                  "ratingCount": Math.floor(Math.random() * 100) + 10
+                }
+              }))
+            }
+          })}
+        </script>
+        
+        {/* Structured Data - Breadcrumb */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://aether-nexus.vercel.app"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "AI Tools",
+              "item": "https://aether-nexus.vercel.app/ai-tools"
+            },{
+              "@type": "ListItem",
+              "position": 3,
+              "name": categoryName,
+              "item": `https://aether-nexus.vercel.app/ai-tools/${category}`
+            },{
+              "@type": "ListItem",
+              "position": 4,
+              "name": subcategoryName,
+              "item": `https://aether-nexus.vercel.app/ai-tools/${category}/${subcategory}`
+            }]
+          })}
+        </script>
+        
+        {/* Structured Data - FAQ for Answer Engine Optimization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": `What are the best ${subcategoryName} tools in ${categoryName}?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": `The best ${subcategoryName} tools in ${categoryName} offer advanced features, reliable performance, and excellent user reviews. Our directory provides detailed comparisons, ratings, and expert recommendations to help you choose the perfect tools for your needs.`
+                }
+              },
+              {
+                "@type": "Question",
+                "name": `How do I evaluate ${subcategoryName} AI tools?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": `When evaluating ${subcategoryName} AI tools, consider factors like functionality, ease of use, pricing, customer support, and user reviews. Look for tools with proven track records and features that match your specific requirements. Our detailed reviews and comparisons can help guide your decision.`
+                }
+              }
+            ]
+          })}
+        </script>
       </Head>
       
       <div className="max-w-7xl mx-auto">

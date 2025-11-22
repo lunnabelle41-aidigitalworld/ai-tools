@@ -109,19 +109,23 @@ const CategoryPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
       <Head>
         <title>{category?.name || 'Category'} | AI Tools Directory</title>
-        <meta name="description" content={`Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory.`} />
+        <meta name="description" content={`Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory. Find the best AI solutions for ${category?.name || 'your needs'} with detailed reviews and comparisons.`} />
         <meta name="keywords" content={`${category?.name || 'AI tools'}, artificial intelligence, ${category?.subcategories?.map(sub => sub.name).join(', ') || 'tools'}`} />
+        <meta name="author" content="AI Vault Team" />
+        <link rel="canonical" href={`https://aether-nexus.vercel.app/ai-tools/${categorySlug}`} />
         
         {/* Open Graph */}
         <meta property="og:title" content={`${category?.name || 'Category'} | AI Tools Directory`} />
-        <meta property="og:description" content={`Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory.`} />
+        <meta property="og:description" content={`Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory. Find the best AI solutions for ${category?.name || 'your needs'} with detailed reviews and comparisons.`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://aether-nexus.vercel.app/ai-tools/${categorySlug}`} />
+        <meta property="og:site_name" content="AI Tools Directory" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${category?.name || 'Category'} | AI Tools Directory`} />
         <meta name="twitter:description" content={`Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory.`} />
+        <meta name="twitter:site" content="@aitoolsdirectory" />
         
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -129,8 +133,58 @@ const CategoryPage = () => {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": `${category?.name || 'Category'} Tools`,
-            "description": `Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory.`,
+            "description": `Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory. Find the best AI solutions for ${category?.name || 'your needs'} with detailed reviews and comparisons.`,
             "url": `https://aether-nexus.vercel.app/ai-tools/${categorySlug}`
+          })}
+        </script>
+        
+        {/* Structured Data - Breadcrumb */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://aether-nexus.vercel.app"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "AI Tools",
+              "item": "https://aether-nexus.vercel.app/ai-tools"
+            },{
+              "@type": "ListItem",
+              "position": 3,
+              "name": category?.name || 'Category',
+              "item": `https://aether-nexus.vercel.app/ai-tools/${categorySlug}`
+            }]
+          })}
+        </script>
+        
+        {/* Structured Data - FAQ for Answer Engine Optimization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": `What are the best ${category?.name || 'AI'} tools in 2025?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": `The best ${category?.name || 'AI'} tools in 2025 offer advanced features, reliable performance, and excellent user reviews. Our directory provides detailed comparisons, ratings, and expert recommendations to help you choose the perfect tools for your needs.`
+                }
+              },
+              {
+                "@type": "Question",
+                "name": `How do I choose the right ${category?.name || 'AI'} tools?`,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": `When selecting ${category?.name || 'AI'} tools, consider your specific requirements, budget, ease of use, and integration capabilities. Read our detailed reviews, compare features, and check user ratings to make an informed decision.`
+                }
+              }
+            ]
           })}
         </script>
       </Head>
