@@ -6,8 +6,10 @@ import { tools } from "../data/tools";
 import CategoryCard from "../components/CategoryCard";
 import { ToolCard } from "../components/ToolCard";
 import SmartSearch from "../components/SmartSearch/SmartSearch";
-import type { Tool } from "../types/tool";
-export default function HomePage() {
+import { Tool } from "../types/tool";
+import Disclaimer from '../components/Disclaimer';
+
+export default function Home() {
   const [search, setSearch] = useState("");
   const [pricing, setPricing] = useState<string[]>([]);
   const [minRating, setMinRating] = useState(0);
@@ -23,6 +25,28 @@ export default function HomePage() {
     newToolTime: "47",
     seoWeapon: "Backlink Annihilator"
   });
+  
+  // Engagement tracking state
+  const [timeSpent, setTimeSpent] = useState(0);
+  const [toolsViewed, setToolsViewed] = useState<string[]>([]);
+  const [achievements, setAchievements] = useState<string[]>([]);
+
+  // Type guard to check if a tool is valid
+  const isValidTool = (tool: any): tool is Tool => {
+    return tool && 
+           typeof tool === 'object' &&
+           'id' in tool &&
+           'name' in tool &&
+           'category' in tool &&
+           'subcategory' in tool &&
+           'description' in tool &&
+           'pricing' in tool &&
+           'tags' in tool &&
+           'url' in tool;
+  };
+
+  // Filter out invalid tools
+  const validTools = tools.filter(isValidTool);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -51,12 +75,26 @@ export default function HomePage() {
       }));
     }, 3000);
 
+    // Time tracking for engagement
+    const timeInterval = setInterval(() => {
+      setTimeSpent(prev => prev + 1);
+      
+      // Award achievements based on time spent
+      if (timeSpent === 60 && !achievements.includes('1_minute_explorer')) {
+        setAchievements(prev => [...prev, '1_minute_explorer']);
+      }
+      if (timeSpent === 300 && !achievements.includes('5_minute_researcher')) {
+        setAchievements(prev => [...prev, '5_minute_researcher']);
+      }
+    }, 1000);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
       clearInterval(statsInterval);
+      clearInterval(timeInterval);
     };
-  }, []);
+  }, [timeSpent, achievements]);
 
   // Enhanced filter function with support for natural language queries
   const filterTools = useCallback((searchQuery: string, filters: any) => {
@@ -83,11 +121,14 @@ export default function HomePage() {
     // Extract tags from query (words starting with #)
     const tagsInQuery = q.match(/#(\w+)/g)?.map(tag => tag.slice(1).toLowerCase()) || [];
     
-    return tools.filter((tool) => {
-      // Apply search query
+    return validTools.filter((tool) => {
+      // Additional safety check
+      if (!tool) return false;
+      
+      // Apply search query - add safety checks for potentially undefined properties
       const matchesSearch = q === '' || 
-        tool.name.toLowerCase().includes(q) ||
-        tool.description.toLowerCase().includes(q) ||
+        (tool.name && tool.name.toLowerCase().includes(q)) ||
+        (tool.description && tool.description.toLowerCase().includes(q)) ||
         (tool.tags && tool.tags.some(tag => 
           tag.toLowerCase().includes(q) ||
           q.includes(tag.toLowerCase())
@@ -111,15 +152,20 @@ export default function HomePage() {
       
       return matchesSearch && matchesPricing && matchesRating && matchesTags;
     });
-  }, []);
+  }, [validTools]);
   
   // Filter tools based on search and filters
   const filteredTools = filterTools(search, { pricing, minRating, tags: selectedTags });
 
-  const allTags = Array.from(new Set(tools.flatMap((tool) => tool.tags || [])));
+  const allTags = Array.from(new Set(validTools.reduce<string[]>((acc, tool) => {
+    if (tool && tool.tags) {
+      acc.push(...tool.tags);
+    }
+    return acc;
+  }, [])));
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <NextHead>
         <title>AI Tools Directory - Digital Superorganism</title>
         <meta name="description" content="Discover 1000+ battle-tested AI tools across 300+ categories. Find the perfect AI solutions for writing, image generation, video animation, productivity, and more. Zero mercy edition." />
@@ -386,7 +432,7 @@ export default function HomePage() {
                     setSelectedTags(filters.tags || []);
                   }}
                   allTags={allTags}
-                  tools={tools}
+                  tools={validTools as Tool[]}
                 />
               </div>
             </div>
@@ -467,6 +513,125 @@ export default function HomePage() {
                   <div className="text-4xl mb-2">🔒</div>
                   <div className="text-xl font-semibold">Secure Access</div>
                   <div className="text-gray-300">2FA Required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Personalized Dashboard */}
+        <section className="py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                YOUR COMMAND CENTER
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Track your exploration progress and unlock achievements as you discover powerful AI tools.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {/* Time Spent Card */}
+              <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-xl border border-white/20 rounded-3xl p-8 transform transition-all duration-500 hover:scale-105">
+                <div className="text-center">
+                  <div className="text-5xl mb-4">⏱️</div>
+                  <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                    Time Invested
+                  </h3>
+                  <div className="text-3xl font-bold text-cyan-400 mb-2">
+                    {Math.floor(timeSpent / 60)}:{String(timeSpent % 60).padStart(2, '0')}
+                  </div>
+                  <div className="text-gray-300 text-sm">Minutes:Seconds</div>
+                </div>
+              </div>
+
+              {/* Tools Viewed Card */}
+              <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl border border-white/20 rounded-3xl p-8 transform transition-all duration-500 hover:scale-105">
+                <div className="text-center">
+                  <div className="text-5xl mb-4">👁️</div>
+                  <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent">
+                    Tools Viewed
+                  </h3>
+                  <div className="text-3xl font-bold text-purple-400 mb-2">
+                    {toolsViewed.length}
+                  </div>
+                  <div className="text-gray-300 text-sm">Unique Tools</div>
+                </div>
+              </div>
+
+              {/* Achievements Card */}
+              <div className="bg-gradient-to-r from-green-500/20 to-cyan-500/20 backdrop-blur-xl border border-white/20 rounded-3xl p-8 transform transition-all duration-500 hover:scale-105">
+                <div className="text-center">
+                  <div className="text-5xl mb-4">🏆</div>
+                  <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
+                    Achievements
+                  </h3>
+                  <div className="text-3xl font-bold text-green-400 mb-2">
+                    {achievements.length}
+                  </div>
+                  <div className="text-gray-300 text-sm">Unlocked</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Achievements Display */}
+            {achievements.length > 0 && (
+              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 mb-16">
+                <h3 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                  Your Achievements
+                </h3>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  {achievements.map((achievement, index) => (
+                    <div 
+                      key={index}
+                      className="px-6 py-3 bg-gradient-to-r from-yellow-500/30 to-orange-500/30 border border-yellow-500/50 rounded-xl flex items-center gap-3 animate-bounce-in"
+                      style={{ animationDelay: `${index * 0.2}s` }}
+                    >
+                      <span className="text-2xl">🏆</span>
+                      <span className="font-semibold text-yellow-200">
+                        {achievement === '1_minute_explorer' && '1-Minute Explorer'}
+                        {achievement === '5_minute_researcher' && '5-Minute Researcher'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Engagement Tips */}
+            <div className="bg-gradient-to-r from-indigo-500/20 to-purple-500/20 backdrop-blur-xl border border-white/20 rounded-3xl p-8">
+              <h3 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                Pro Tips for Maximum Discovery
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl mt-1">🔍</div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white mb-2">Use Smart Search</h4>
+                    <p className="text-gray-300">Try natural language queries like "best free image generators" or "#SEO tools with 4+ stars"</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl mt-1">⭐</div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white mb-2">Filter by Ratings</h4>
+                    <p className="text-gray-300">Focus on highly-rated tools by setting minimum star ratings in the filters</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl mt-1">🏷️</div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white mb-2">Explore by Tags</h4>
+                    <p className="text-gray-300">Click on any tag to find similar tools across different categories</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl mt-1">🔄</div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white mb-2">Visit Tool Websites</h4>
+                    <p className="text-gray-300">Click the "Visit" button on any tool card to explore the tool directly</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -561,27 +726,32 @@ export default function HomePage() {
 
             {/* Tools Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredTools.slice(0, 9).map((tool, index) => (
-                <div
-                  key={tool.name}
-                  className={`transform transition-all duration-1000 hover:scale-105 ${
-                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-                  }`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
-                >
-                  <ToolCard
-                    name={tool.name}
-                    category={tool.category}
-                    subcategory={tool.subcategory}
-                    rating={tool.rating}
-                    description={tool.description}
-                    pricing={tool.pricing}
-                    tags={tool.tags}
-                    url={tool.url}
-                    favicon={tool.favicon}
-                  />
-                </div>
-              ))}
+              {filteredTools.slice(0, 9).map((tool, index) => {
+                // Type assertion since we've already filtered out invalid tools
+                const validTool = tool as Tool;
+                
+                return (
+                  <div
+                    key={validTool.name}
+                    className={`transform transition-all duration-1000 hover:scale-105 ${
+                      isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+                    }`}
+                    style={{ transitionDelay: `${index * 150}ms` }}
+                  >
+                    <ToolCard
+                      name={validTool.name || 'Unknown Tool'}
+                      category={validTool.category || 'Unknown'}
+                      subcategory={validTool.subcategory || 'Unknown'}
+                      rating={validTool.rating !== undefined ? validTool.rating : 0}
+                      description={validTool.description || 'No description available'}
+                      pricing={validTool.pricing || 'Unknown'}
+                      tags={validTool.tags || []}
+                      url={validTool.url || '#'}
+                      favicon={(validTool as any).favicon || validTool.logo}
+                    />
+                  </div>
+                );
+              })}
             </div>
 
             {/* View All Button */}
@@ -638,6 +808,64 @@ export default function HomePage() {
             </div>
           </div>
                  </section>
+
+        {/* COMMUNITY HUB */}
+        <section id="community" className="py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                COMMUNITY HUB
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Join our thriving community of AI enthusiasts, professionals, and innovators. Share knowledge, collaborate on projects, and stay ahead of the curve.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 text-center transform transition-all duration-300 hover:scale-105">
+                <div className="text-5xl mb-6">💬</div>
+                <h3 className="text-2xl font-bold text-white mb-4">Discussion Forums</h3>
+                <p className="text-gray-300 mb-6">Engage in deep technical discussions, share insights, and get help from experts in the field.</p>
+                <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all">
+                  Join Discussions
+                </button>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 text-center transform transition-all duration-300 hover:scale-105">
+                <div className="text-5xl mb-6">🚀</div>
+                <h3 className="text-2xl font-bold text-white mb-4">Project Showcase</h3>
+                <p className="text-gray-300 mb-6">Showcase your AI projects, get feedback, and discover inspiring work from the community.</p>
+                <button className="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white font-bold rounded-xl hover:from-green-600 hover:to-blue-700 transition-all">
+                  View Projects
+                </button>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 text-center transform transition-all duration-300 hover:scale-105">
+                <div className="text-5xl mb-6">🎓</div>
+                <h3 className="text-2xl font-bold text-white mb-4">Learning Hub</h3>
+                <p className="text-gray-300 mb-6">Access tutorials, courses, and expert-led workshops to advance your AI skills.</p>
+                <button className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-bold rounded-xl hover:from-purple-600 hover:to-pink-700 transition-all">
+                  Start Learning
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-xl border border-white/20 rounded-3xl p-12 text-center">
+              <h3 className="text-3xl font-bold text-white mb-4">Become a Community Member</h3>
+              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Unlock exclusive content, early access to new tools, and networking opportunities with industry leaders.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105">
+                  Sign Up Free
+                </button>
+                <button className="px-8 py-4 bg-white/10 border border-white/20 text-white font-bold rounded-xl hover:bg-white/20 transition-all">
+                  View Benefits
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* THE OBLIVION BUTTON */}
         <section className="py-20 px-4">
@@ -702,15 +930,14 @@ export default function HomePage() {
                  </ul>
                </div>
 
-               {/* Categories */}
+               {/* Legal */}
                <div>
-                 <h4 className="text-xl font-bold text-white mb-6">Top Categories</h4>
+                 <h4 className="text-xl font-bold text-white mb-6">Legal</h4>
                  <ul className="space-y-4">
-                   <li><a href="/ai-tools/writing-&-content" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">Writing & Content</a></li>
-                   <li><a href="/ai-tools/image-generation" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">Image Generation</a></li>
-                   <li><a href="/ai-tools/video-animation" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">Video Animation</a></li>
-                   <li><a href="/ai-tools/productivity" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">Productivity</a></li>
-                   <li><a href="/ai-tools/ai-agents-&-automation" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">AI Agents</a></li>
+                   <li><a href="/terms-of-service" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Terms of Service</a></li>
+                   <li><a href="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Privacy Policy</a></li>
+                   <li><a href="/about" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">About Us</a></li>
+                   <li><a href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact Us</a></li>
                  </ul>
                </div>
              </div>
@@ -806,6 +1033,17 @@ export default function HomePage() {
           100% { transform: translate(50px, 50px); }
         }
         
+        @keyframes pulse-glow {
+          0%, 100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.5); }
+          50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.8); }
+        }
+        
+        @keyframes bounce-in {
+          0% { transform: scale(0.8); opacity: 0; }
+          70% { transform: scale(1.05); }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        
         .animate-gradient-x {
           background-size: 200% 200%;
           animation: gradient-x 15s ease infinite;
@@ -829,10 +1067,18 @@ export default function HomePage() {
           animation: grid-move 20s linear infinite;
         }
         
+        .animate-pulse-glow {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .animate-bounce-in {
+          animation: bounce-in 0.8s ease-out forwards;
+        }
+        
         .duration-2000 {
           transition-duration: 2000ms;
         }
       `}</style>
-    </>
+    </div>
   );
 }

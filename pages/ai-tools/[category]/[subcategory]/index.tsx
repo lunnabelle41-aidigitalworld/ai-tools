@@ -43,6 +43,18 @@ interface Tool {
   favicon?: string;
 }
 
+// Type guard to check if a tool is valid
+const isValidTool = (tool: any): tool is Tool => {
+  return tool && 
+         typeof tool.id === 'string' &&
+         typeof tool.name === 'string' &&
+         typeof tool.description === 'string' &&
+         typeof tool.url === 'string' &&
+         typeof tool.rating === 'number' &&
+         typeof tool.category === 'string' &&
+         typeof tool.subcategory === 'string';
+};
+
 export default function SubcategoryPage() {
   const router = useRouter();
   const { category, subcategory } = router.query;
@@ -151,7 +163,7 @@ export default function SubcategoryPage() {
       // Try multiple matching approaches in order of specificity
       const matchingApproaches: (() => Tool[])[] = [
         // Approach 1: Direct exact match
-        () => tools.filter(tool => 
+        () => tools.filter(isValidTool).filter(tool => 
           tool.category === formattedCategoryName && 
           tool.subcategory === formattedSubcategoryName
         ),
@@ -160,7 +172,7 @@ export default function SubcategoryPage() {
         () => {
           if (formattedSubcategoryName === 'AI & Generative Art') {
             // Look for tools in the "Image Generation" category with "AI & Generative Art" subcategory
-            return tools.filter(tool => 
+            return tools.filter(isValidTool).filter(tool => 
               tool.category === 'Image Generation' && 
               tool.subcategory === 'AI & Generative Art'
             );
@@ -169,13 +181,13 @@ export default function SubcategoryPage() {
         },
         
         // Approach 3: Case insensitive exact match
-        () => tools.filter(tool => 
+        () => tools.filter(isValidTool).filter(tool => 
           tool.category.toLowerCase() === formattedCategoryName.toLowerCase() && 
           tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase()
         ),
         
         // Approach 4: Partial matching for categories with special characters
-        () => tools.filter(tool => {
+        () => tools.filter(isValidTool).filter(tool => {
           const categoryMatch = tool.category.toLowerCase() === formattedCategoryName.toLowerCase() ||
                               tool.category.toLowerCase().includes(formattedCategoryName.toLowerCase()) ||
                               formattedCategoryName.toLowerCase().includes(tool.category.toLowerCase());
@@ -190,7 +202,7 @@ export default function SubcategoryPage() {
         // Approach 5: Broader search with &/and replacement
         () => {
           const categorySearchTerm = formattedCategoryName.toLowerCase().replace(/&/g, 'and');
-          return tools.filter(tool => {
+          return tools.filter(isValidTool).filter(tool => {
             const toolCategory = tool.category.toLowerCase().replace(/&/g, 'and');
             return toolCategory.includes(categorySearchTerm) && 
                    tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase();
@@ -229,7 +241,7 @@ export default function SubcategoryPage() {
   }, [category, subcategory]);
 
   // Filter tools based on search query
-  const searchedTools = filteredTools.filter(tool => 
+  const searchedTools = filteredTools.filter(isValidTool).filter(tool => 
     tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
     (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())))

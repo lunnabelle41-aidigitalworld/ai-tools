@@ -72,7 +72,8 @@ const styles: SmartSearchStyles = {
     padding: '0.75rem 1.5rem',
     fontWeight: 600,
     cursor: 'pointer',
-    transition: 'all 0.2s ease'
+    transition: 'all 0.2s ease',
+    marginLeft: '0.5rem'
   },
   suggestionsContainer: {
     position: 'absolute',
@@ -106,6 +107,19 @@ const styles: SmartSearchStyles = {
     gap: '0.5rem',
     textTransform: 'uppercase',
     letterSpacing: '0.05em'
+  },
+  trendingSearch: {
+    padding: '0.5rem 1rem',
+    fontSize: '0.875rem',
+    color: 'rgba(255, 255, 255, 0.7)',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+    ':hover': {
+      backgroundColor: 'rgba(255, 255, 255, 0.05)'
+    }
   }
 };
 
@@ -203,6 +217,25 @@ const FiStar = ({ size = 20, className = '', ...props }: { size?: number, classN
   </svg>
 );
 
+const FiTrendingUp = ({ size = 20, className = '', ...props }: { size?: number, className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+    <polyline points="17 6 23 6 23 12" />
+  </svg>
+);
+
 // Debounce hook
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
@@ -220,12 +253,13 @@ function useDebounce<T>(value: T, delay: number): T {
   return debouncedValue;
 }
 
-type SuggestionType = 'recent' | 'tool' | 'tag';
+type SuggestionType = 'recent' | 'tool' | 'tag' | 'trending';
 
 interface Suggestion {
   type: SuggestionType;
   text: string;
   icon?: React.ReactNode;
+  count?: number;
 }
 
 interface Filters {
@@ -335,7 +369,14 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
   
   useEffect(() => {
     if (!debouncedSearch) {
-      setSuggestions([]);
+      // Show trending searches when input is empty
+      const trendingSearches: Suggestion[] = [
+        { type: 'trending', text: 'Best AI image generators', icon: <FiTrendingUp size={16} />, count: 1245 },
+        { type: 'trending', text: 'Free SEO tools', icon: <FiTrendingUp size={16} />, count: 987 },
+        { type: 'trending', text: 'AI writing assistants', icon: <FiTrendingUp size={16} />, count: 876 },
+        { type: 'trending', text: 'Video editing AI', icon: <FiTrendingUp size={16} />, count: 754 }
+      ];
+      setSuggestions(trendingSearches);
       return;
     }
 
@@ -424,7 +465,7 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setTimeout(() => setIsFocused(false), 200)}
           style={styles.searchInput}
-          placeholder="Search AI tools..."
+          placeholder="Search AI tools... Try 'best image generators' or '#SEO'"
           aria-label="Search AI tools"
         />
         {search && (
@@ -460,19 +501,29 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
         </button>
       </div>
 
-      {suggestions.length > 0 && (
+      {isFocused && suggestions.length > 0 && (
         <div style={styles.suggestionsContainer}>
           {suggestions.map((suggestion, index) => (
             <div
               key={`${suggestion.type}-${index}`}
               style={styles.suggestionItem as React.CSSProperties}
               onClick={() => {
-                onSearchChange(suggestion.text.replace(/^#/, ''));
-                handleSearch(suggestion.text.replace(/^#/, ''));
+                const searchTerm = suggestion.text.replace(/^#/, '');
+                onSearchChange(searchTerm);
+                handleSearch(searchTerm);
               }}
             >
               {suggestion.icon}
               <span>{suggestion.text}</span>
+              {suggestion.count && (
+                <span style={{ 
+                  marginLeft: 'auto', 
+                  fontSize: '0.75rem', 
+                  color: 'rgba(255, 255, 255, 0.5)' 
+                }}>
+                  {suggestion.count.toLocaleString()} searches
+                </span>
+              )}
             </div>
           ))}
         </div>

@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import Navbar from '../Navbar';
 import Footer from '../Footer/Footer';
 import { ComparisonProvider } from '@/contexts/ComparisonContext';
+import CookieConsent from '../CookieConsent';
 
 // Dynamically import ComparisonBar to avoid SSR issues with localStorage
 const ComparisonBar = dynamic(
@@ -24,6 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
         </main>
         <Footer />
         <ComparisonBar />
+        <CookieConsent />
       </div>
     </ComparisonProvider>
   );
