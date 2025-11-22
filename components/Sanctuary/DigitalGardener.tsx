@@ -1,9 +1,10 @@
 // components/Sanctuary/DigitalGardener.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFavorites } from '../../hooks/useFavorites';
 import { tools } from '../../data/tools';
+import { Tool } from '../../types/tool';
 
 interface GardenerMessage {
   id: string;
@@ -40,7 +41,14 @@ export default function DigitalGardener() {
     // Simulate AI analysis delay
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    const favoriteTools = favorites.map(favId => tools.find(tool => tool.id === favId)).filter((tool): tool is typeof tools[0] => Boolean(tool));
+    const favoriteTools: Tool[] = [];
+    favorites.forEach(favId => {
+      const tool = tools.find(t => t && t.id === favId);
+      if (tool) {
+        favoriteTools.push(tool);
+      }
+    });
+    
     const categories = new Set(favoriteTools.map(tool => tool.category));
     
     // Calculate stack completeness

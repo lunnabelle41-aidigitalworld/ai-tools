@@ -936,7 +936,7 @@ export default function Home() {
                  <ul className="space-y-4">
                    <li><a href="/terms-of-service" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Terms of Service</a></li>
                    <li><a href="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Privacy Policy</a></li>
-                   <li><a href="/about" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">About Us</a></li>
+                   <li><a href="/ai-updates" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">AI Updates</a></li>
                    <li><a href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact Us</a></li>
                  </ul>
                </div>
