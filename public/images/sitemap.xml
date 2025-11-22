@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://aether-nexus.vercel.app/</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/hero-image.jpg</image:loc>
+      <image:title>AI Tools Directory Hero Image</image:title>
+      <image:caption>Discover the ultimate collection of AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog-og-image.jpg</image:loc>
+      <image:title>AI Vault Blog</image:title>
+      <image:caption>Latest AI insights, tools, and trends</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog/neural-stream</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/neural-stream-og-image.jpg</image:loc>
+      <image:title>Neural Stream - Interactive AI Blog Experience</image:title>
+      <image:caption>Experience the future of content with AI Vault's Neural Stream</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog/ai-education-2025</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog/ai-education-2025.jpg</image:loc>
+      <image:title>AI in Education 2025</image:title>
+      <image:caption>Complete guide to learning intelligence and educational automation revolution</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog/ai-healthcare-2025</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog/ai-healthcare-2025.jpg</image:loc>
+      <image:title>AI in Healthcare 2025</image:title>
+      <image:caption>Complete guide to medical intelligence and healthcare automation revolution</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog/ai-finance-2025</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog/ai-finance-2025.jpg</image:loc>
+      <image:title>AI in Finance 2025</image:title>
+      <image:caption>Complete guide to financial intelligence and banking revolution</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog/ai-cybersecurity-2025</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog/ai-cybersecurity-2025.jpg</image:loc>
+      <image:title>AI in Cybersecurity 2025</image:title>
+      <image:caption>Complete guide to security intelligence and threat defense revolution</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog/ai-marketing-2025</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog/ai-marketing-2025.jpg</image:loc>
+      <image:title>AI in Marketing 2025</image:title>
+      <image:caption>Complete guide to marketing intelligence and customer engagement revolution</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/writing-content</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/writing-content.jpg</image:loc>
+      <image:title>Writing & Content</image:title>
+      <image:caption>Explore Writing & Content AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/image-generation</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/image-generation.jpg</image:loc>
+      <image:title>Image Generation</image:title>
+      <image:caption>Explore Image Generation AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/video-animation</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/video-animation.jpg</image:loc>
+      <image:title>Video Animation</image:title>
+      <image:caption>Explore Video Animation AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/ai-agents-automation</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/ai-agents.jpg</image:loc>
+      <image:title>AI Agents & Automation</image:title>
+      <image:caption>Explore AI Agents & Automation tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/development-tools</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/development.jpg</image:loc>
+      <image:title>Development Tools</image:title>
+      <image:caption>Explore Development Tools AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/marketing-tools</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/marketing.jpg</image:loc>
+      <image:title>Marketing Tools</image:title>
+      <image:caption>Explore Marketing Tools AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/productivity-tools</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/productivity.jpg</image:loc>
+      <image:title>Productivity Tools</image:title>
+      <image:caption>Explore Productivity Tools AI tools</image:caption>
+    </image:image>
+  </url>
+</urlset>
+    <loc>https://aether-nexus.vercel.app/blog/ai-healthcare-2025</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog/ai-healthcare-2025.jpg</image:loc>
+      <image:title>AI in Healthcare 2025</image:title>
+      <image:caption>Complete guide to medical intelligence and healthcare automation revolution</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog/ai-finance-2025</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog/ai-finance-2025.jpg</image:loc>
+      <image:title>AI in Finance 2025</image:title>
+      <image:caption>Complete guide to financial intelligence and banking revolution</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog/ai-cybersecurity-2025</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog/ai-cybersecurity-2025.jpg</image:loc>
+      <image:title>AI in Cybersecurity 2025</image:title>
+      <image:caption>Complete guide to security intelligence and threat defense revolution</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/blog/ai-marketing-2025</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/blog/ai-marketing-2025.jpg</image:loc>
+      <image:title>AI in Marketing 2025</image:title>
+      <image:caption>Complete guide to marketing intelligence and customer engagement revolution</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/writing-content</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/writing-content.jpg</image:loc>
+      <image:title>Writing & Content</image:title>
+      <image:caption>Explore Writing & Content AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/image-generation</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/image-generation.jpg</image:loc>
+      <image:title>Image Generation</image:title>
+      <image:caption>Explore Image Generation AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/video-animation</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/video-animation.jpg</image:loc>
+      <image:title>Video Animation</image:title>
+      <image:caption>Explore Video Animation AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/ai-agents-automation</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/ai-agents.jpg</image:loc>
+      <image:title>AI Agents & Automation</image:title>
+      <image:caption>Explore AI Agents & Automation tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/development-tools</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/development.jpg</image:loc>
+      <image:title>Development Tools</image:title>
+      <image:caption>Explore Development Tools AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/marketing-tools</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/marketing.jpg</image:loc>
+      <image:title>Marketing Tools</image:title>
+      <image:caption>Explore Marketing Tools AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://aether-nexus.vercel.app/ai-tools/productivity-tools</loc>
+    <image:image>
+      <image:loc>https://aether-nexus.vercel.app/images/categories/productivity.jpg</image:loc>
+      <image:title>Productivity Tools</image:title>
+      <image:caption>Explore Productivity Tools AI tools</image:caption>
+    </image:image>
+  </url>
+</urlset>

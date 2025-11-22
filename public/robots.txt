@@ -3,3 +3,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://aether-nexus.vercel.app/sitemap.xml
+Sitemap: https://aether-nexus.vercel.app/sitemap-images.xml

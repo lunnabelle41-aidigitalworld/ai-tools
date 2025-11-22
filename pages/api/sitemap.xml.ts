@@ -1,67 +1,144 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { KnowledgeNode } from '../../lib/adaptive-stream';
+// Remove the mock data import since we'll use actual blog post data
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
-// Mock data - in production, this would come from your CMS/database
-const knowledgeNodes: KnowledgeNode[] = [
-  {
-    id: '1',
-    title: 'The Future of AI-Driven Development',
-    content: 'Comprehensive analysis of AI tools transforming software development...',
-    excerpt: 'Explore how AI is revolutionizing the development landscape',
-    author: 'AI Vault Team',
-    publishedAt: '2024-11-15T10:00:00Z',
-    updatedAt: '2024-11-15T10:00:00Z',
-    category: 'Development',
-    tags: ['AI', 'Development', 'Machine Learning', 'Automation'],
-    difficulty: 'intermediate',
-    readTime: 8,
-    engagementScore: 85,
-    trending: true,
-    slug: 'future-ai-driven-development',
-    images: ['/images/ai-development.jpg'],
-    rating: 4.5,
-    reviewCount: 127,
-    linkedTools: [
-      { id: 'github-copilot', name: 'GitHub Copilot', url: '/tools/github-copilot' },
-      { id: 'replit-ghostwriter', name: 'Replit Ghostwriter', url: '/tools/replit-ghostwriter' }
-    ],
-    faqs: [
-      { question: 'What are the main benefits of AI in development?', answer: 'AI enhances productivity, reduces errors, and accelerates development cycles.' },
-      { question: 'How do AI coding assistants work?', answer: 'They use machine learning models trained on vast code repositories to provide intelligent suggestions.' }
-    ],
-    semanticEmbedding: [0.23, -0.45, 0.67, 0.12],
-    targetAudience: ['Developers', 'Tech Leads', 'Engineering Managers']
-  },
-  {
-    id: '2',
-    title: 'Top 10 AI Tools for Content Creation',
-    content: 'Discover the most powerful AI tools for content creation...',
-    excerpt: 'Complete guide to AI-powered content creation tools',
-    author: 'Content Team',
-    publishedAt: '2024-11-10T14:30:00Z',
-    updatedAt: '2024-11-10T14:30:00Z',
-    category: 'Content Creation',
-    tags: ['AI', 'Content', 'Writing', 'Marketing'],
-    difficulty: 'beginner',
-    readTime: 6,
-    engagementScore: 92,
-    trending: true,
-    slug: 'top-10-ai-tools-content-creation',
-    images: ['/images/content-creation.jpg'],
-    rating: 4.7,
-    reviewCount: 203,
-    linkedTools: [
-      { id: 'chatgpt', name: 'ChatGPT', url: '/tools/chatgpt' },
-      { id: 'jasper', name: 'Jasper AI', url: '/tools/jasper' }
-    ],
-    faqs: [
-      { question: 'Which AI tool is best for beginners?', answer: 'ChatGPT is excellent for beginners due to its intuitive interface.' },
-      { question: 'Can AI tools replace human writers?', answer: 'AI tools are assistants that enhance, not replace, human creativity.' }
-    ],
-    semanticEmbedding: [0.34, 0.56, -0.23, 0.78],
-    targetAudience: ['Content Creators', 'Marketers', 'Writers']
+// Function to get all blog post slugs from the blog directory
+function getAllBlogPostSlugs() {
+  try {
+    // In a real implementation, you would dynamically read the blog directory
+    // For now, we'll return a sample of actual blog post IDs from your blog.tsx file
+    return [
+      'no-code-low-code-revolution-2025',
+      'data-science-workstation-2025',
+      'ai-powered-content-creation-stack-2025',
+      'one-person-game-dev-arsenal-2025',
+      'full-stack-web3-developer-kit-2025',
+      'beyond-rag-agentic-search-stack',
+      'gpu-poor-guide-ai-training',
+      'llm-ops-stack-guide',
+      'model-kitchen-revolution-fine-tune-open-source-ai',
+      'ai-coding-assistants-2025',
+      'ai-mental-health-2025',
+      'ai-automation-business',
+      'ai-design-tools-2024',
+      'ai-development-tools-2024',
+      'ai-marketing-tools-2024',
+      'ai-productivity-tools-2024',
+      'ai-tools-comparison-2024',
+      'future-of-artificial-intelligence',
+      'machine-learning-beginners-guide',
+      'top-10-ai-tools-content-creation-2024',
+      'ai-transforming-software-development',
+      'future-ai-business-analytics',
+      'ai-business-analytics-guide',
+      'ai-ethics-2024',
+      'ai-healthcare-revolution',
+      'we-used-ai-to-build-startup-48-hours-stack-cost-reality',
+      'beyond-chatgpt-atlas-neo-guide-niche-ai-tools-youve-never-heard-of',
+      'ai-education-future',
+      'ai-finance-2025',
+      'ai-education-2025',
+      'ai-cybersecurity-2025',
+      'ai-marketing-2025',
+      'ai-customer-service-2025',
+      'ai-supply-chain-2025',
+      'ai-sports-2025',
+      'ai-tourism-2025',
+      'ai-food-beverage-2025',
+      'ai-construction-2025',
+      'ai-government-2025',
+      'ai-insurance-2025',
+      'ai-telecommunications-2025',
+      'ai-banking-2025',
+      'ai-logistics-2025',
+      'ai-hospitality-2025',
+      'ai-cybersecurity-2024',
+      'ai-content-creation-2024',
+      'ai-ecommerce-2024',
+      'ai-finance-2024',
+      'ai-data-science-2024',
+      'ai-healthcare-2024',
+      'ai-manufacturing-2024',
+      'ai-agriculture-2024',
+      'ai-transportation-2024',
+      'ai-real-estate-2024',
+      'ai-legal-services-2024',
+      'ai-human-resources-2024',
+      'ai-retail-2024',
+      'ai-energy-2024',
+      'ai-entertainment-2024',
+      'ai-healthcare-2025',
+      'ai-manufacturing-2025',
+      'ai-agriculture-2025',
+      'ai-transportation-2025',
+      'ai-real-estate-2025',
+      'ai-legal-services-2025',
+      'ai-human-resources-2025',
+      'ai-retail-2025',
+      'ai-energy-2025',
+      'ai-entertainment-2025',
+      'ai-media-2025',
+      'ai-sports-analytics-2025',
+      'ai-fashion-2025',
+      'ai-music-2025',
+      'ai-gaming-2025',
+      'ai-construction-2025',
+      'ai-utilities-2025',
+      'ai-mining-2025',
+      'ai-aviation-2025',
+      'ai-maritime-2025',
+      'ai-financial-technology-2025',
+      'ai-future-technologies-2025',
+      'ai-space-exploration-2025',
+      'ai-robotics-2025',
+      'ai-quantum-computing-2025',
+      'ai-biotechnology-2025',
+      'ai-climate-change-2025',
+      'ai-smart-cities-2025',
+      'ai-defense-2025',
+      'ai-agriculture-technology-2025',
+      'ai-environmental-science-2025',
+      'ai-renewable-energy-2025',
+      'ai-food-technology-2025',
+      'ai-water-management-2025',
+      'ai-waste-management-2025',
+      'ai-forestry-2025',
+      'ai-oceanography-2025',
+      'ai-philosophy-2025',
+      'ai-history-2025',
+      'ai-literature-2025',
+      'ai-meteorology-2025',
+      'ai-geology-2025',
+      'ai-archaeology-2025',
+      'ai-linguistics-2025',
+      'ai-psychology-2025',
+      'ai-sociology-2025',
+      'ai-anthropology-2025',
+      'the-state-of-open-source-2025-funding-fragmentation-future',
+      'the-great-consolidation-which-saas-categories-are-dying-and-which-are-thriving',
+      'our-aws-bill-was-50-000-how-we-fixed-it-a-cloud-cost-optimization-playbook',
+      'the-ultimate-guide-to-developer-onboarding-the-tools-that-make-new-hires-productive-in-day-1',
+      'your-team-is-drowning-in-notifications-heres-a-systematic-framework-for-digital-wellness',
+      'tool-darwinism-why-the-best-product-doesnt-always-win',
+      'the-composability-imperative-why-your-future-stack-will-be-built-like-lego-blocks',
+      'the-ethics-of-code-a-developers-guide-to-responsible-tool-selection',
+      'from-monolith-to-micro-saas-the-unstoppable-fragmentation-of-software',
+      'the-atlas-neo-manifesto-why-the-world-needs-a-smarter-map-of-the-digital-toolscape',
+      'the-2025-developers-stack-architectural-blueprint-building-at-scale',
+      'beyond-feature-lists-executives-framework-strategic-saas-procurement',
+      'the-tool-selection-paradox-why-more-choice-kills-productivity-how-to-fix-it',
+      'figma-vs-sketch-vs-penpot-2025-ultimate-ui-ux-platform-showdown',
+      'the-low-code-arena-developers-brutally-honest-review-bubble-webflow-adalo',
+      'notion-vs-coda-vs-anytype-quest-one-true-workspace',
+      'the-invisible-interface-how-ai-agents-will-make-apps-websites-obsolete',
+      'pricing-page-teardown-how-top-100-saas-companies-structure-their-plans'
+    ];
+  } catch (error) {
+    console.error('Error reading blog directory:', error);
+    return [];
   }
-];
+}
 
 const staticPages = [
   { url: '/', priority: '1.0', changefreq: 'daily' },
@@ -71,11 +148,55 @@ const staticPages = [
   { url: '/compare', priority: '0.8', changefreq: 'weekly' },
   { url: '/new-tools', priority: '0.8', changefreq: 'daily' },
   { url: '/suggest-tool', priority: '0.7', changefreq: 'monthly' },
+  { url: '/favorites', priority: '0.7', changefreq: 'weekly' },
   { url: '/about', priority: '0.6', changefreq: 'monthly' },
   { url: '/contact', priority: '0.5', changefreq: 'monthly' },
   { url: '/terms', priority: '0.4', changefreq: 'yearly' },
   { url: '/privacy', priority: '0.4', changefreq: 'yearly' }
 ];
+
+// Get all categories and subcategories from the tools data
+// In a real implementation, you would import the actual tools data
+function getAllCategoriesAndSubcategories() {
+  // This is a simplified version - in reality you would extract this from your tools data
+  return {
+    categories: [
+      'Development', 'Content Creation', 'Business', 'Analytics', 'Design',
+      'Marketing', 'Productivity', 'Education', 'Healthcare', 'Finance',
+      'Cybersecurity', 'E-commerce', 'Data Science', 'Legal Services',
+      'Human Resources', 'Retail', 'Energy', 'Entertainment', 'Manufacturing',
+      'Agriculture', 'Transportation', 'Real Estate', 'Media', 'Sports',
+      'Fashion', 'Music', 'Gaming', 'Construction', 'Utilities', 'Mining',
+      'Aviation', 'Maritime', 'Financial Technology', 'Future Technologies',
+      'Space Exploration', 'Robotics', 'Quantum Computing', 'Biotechnology',
+      'Climate Change', 'Smart Cities', 'Defense', 'Agriculture Technology',
+      'Environmental Science', 'Renewable Energy', 'Food Technology',
+      'Water Management', 'Waste Management', 'Forestry', 'Oceanography',
+      'Philosophy', 'History', 'Literature', 'Meteorology', 'Geology',
+      'Archaeology', 'Linguistics', 'Psychology', 'Sociology', 'Anthropology'
+    ],
+    subcategories: [
+      // This would be dynamically generated from your tools data
+      'AI & Generative Art', 'Writing & Content', 'Image Generation',
+      'Video Animation', 'AI Agents & Automation', 'Development Tools',
+      'Marketing Tools', 'Productivity Tools', 'Tool Comparison',
+      'Future Tech', 'Machine Learning', 'Business Automation',
+      'Business Analytics', 'AI Ethics', 'Healthcare', 'Education',
+      'Finance', 'Cybersecurity', 'E-commerce', 'Data Science',
+      'Legal Services', 'Human Resources', 'Retail', 'Energy',
+      'Entertainment', 'Manufacturing', 'Agriculture', 'Transportation',
+      'Real Estate', 'Media', 'Sports', 'Fashion', 'Music', 'Gaming',
+      'Construction', 'Utilities', 'Mining', 'Aviation', 'Maritime',
+      'Financial Technology', 'Future Technologies', 'Space Exploration',
+      'Robotics', 'Quantum Computing', 'Biotechnology', 'Climate Change',
+      'Smart Cities', 'Defense', 'Agriculture Technology',
+      'Environmental Science', 'Renewable Energy', 'Food Technology',
+      'Water Management', 'Waste Management', 'Forestry', 'Oceanography',
+      'Philosophy', 'History', 'Literature', 'Meteorology', 'Geology',
+      'Archaeology', 'Linguistics', 'Psychology', 'Sociology', 'Anthropology'
+    ]
+  };
+}
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -102,78 +223,36 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     });
 
     // Add blog posts
-    knowledgeNodes.forEach(node => {
+    const blogSlugs = getAllBlogPostSlugs();
+    blogSlugs.forEach(slug => {
       xml += '  <url>\n';
-      xml += `    <loc>${baseUrl}/blog/${node.slug}</loc>\n`;
-      xml += `    <lastmod>${node.updatedAt || node.publishedAt}</lastmod>\n`;
+      xml += `    <loc>${baseUrl}/blog/${slug}</loc>\n`;
+      xml += `    <lastmod>${currentDate}</lastmod>\n`;
       xml += '    <changefreq>weekly</changefreq>\n';
-      xml += `    <priority>${node.trending ? '0.9' : '0.8'}</priority>\n`;
-      
-      // Add images if available
-      if (node.images && node.images.length > 0) {
-        node.images.forEach(image => {
-          xml += '    <image:image>\n';
-          xml += `      <image:loc>${baseUrl}${image}</image:loc>\n`;
-          xml += `      <image:title>${node.title}</image:title>\n`;
-          xml += `      <image:caption>${node.excerpt}</image:caption>\n`;
-          xml += '    </image:image>\n';
-        });
-      }
-      
-      // Add news sitemap for trending articles
-      if (node.trending && node.publishedAt) {
-        const publicationDate = new Date(node.publishedAt);
-        const threeDaysAgo = new Date();
-        threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-        
-        if (publicationDate > threeDaysAgo) {
-          xml += '    <news:news>\n';
-          xml += '      <news:publication>\n';
-          xml += `        <news:name>AI Vault Blog</news:name>\n`;
-          xml += `        <news:language>en</news:language>\n`;
-          xml += `        <news:publication_date>${node.publishedAt}</news:publication_date>\n`;
-          xml += '      </news:publication>\n';
-          xml += `      <news:title>${escapeXml(node.title)}</news:title>\n`;
-          xml += `      <news:keywords>${node.tags.join(', ')}</news:keywords>\n`;
-          xml += '    </news:news>\n';
-        }
-      }
-      
+      xml += '    <priority>0.8</priority>\n';
       xml += '  </url>\n\n';
     });
 
     // Add category pages
-    const categories = ['Development', 'Content Creation', 'Business', 'Analytics', 'Design'];
+    const { categories, subcategories } = getAllCategoriesAndSubcategories();
     categories.forEach(category => {
       const slug = category.toLowerCase().replace(/\s+/g, '-');
       xml += '  <url>\n';
-      xml += `    <loc>${baseUrl}/blog/category/${slug}</loc>\n`;
+      xml += `    <loc>${baseUrl}/ai-tools/${slug}</loc>\n`;
       xml += `    <lastmod>${currentDate}</lastmod>\n`;
       xml += '    <changefreq>weekly</changefreq>\n';
       xml += '    <priority>0.7</priority>\n';
       xml += '  </url>\n\n';
     });
 
-    // Add tag pages
-    const allTags = [...new Set(knowledgeNodes.flatMap(node => node.tags))];
-    allTags.forEach(tag => {
-      const slug = tag.toLowerCase().replace(/\s+/g, '-');
+    // Add subcategory pages (simplified - in reality you'd want to match them with their categories)
+    subcategories.forEach(subcategory => {
+      const slug = subcategory.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
       xml += '  <url>\n';
-      xml += `    <loc>${baseUrl}/blog/tag/${slug}</loc>\n`;
-      xml += `    <lastmod>${currentDate}</lastmod>\n`;
-      xml += '    <changefreq>monthly</changefreq>\n';
-      xml += '    <priority>0.6</priority>\n';
-      xml += '  </url>\n\n';
-    });
-
-    // Add tool pages
-    const tools = [...new Set(knowledgeNodes.flatMap(node => node.linkedTools || []))];
-    tools.forEach(tool => {
-      xml += '  <url>\n';
-      xml += `    <loc>${baseUrl}${tool.url || `/tools/${tool.id}`}</loc>\n`;
+      xml += `    <loc>${baseUrl}/ai-tools/category/${slug}</loc>\n`;
       xml += `    <lastmod>${currentDate}</lastmod>\n`;
       xml += '    <changefreq>weekly</changefreq>\n';
-      xml += '    <priority>0.8</priority>\n';
+      xml += '    <priority>0.6</priority>\n';
       xml += '  </url>\n\n';
     });
 

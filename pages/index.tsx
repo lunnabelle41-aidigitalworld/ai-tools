@@ -124,14 +124,15 @@ export default function HomePage() {
         <title>AI Tools Directory - Digital Superorganism</title>
         <meta name="description" content="Not a Website – A Digital Superorganism. 1000+ Battle-Tested Digital Weapons - Zero Mercy Edition." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://aitoolsdirectory.com" />
-        <link rel="alternate" hrefLang="en-US" href="https://aitoolsdirectory.com" />
-        <link rel="alternate" hrefLang="x-default" href="https://aitoolsdirectory.com" />
+        <meta name="keywords" content="AI tools, artificial intelligence, machine learning, digital tools, productivity tools, AI directory" />
+        <link rel="canonical" href="https://aether-nexus.vercel.app" />
+        <link rel="alternate" hrefLang="en-US" href="https://aether-nexus.vercel.app" />
+        <link rel="alternate" hrefLang="x-default" href="https://aether-nexus.vercel.app" />
         
         {/* Open Graph meta tags */}
         <meta property="og:title" content="AI Tools Directory - Digital Superorganism" />
         <meta property="og:description" content="Not a Website – A Digital Superorganism. 1000+ Battle-Tested Digital Weapons - Zero Mercy Edition." />
-        <meta property="og:url" content="https://aitoolsdirectory.com" />
+        <meta property="og:url" content="https://aether-nexus.vercel.app" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="AI Tools Directory" />
         <meta property="og:image" content="/og-image.jpg" />
@@ -146,13 +147,14 @@ export default function HomePage() {
         <meta name="twitter:image" content="/twitter-image.jpg" />
         <meta name="twitter:site" content="@aitoolsdirectory" />
         
+        {/* Structured Data - Organization */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "AI Tools Directory",
-            "url": "https://aitoolsdirectory.com",
-            "logo": "https://aitoolsdirectory.com/logo.png",
+            "url": "https://aether-nexus.vercel.app",
+            "logo": "https://aether-nexus.vercel.app/logo.png",
             "sameAs": [
               "https://twitter.com/aitoolsdirectory",
               "https://www.linkedin.com/company/aitoolsdirectory",
@@ -160,17 +162,33 @@ export default function HomePage() {
             ]
           })}
         </script>
+        
+        {/* Structured Data - Website */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "AI Tools Directory",
-            "url": "https://aitoolsdirectory.com",
+            "url": "https://aether-nexus.vercel.app",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://aitoolsdirectory.com/search?q={search_term_string}",
+              "target": "https://aether-nexus.vercel.app/search?q={search_term_string}",
               "query-input": "required name=search_term_string"
             }
+          })}
+        </script>
+        
+        {/* Structured Data - Breadcrumb */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://aether-nexus.vercel.app"
+            }]
           })}
         </script>
       </NextHead>

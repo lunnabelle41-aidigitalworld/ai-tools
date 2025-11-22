@@ -1,147 +1,136 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { KnowledgeNode } from '../../lib/adaptive-stream';
-
-// Mock data - in production, this would come from your CMS/database
-const knowledgeNodes: KnowledgeNode[] = [
-  {
-    id: '1',
-    title: 'The Future of AI-Driven Development',
-    content: 'Comprehensive analysis of AI tools transforming software development...',
-    excerpt: 'Explore how AI is revolutionizing the development landscape',
-    author: 'AI Vault Team',
-    publishedAt: '2024-11-15T10:00:00Z',
-    category: 'Development',
-    tags: ['AI', 'Development', 'Machine Learning', 'Automation'],
-    difficulty: 'intermediate',
-    readTime: 8,
-    engagementScore: 85,
-    trending: true,
-    slug: 'future-ai-driven-development',
-    images: [
-      '/images/ai-development.jpg',
-      '/images/ai-tools-comparison.jpg',
-      '/images/code-generation.jpg'
-    ],
-    rating: 4.5,
-    reviewCount: 127,
-    semanticEmbedding: [0.23, -0.45, 0.67, 0.12],
-    targetAudience: ['Developers', 'Tech Leads', 'Engineering Managers']
-  },
-  {
-    id: '2',
-    title: 'Top 10 AI Tools for Content Creation',
-    content: 'Discover the most powerful AI tools for content creation...',
-    excerpt: 'Complete guide to AI-powered content creation tools',
-    author: 'Content Team',
-    publishedAt: '2024-11-10T14:30:00Z',
-    category: 'Content Creation',
-    tags: ['AI', 'Content', 'Writing', 'Marketing'],
-    difficulty: 'beginner',
-    readTime: 6,
-    engagementScore: 92,
-    trending: true,
-    slug: 'top-10-ai-tools-content-creation',
-    images: [
-      '/images/content-creation.jpg',
-      '/images/ai-writing-tools.jpg',
-      '/images/content-automation.jpg'
-    ],
-    rating: 4.7,
-    reviewCount: 203,
-    semanticEmbedding: [0.34, 0.56, -0.23, 0.78],
-    targetAudience: ['Content Creators', 'Marketers', 'Writers']
-  }
-];
+import { tools } from '../../data/tools';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const baseUrl = 'https://ai-vault.com';
+    const baseUrl = 'https://aether-nexus.vercel.app';
     
     // Generate XML image sitemap
     let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
     xml += '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n';
-
-    // Add images from blog posts
-    knowledgeNodes.forEach(node => {
-      if (node.images && node.images.length > 0) {
-        xml += '  <url>\n';
-        xml += `    <loc>${baseUrl}/blog/${node.slug}</loc>\n`;
-        
-        node.images.forEach((image, index) => {
-          xml += '    <image:image>\n';
-          xml += `      <image:loc>${baseUrl}${image}</image:loc>\n`;
-          xml += `      <image:title>${escapeXml(node.title)} - Image ${index + 1}</image:title>\n`;
-          xml += `      <image:caption>${escapeXml(node.excerpt)}</image:caption>\n`;
-          xml += '      <image:geo_location>San Francisco, CA</image:geo_location>\n';
-          xml += '      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>\n';
-          xml += '    </image:image>\n';
-        });
-        
-        xml += '  </url>\n\n';
+    
+    // Add homepage images
+    xml += '  <url>\n';
+    xml += `    <loc>${baseUrl}/</loc>\n`;
+    xml += '    <image:image>\n';
+    xml += `      <image:loc>${baseUrl}/images/hero-image.jpg</image:loc>\n`;
+    xml += '      <image:title>AI Tools Directory Hero Image</image:title>\n';
+    xml += '      <image:caption>Discover the ultimate collection of AI tools</image:caption>\n';
+    xml += '    </image:image>\n';
+    xml += '  </url>\n\n';
+    
+    // Add blog index page images
+    xml += '  <url>\n';
+    xml += `    <loc>${baseUrl}/blog</loc>\n`;
+    xml += '    <image:image>\n';
+    xml += `      <image:loc>${baseUrl}/images/blog-og-image.jpg</image:loc>\n`;
+    xml += '      <image:title>AI Vault Blog</image:title>\n';
+    xml += '      <image:caption>Latest AI insights, tools, and trends</image:caption>\n';
+    xml += '    </image:image>\n';
+    xml += '  </url>\n\n';
+    
+    // Add neural stream page images
+    xml += '  <url>\n';
+    xml += `    <loc>${baseUrl}/blog/neural-stream</loc>\n`;
+    xml += '    <image:image>\n';
+    xml += `      <image:loc>${baseUrl}/images/neural-stream-og-image.jpg</image:loc>\n`;
+    xml += '      <image:title>Neural Stream - Interactive AI Blog Experience</image:title>\n';
+    xml += '      <image:caption>Experience the future of content with AI Vault\'s Neural Stream</image:caption>\n';
+    xml += '    </image:image>\n';
+    xml += '  </url>\n\n';
+    
+    // Add individual blog post images
+    const blogPosts = [
+      {
+        slug: 'ai-education-2025',
+        title: 'AI in Education 2025',
+        image: '/images/blog/ai-education-2025.jpg',
+        caption: 'Complete guide to learning intelligence and educational automation revolution'
+      },
+      {
+        slug: 'ai-healthcare-2025',
+        title: 'AI in Healthcare 2025',
+        image: '/images/blog/ai-healthcare-2025.jpg',
+        caption: 'Complete guide to medical intelligence and healthcare automation revolution'
+      },
+      {
+        slug: 'ai-finance-2025',
+        title: 'AI in Finance 2025',
+        image: '/images/blog/ai-finance-2025.jpg',
+        caption: 'Complete guide to financial intelligence and banking revolution'
+      },
+      {
+        slug: 'ai-cybersecurity-2025',
+        title: 'AI in Cybersecurity 2025',
+        image: '/images/blog/ai-cybersecurity-2025.jpg',
+        caption: 'Complete guide to security intelligence and threat defense revolution'
+      },
+      {
+        slug: 'ai-marketing-2025',
+        title: 'AI in Marketing 2025',
+        image: '/images/blog/ai-marketing-2025.jpg',
+        caption: 'Complete guide to marketing intelligence and customer engagement revolution'
       }
-    });
-
-    // Add tool screenshots
-    const toolImages = [
-      { tool: 'GitHub Copilot', path: '/tools/github-copilot/screenshot.jpg', description: 'GitHub Copilot AI coding assistant interface' },
-      { tool: 'ChatGPT', path: '/tools/chatgpt/screenshot.jpg', description: 'ChatGPT conversational AI interface' },
-      { tool: 'Jasper AI', path: '/tools/jasper/screenshot.jpg', description: 'Jasper AI content creation dashboard' },
-      { tool: 'Replit Ghostwriter', path: '/tools/replit-ghostwriter/screenshot.jpg', description: 'Replit Ghostwriter AI coding assistant' }
     ];
-
-    toolImages.forEach(toolImage => {
+    
+    blogPosts.forEach(post => {
       xml += '  <url>\n';
-      xml += `    <loc>${baseUrl}${toolImage.path}</loc>\n`;
+      xml += `    <loc>${baseUrl}/blog/${post.slug}</loc>\n`;
       xml += '    <image:image>\n';
-      xml += `      <image:loc>${baseUrl}${toolImage.path}</image:loc>\n`;
-      xml += `      <image:title>${escapeXml(toolImage.tool)} Screenshot</image:title>\n`;
-      xml += `      <image:caption>${escapeXml(toolImage.description)}</image:caption>\n`;
+      xml += `      <image:loc>${baseUrl}${post.image}</image:loc>\n`;
+      xml += `      <image:title>${post.title}</image:title>\n`;
+      xml += `      <image:caption>${post.caption}</image:caption>\n`;
       xml += '    </image:image>\n';
       xml += '  </url>\n\n';
     });
-
-    // Add category hero images
-    const categories = [
-      { name: 'Development', image: '/images/categories/development.jpg' },
-      { name: 'Content Creation', image: '/images/categories/content-creation.jpg' },
-      { name: 'Business', image: '/images/categories/business.jpg' },
-      { name: 'Analytics', image: '/images/categories/analytics.jpg' },
-      { name: 'Design', image: '/images/categories/design.jpg' }
-    ];
-
-    categories.forEach(category => {
+    
+    // Add tool images
+    tools.slice(0, 100).forEach((tool, index) => {
       xml += '  <url>\n';
-      xml += `    <loc>${baseUrl}/blog/category/${category.name.toLowerCase().replace(/\s+/g, '-')}</loc>\n`;
+      xml += `    <loc>${baseUrl}/ai-tools/${tool.category.toLowerCase().replace(/\s+/g, '-')}/${tool.subcategory.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}/${tool.name.toLowerCase().replace(/\s+/g, '-')}</loc>\n`;
+      xml += '    <image:image>\n';
+      xml += `      <image:loc>${baseUrl}/images/tools/${tool.id}.jpg</image:loc>\n`;
+      xml += `      <image:title>${tool.name}</image:title>\n`;
+      xml += `      <image:caption>${tool.description}</image:caption>\n`;
+      xml += '    </image:image>\n';
+      xml += '  </url>\n\n';
+    });
+    
+    // Add category images
+    const categories = [
+      { name: 'Writing & Content', image: '/images/categories/writing-content.jpg' },
+      { name: 'Image Generation', image: '/images/categories/image-generation.jpg' },
+      { name: 'Video Animation', image: '/images/categories/video-animation.jpg' },
+      { name: 'AI Agents & Automation', image: '/images/categories/ai-agents.jpg' },
+      { name: 'Development Tools', image: '/images/categories/development.jpg' },
+      { name: 'Marketing Tools', image: '/images/categories/marketing.jpg' },
+      { name: 'Productivity Tools', image: '/images/categories/productivity.jpg' }
+    ];
+    
+    categories.forEach(category => {
+      const slug = category.name.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+      xml += '  <url>\n';
+      xml += `    <loc>${baseUrl}/ai-tools/${slug}</loc>\n`;
       xml += '    <image:image>\n';
       xml += `      <image:loc>${baseUrl}${category.image}</image:loc>\n`;
-      xml += `      <image:title>${escapeXml(category.name)} Category</image:title>\n`;
-      xml += `      <image:caption>AI tools and resources for ${category.name.toLowerCase()}</image:caption>\n`;
+      xml += `      <image:title>${category.name}</image:title>\n`;
+      xml += `      <image:caption>Explore ${category.name} AI tools</image:caption>\n`;
       xml += '    </image:image>\n';
       xml += '  </url>\n\n';
     });
-
+    
     xml += '</urlset>';
-
+    
     // Set response headers
     res.setHeader('Content-Type', 'application/xml');
     res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
     
     // Send XML response
     res.status(200).send(xml);
-
+    
   } catch (error) {
     console.error('Image sitemap generation error:', error);
     res.status(500).json({ error: 'Failed to generate image sitemap' });
   }
-}
-
-// Helper function to escape XML special characters
-function escapeXml(unsafe: string): string {
-  return unsafe
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
 }

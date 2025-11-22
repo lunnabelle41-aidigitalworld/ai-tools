@@ -106,9 +106,33 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
       <Head>
-        <title>{category.name} | AI Tools Directory</title>
+        <title>{category?.name || 'Category'} | AI Tools Directory</title>
+        <meta name="description" content={`Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory.`} />
+        <meta name="keywords" content={`${category?.name || 'AI tools'}, artificial intelligence, ${category?.subcategories?.map(sub => sub.name).join(', ') || 'tools'}`} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={`${category?.name || 'Category'} | AI Tools Directory`} />
+        <meta property="og:description" content={`Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory.`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://aether-nexus.vercel.app/ai-tools/${categorySlug}`} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${category?.name || 'Category'} | AI Tools Directory`} />
+        <meta name="twitter:description" content={`Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory.`} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": `${category?.name || 'Category'} Tools`,
+            "description": `Explore ${category?.name || 'this category'} tools in our comprehensive AI tools directory.`,
+            "url": `https://aether-nexus.vercel.app/ai-tools/${categorySlug}`
+          })}
+        </script>
       </Head>
 
       <div className="max-w-7xl mx-auto">

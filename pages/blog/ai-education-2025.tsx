@@ -12,32 +12,82 @@ const AiEducation2025 = () => {
         <title>AI in Education 2025: Complete Guide to Learning Intelligence and Educational Automation Revolution - AI Vault</title>
         <meta name="description" content="Discover how AI is revolutionizing education in 2025. Learn about learning intelligence, educational automation, personalized learning, AI tutoring systems, and educational AI applications." />
         <meta name="keywords" content="AI education 2025, learning intelligence, educational AI, personalized learning, AI tutoring, educational automation, AI education" />
+        <meta name="author" content="Education Technology Team" />
+        <link rel="canonical" href="https://aether-nexus.vercel.app/blog/ai-education-2025" />
+        
+        {/* Open Graph */}
         <meta property="og:title" content="AI in Education 2025: Complete Guide to Learning Intelligence and Educational Automation Revolution" />
         <meta property="og:description" content="Comprehensive guide to AI applications in education for 2025, including learning intelligence, personalized learning, and AI tutoring systems." />
         <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://aether-nexus.vercel.app/blog/ai-education-2025" />
+        <meta property="og:image" content="https://aether-nexus.vercel.app/images/blog/ai-education-2025.jpg" />
+        <meta property="og:site_name" content="AI Vault" />
+        <meta property="article:published_time" content="2025-11-19" />
+        <meta property="article:modified_time" content="2025-11-19" />
+        <meta property="article:author" content="Education Technology Team" />
+        <meta property="article:tag" content="Education" />
+        <meta property="article:section" content="Technology" />
+        
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AI in Education 2025" />
         <meta name="twitter:description" content="Complete guide to learning intelligence and educational automation revolution in 2025." />
+        <meta name="twitter:image" content="https://aether-nexus.vercel.app/images/blog/ai-education-2025.jpg" />
+        <meta name="twitter:site" content="@aivault" />
+        
+        {/* Structured Data - Article */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Article",
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://aether-nexus.vercel.app/blog/ai-education-2025"
+            },
             "headline": "AI in Education 2025: Complete Guide to Learning Intelligence and Educational Automation Revolution",
             "description": "Comprehensive guide to AI applications in education for 2025, including learning intelligence, personalized learning, and AI tutoring systems.",
             "author": {
-              "@type": "Organization",
-              "name": "AI Vault Education Technology Team"
+              "@type": "Person",
+              "name": "Education Technology Team"
             },
             "publisher": {
               "@type": "Organization",
-              "name": "AI Vault"
+              "name": "AI Vault",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://aether-nexus.vercel.app/images/logo.png"
+              }
             },
             "datePublished": "2025-11-19",
             "dateModified": "2025-11-19",
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": "https://ai-vault.com/blog/ai-education-2025"
-            }
+            "wordCount": 3100,
+            "image": "https://aether-nexus.vercel.app/images/blog/ai-education-2025.jpg",
+            "keywords": "AI education 2025, learning intelligence, educational AI, personalized learning, AI tutoring, educational automation",
+            "articleSection": "Technology"
+          })}
+        </script>
+        
+        {/* Structured Data - Breadcrumb */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://aether-nexus.vercel.app"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://aether-nexus.vercel.app/blog"
+            },{
+              "@type": "ListItem",
+              "position": 3,
+              "name": "AI in Education 2025",
+              "item": "https://aether-nexus.vercel.app/blog/ai-education-2025"
+            }]
           })}
         </script>
       </Head>
