@@ -4,6 +4,105 @@ import Link from 'next/link';
 
 const blogPosts = [
   {
+    id: 'no-code-low-code-revolution-2025',
+    title: 'The No-Code/Low-Code Revolution: Building Apps Without Writing Code in 2025',
+    excerpt: 'Explore the no-code/low-code revolution in 2025. Discover the best platforms, tools, and strategies for building applications without traditional coding.',
+    date: '2025-03-18',
+    author: 'AI Vault Development Team',
+    category: 'Development',
+    readTime: '20 min read'
+  },
+  {
+    id: 'data-science-workstation-2025',
+    title: 'The Data Science Workstation of the Future: 2025 Edition',
+    excerpt: 'Build the ultimate data science workstation for 2025 with our comprehensive guide. Covering hardware, software, and workflow optimizations for maximum productivity.',
+    date: '2025-03-15',
+    author: 'AI Vault Data Science Team',
+    category: 'Data Science',
+    readTime: '22 min read'
+  },
+  {
+    id: 'ai-powered-content-creation-stack-2025',
+    title: 'The AI-Powered Content Creation Stack: 2025 Edition',
+    excerpt: 'Discover the ultimate AI-powered content creation stack for 2025. Learn about the best tools for writing, design, video, and more to supercharge your content marketing efforts.',
+    date: '2025-03-12',
+    author: 'AI Vault Content Team',
+    category: 'Content Marketing',
+    readTime: '18 min read'
+  },
+  {
+    id: 'one-person-game-dev-arsenal-2025',
+    title: 'The \'One-Person Game Dev\' Arsenal: Building Professional-Quality Games Solo in 2025',
+    excerpt: 'Comprehensive guide to the essential tools, workflows, and strategies for solo game developers to create professional-quality games in 2025. Covering game engines, asset creation, and project management.',
+    date: '2025-03-10',
+    author: 'AI Vault Gaming Team',
+    category: 'Game Development',
+    readTime: '20 min read'
+  },
+  {
+    id: 'full-stack-web3-developer-kit-2025',
+    title: 'The Full-Stack Web3 Developer\'s Kit: Building the Next Generation of Decentralized Applications in 2025',
+    excerpt: 'Comprehensive guide to the essential tools, frameworks, and best practices for full-stack Web3 development in 2025. Learn about Hardhat, Foundry, The Graph, and more.',
+    date: '2025-03-05',
+    author: 'AI Vault Blockchain Team',
+    category: 'Web3 & Blockchain',
+    readTime: '25 min read'
+  },
+  {
+    id: 'beyond-rag-agentic-search-stack',
+    title: 'Beyond RAG: The Agentic Search Stack for Truly Intelligent Enterprise Chatbots',
+    excerpt: 'Discover how agentic search is transforming enterprise chatbots beyond traditional RAG. Learn about LangGraph, CrewAI, and other tools for building intelligent, action-taking AI agents in 2025.',
+    date: '2025-03-01',
+    author: 'AI Vault AI Team',
+    category: 'AI & ML',
+    readTime: '22 min read'
+  },
+  {
+    id: 'gpu-poor-guide-ai-training',
+    title: 'The GPU Poor\'s Guide to AI: Training Models on a Budget in 2025',
+    excerpt: 'Learn how to train AI models without breaking the bank. Discover affordable cloud GPU options, optimization techniques, and cost-saving strategies for AI development in 2025.',
+    date: '2025-02-25',
+    author: 'AI Vault ML Team',
+    category: 'AI & ML',
+    readTime: '20 min read'
+  },
+  {
+    id: 'llm-ops-stack-guide',
+    title: 'The "LLM Ops" Stack: Taming the Chaos of Production Large Language Models',
+    excerpt: 'Comprehensive guide to LLM Ops tools and best practices for managing large language models in production. Learn about Weights & Biases, MLflow, Helicone, and more.',
+    date: '2025-02-20',
+    author: 'AI Vault ML Team',
+    category: 'AI & ML',
+    readTime: '18 min read'
+  },
+  {
+    id: 'model-kitchen-revolution-fine-tune-open-source-ai',
+    title: 'The "Model Kitchen" Revolution: Fine-Tune Open-Source AI Like a Pro',
+    excerpt: 'Discover the top 7 tools for fine-tuning open-source AI models in 2025. Learn how to customize and deploy AI models with Hugging Face, Weights & Biases, and more.',
+    date: '2025-02-15',
+    author: 'AI Vault ML Team',
+    category: 'AI & ML',
+    readTime: '15 min read'
+  },
+  {
+    id: 'ai-coding-assistants-2025',
+    title: '5 AI Coding Assistants Making Developers 3x More Productive in 2025',
+    excerpt: 'Compare the top AI coding assistants of 2025: GitHub Copilot X, Amazon CodeWhisperer, Tabnine, and more. Discover which tool can boost your development productivity.',
+    date: '2025-02-10',
+    author: 'AI Vault Dev Team',
+    category: 'Development Tools',
+    readTime: '12 min read'
+  },
+  {
+    id: 'ai-mental-health-2025',
+    title: 'AI in Mental Health 2025: Transforming Care with Intelligent Solutions',
+    excerpt: 'Explore how AI is revolutionizing mental healthcare in 2025. Discover intelligent therapy tools, emotion recognition, and personalized treatment plans powered by artificial intelligence.',
+    date: '2025-01-15',
+    author: 'AI Vault Health Team',
+    category: 'Healthcare',
+    readTime: '10 min read'
+  },
+  {
     id: 'ai-automation-business',
     title: 'AI Automation for Business: Complete Guide to Scaling Operations',
     excerpt: 'Business automation has evolved from simple rule-based systems to sophisticated AI-powered workflows that can learn, adapt, and make decisions.',
