@@ -7,12 +7,12 @@ interface ToolWithMatches extends Tool {
 
 export async function getTools(): Promise<Tool[]> {
   // Return the tools directly from the data file
-  return allTools;
+  return allTools as Tool[];
 }
 
 export async function getToolById(id: string): Promise<Tool | undefined> {
   const tools = await getTools();
-  return tools.find(tool => tool.id === id);
+  return tools.find(tool => tool && tool.id === id);
 }
 
 export async function getToolsByCategory(category: string): Promise<Tool[]> {

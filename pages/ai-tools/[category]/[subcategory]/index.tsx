@@ -163,31 +163,32 @@ export default function SubcategoryPage() {
       // Try multiple matching approaches in order of specificity
       const matchingApproaches: (() => Tool[])[] = [
         // Approach 1: Direct exact match
-        () => tools.filter(isValidTool).filter(tool => 
-          tool.category === formattedCategoryName && 
+        () => tools.filter(tool => 
+          tool !== undefined && isValidTool(tool) && tool.category === formattedCategoryName && 
           tool.subcategory === formattedSubcategoryName
-        ),
+        ) as Tool[],
         
         // Approach 2: Special case for "AI & Generative Art" subcategory
         () => {
           if (formattedSubcategoryName === 'AI & Generative Art') {
             // Look for tools in the "Image Generation" category with "AI & Generative Art" subcategory
-            return tools.filter(isValidTool).filter(tool => 
-              tool.category === 'Image Generation' && 
+            return tools.filter(tool => 
+              tool !== undefined && isValidTool(tool) && tool.category === 'Image Generation' && 
               tool.subcategory === 'AI & Generative Art'
-            );
+            ) as Tool[];
           }
           return [];
         },
         
         // Approach 3: Case insensitive exact match
-        () => tools.filter(isValidTool).filter(tool => 
-          tool.category.toLowerCase() === formattedCategoryName.toLowerCase() && 
+        () => tools.filter(tool => 
+          tool !== undefined && isValidTool(tool) && tool.category.toLowerCase() === formattedCategoryName.toLowerCase() && 
           tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase()
-        ),
+        ) as Tool[],
         
         // Approach 4: Partial matching for categories with special characters
-        () => tools.filter(isValidTool).filter(tool => {
+        () => tools.filter(tool => {
+          if (tool === undefined || !isValidTool(tool)) return false;
           const categoryMatch = tool.category.toLowerCase() === formattedCategoryName.toLowerCase() ||
                               tool.category.toLowerCase().includes(formattedCategoryName.toLowerCase()) ||
                               formattedCategoryName.toLowerCase().includes(tool.category.toLowerCase());
@@ -197,16 +198,17 @@ export default function SubcategoryPage() {
                                   formattedSubcategoryName.toLowerCase().includes(tool.subcategory.toLowerCase());
           
           return categoryMatch && subcategoryMatch;
-        }),
+        }) as Tool[],
         
         // Approach 5: Broader search with &/and replacement
         () => {
           const categorySearchTerm = formattedCategoryName.toLowerCase().replace(/&/g, 'and');
-          return tools.filter(isValidTool).filter(tool => {
+          return tools.filter(tool => {
+            if (tool === undefined || !isValidTool(tool)) return false;
             const toolCategory = tool.category.toLowerCase().replace(/&/g, 'and');
             return toolCategory.includes(categorySearchTerm) && 
                    tool.subcategory.toLowerCase() === formattedSubcategoryName.toLowerCase();
-          });
+          }) as Tool[];
         }
       ];
       
@@ -241,11 +243,13 @@ export default function SubcategoryPage() {
   }, [category, subcategory]);
 
   // Filter tools based on search query
-  const searchedTools = filteredTools.filter(isValidTool).filter(tool => 
-    tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())))
-  );
+  const searchedTools = filteredTools.filter(tool => 
+    tool !== undefined && isValidTool(tool) && (
+      tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())))
+    )
+  ) as Tool[];
 
   // Animation variants
   const containerVariants = {

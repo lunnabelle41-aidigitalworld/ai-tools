@@ -208,7 +208,7 @@ export default function UniverseCanvas() {
 
     // Create tool orbs
     favorites.forEach((favId, index) => {
-      const tool = tools.find(t => t.id === favId);
+      const tool = tools.find(t => t && t.id === favId);
       if (!tool) return;
 
       const category = tool.category;

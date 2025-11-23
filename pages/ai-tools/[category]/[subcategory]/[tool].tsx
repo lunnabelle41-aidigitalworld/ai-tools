@@ -14,7 +14,7 @@ export default function ToolDetailPage() {
   const router = useRouter();
   const { tool, category, subcategory } = router.query;
   const toolData = tools.find(
-    (t) => t.name.toLowerCase().replace(/\s+/g, "-") === tool
+    (t) => t && t.name.toLowerCase().replace(/\s+/g, "-") === tool
   );
 
   const [reviews, setReviews] = useState(mockReviews);

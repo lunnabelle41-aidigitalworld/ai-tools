@@ -16,8 +16,8 @@ export default function SpecsMatrix({ tools, userPreferences, onReady }: SpecsMa
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['core']));
 
   const selectedTools = tools.map(toolName => 
-    allTools.find(tool => tool.name === toolName)
-  ).filter((tool): tool is typeof allTools[0] => Boolean(tool));
+    allTools.find(tool => tool && tool.name === toolName)
+  ).filter((tool): tool is typeof allTools[0] => tool !== undefined);
 
   // Feature categories for smart grouping
   const featureCategories = {
@@ -161,7 +161,7 @@ export default function SpecsMatrix({ tools, userPreferences, onReady }: SpecsMa
               {tools.map((toolName) => (
                 <th key={toolName} className="px-4 py-3 text-center border border-white/10">
                   <div className="font-semibold">{toolName}</div>
-                  <div className="text-xs text-gray-400">{allTools.find(t => t.name === toolName)?.category}</div>
+                  <div className="text-xs text-gray-400">{allTools.find(t => t && t.name === toolName)?.category || 'Unknown'}</div>
                 </th>
               ))}
             </tr>

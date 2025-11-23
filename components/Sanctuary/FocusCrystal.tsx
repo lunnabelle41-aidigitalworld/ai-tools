@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useFavorites } from '../../hooks/useFavorites';
 import { tools } from '../../data/tools';
+import { Tool } from '../../types/tool';
 
 interface SanctuaryStats {
   totalTools: number;
@@ -24,7 +25,13 @@ export default function FocusCrystal() {
   useEffect(() => {
     if (!favorites.length) return;
 
-    const favoriteTools = favorites.map(favId => tools.find(tool => tool.id === favId)).filter((tool): tool is typeof tools[0] => Boolean(tool));
+    const favoriteTools: Tool[] = [];
+    favorites.forEach(favId => {
+      const tool = tools.find(t => t && t.id === favId);
+      if (tool) {
+        favoriteTools.push(tool);
+      }
+    });
     const categories = new Set(favoriteTools.map(tool => tool.category)).size;
     
     // Simulate new updates (in real app, this would come from API)

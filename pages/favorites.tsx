@@ -16,8 +16,8 @@ export default function FavoritesPage() {
 
   useEffect(() => {
     const favTools = favorites.map(favId => 
-      tools.find(tool => tool.id === favId)
-    ).filter(Boolean);
+      tools.find(tool => tool && tool.id === favId)
+    ).filter((tool): tool is typeof tools[0] => tool !== undefined);
     setFavoriteTools(favTools);
   }, [favorites]);
 

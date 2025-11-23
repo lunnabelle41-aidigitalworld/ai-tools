@@ -11,15 +11,21 @@ export default function NewToolsPage() {
   // Filter and sort tools
   const filteredTools = tools
     .filter((tool) => {
+      // Add type guard to ensure tool is not undefined
+      if (!tool) return false;
+      
       const matchesSearch = tool.name.toLowerCase().includes(search.toLowerCase()) ||
         tool.description.toLowerCase().includes(search.toLowerCase());
       const matchesCategory = !selectedCategory || tool.category === selectedCategory;
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
+      // Add type guards for sorting
+      if (!a || !b) return 0;
+      
       switch (sortBy) {
         case "rating":
-          return b.rating - a.rating;
+          return (b.rating || 0) - (a.rating || 0);
         case "name":
           return a.name.localeCompare(b.name);
         case "newest":
@@ -28,7 +34,7 @@ export default function NewToolsPage() {
       }
     });
 
-  const categories = Array.from(new Set(tools.map(tool => tool.category)));
+  const categories = Array.from(new Set(tools.map(tool => tool?.category).filter(Boolean))) as string[];
 
   return (
     <>
@@ -97,19 +103,22 @@ export default function NewToolsPage() {
             {filteredTools.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredTools.map((tool, index) => (
-                  <div key={tool.name} style={{ animationDelay: `${index * 100}ms` }}>
-                    <ToolCard
-                      name={tool.name}
-                      category={tool.category}
-                      subcategory={tool.subcategory}
-                      rating={tool.rating}
-                      description={tool.description}
-                      pricing={tool.pricing}
-                      tags={tool.tags}
-                      url={tool.url}
-                      favicon={tool.favicon}
-                    />
-                  </div>
+                  // Add type guard for mapping
+                  tool ? (
+                    <div key={tool.name} style={{ animationDelay: `${index * 100}ms` }}>
+                      <ToolCard
+                        name={tool.name}
+                        category={tool.category}
+                        subcategory={tool.subcategory}
+                        rating={tool.rating}
+                        description={tool.description}
+                        pricing={tool.pricing}
+                        tags={tool.tags}
+                        url={tool.url}
+                        favicon={tool.favicon}
+                      />
+                    </div>
+                  ) : null
                 ))}
               </div>
             ) : (

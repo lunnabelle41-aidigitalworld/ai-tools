@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { tools } from '../data/tools';
+import { Tool } from '../types/tool';
 
 interface ToolSelectionBarProps {
   tools: string[];
@@ -23,12 +24,12 @@ export default function ToolSelectionBar({
   const [searchTerm, setSearchTerm] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const selectedToolData = availableTools.filter(tool => tools.includes(tool.name));
-  const filteredSuggestions = availableTools.filter(tool => 
+  const selectedToolData = availableTools.filter(tool => tool !== undefined && tools.includes(tool.name)) as Tool[];
+  const filteredSuggestions = availableTools.filter(tool => tool !== undefined && 
     !tools.includes(tool.name) &&
     tool.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
     tools.length < maxTools
-  );
+  ) as Tool[];
 
   return (
     <div className="border-b border-white/10 bg-white/5 backdrop-blur-md">
