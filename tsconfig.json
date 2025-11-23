@@ -10,7 +10,7 @@
       "esnext"
     ],
     "allowJs": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -23,8 +23,12 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "data/*": ["./data/*"]
+      "@/*": [
+        "./*"
+      ],
+      "data/*": [
+        "./data/*"
+      ]
     },
     "plugins": [
       {

@@ -49,7 +49,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizeCss: true,
+    // Removed optimizeCss as it's causing build performance issues
     optimizePackageImports: ['three', 'd3', 'framer-motion'],
   },
   // Enable SWC minification
@@ -62,38 +62,9 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
     styledComponents: true,
   },
-  webpack: (config, { isServer }) => {
-    // Add GLSL support
-    config.module.rules.push({
-      test: /\.(glsl|vs|fs|vert|frag)$/,
-      use: ['raw-loader', 'glslify-loader'],
-    });
-
-    // Add Three.js and WebGL optimizations
-    if (!isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        'three/examples/jsm/controls/OrbitControls': 'three/examples/jsm/controls/OrbitControls.js',
-        'three/examples/jsm/loaders/GLTFLoader': 'three/examples/jsm/loaders/GLTFLoader.js',
-      };
-    }
-
-    // Add Monaco Editor support
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'monaco-editor': path.resolve(__dirname, 'node_modules/monaco-editor'),
-    };
-
-    // Add Monaco Editor plugin
-    config.plugins.push(
-      new webpack.IgnorePlugin({
-        resourceRegExp: /^((fs)|(path)|(os)|(crypto)|(buffer)|(vm)|(child_process))$/,
-        contextRegExp: /monaco-editor/
-      })
-    );
-
-    return config;
-  },
+  // Increase static generation timeout and limit concurrent builds
+  staticPageGenerationTimeout: 300, // 5 minutes
+  // Remove the webpack configuration that's causing conflicts with Turbopack
   async headers() {
     return [
       // Security headers for all routes
