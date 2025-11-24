@@ -1,15 +1,18 @@
-# AI Vault - AI Tools Directory
+# Cerebrum - The AI Search Engine & Intelligence Platform
 
-A professional, SEO-optimized directory for discovering, comparing, and reviewing 1000+ AI tools across 300+ categories. Built with Next.js, TypeScript, and Tailwind CSS. Updated to fix build issues.
+The world's most advanced search engine and real-time intelligence platform exclusively for Artificial Intelligence. Built with Next.js, TypeScript, and Tailwind CSS.
 
 ## Features
+- Neural Search Engine with Natural Language Understanding
+- AI Tool Discovery with Intent-Based Matching
+- Real-Time AI Ecosystem Intelligence
+- Multi-Modal Search Dimensions (Task, Industry, Technical Specs)
+- Vector Search for Semantic Matching
+- AI Market Pulse Dashboard
+- Technical Deep Dive Engine
+- AI Stack Builder with Workflow Designer
+- Community Review System
 - Modern, responsive UI/UX
-- Mega menu navigation for 300+ categories
-- Tool detail pages with reviews, pricing, and comparisons
-- Advanced search and filtering
-- Dark/light mode toggle
-- Newsletter signup and social links
-- SEO best practices and accessibility
 
 ## Getting Started
 1. Install dependencies: `npm install`

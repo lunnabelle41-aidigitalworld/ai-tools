@@ -19,23 +19,54 @@ const EXCLUDED_PATHS = [
 
 // Static pages that should be in sitemap
 const STATIC_PATHS = [
-  { url: '/', changefreq: 'daily', priority: 1.0 },
-  { url: '/best-tools', changefreq: 'weekly', priority: 0.9 },
-  { url: '/categories', changefreq: 'weekly', priority: 0.8 },
-  { url: '/about', changefreq: 'monthly', priority: 0.7 },
-  { url: '/contact', changefreq: 'monthly', priority: 0.7 },
-  { url: '/terms', changefreq: 'yearly', priority: 0.6 },
-  { url: '/privacy', changefreq: 'yearly', priority: 0.6 }
+  { url: '/', changefreq: 'daily', priority: 1.0, lastmod: new Date().toISOString() },
+  { url: '/best-tools', changefreq: 'weekly', priority: 0.9, lastmod: new Date().toISOString() },
+  { url: '/categories', changefreq: 'weekly', priority: 0.8, lastmod: new Date().toISOString() },
+  { url: '/blog', changefreq: 'daily', priority: 0.9, lastmod: new Date().toISOString() },
+  { url: '/about', changefreq: 'monthly', priority: 0.7, lastmod: new Date().toISOString() },
+  { url: '/contact', changefreq: 'monthly', priority: 0.7, lastmod: new Date().toISOString() },
+  { url: '/terms', changefreq: 'yearly', priority: 0.6, lastmod: new Date('2025-01-01').toISOString() },
+  { url: '/privacy', changefreq: 'yearly', priority: 0.6, lastmod: new Date('2025-01-01').toISOString() }
 ];
 
 // Generate sitemap
 async function generateSitemap() {
   try {
     // Get all pages
-    const pages = await glob.sync(`${PAGES_DIR}/**/*.{js,jsx,ts,tsx,mdx}`);
+    const pages = await glob.sync(`${PAGES_DIR}/**/*.{js,jsx,ts,tsx,mdx}`, {
+      ignore: ['**/node_modules/**', '**/.next/**', '**/out/**', '**/public/**']
+    });
     
     // Filter and format pages
-    const pagePaths = pages
+    // Process dynamic pages (blog posts, tools, etc.)
+    const dynamicPages = [];
+    
+    // Add blog posts
+    const blogPosts = await glob.sync(`${PAGES_DIR}/blog/**/*.{js,jsx,ts,tsx,mdx}`);
+    blogPosts.forEach(post => {
+      const path = post
+        .replace(PAGES_DIR, '')
+        .replace(/\.(js|jsx|ts|tsx|mdx)$/, '');
+      
+      if (!EXCLUDED_PATHS.some(excluded => path.startsWith(excluded))) {
+        dynamicPages.push({
+          url: path,
+          changefreq: 'weekly',
+          priority: 0.8,
+          lastmod: new Date().toISOString()
+        });
+      }
+    });
+    
+    // Process other dynamic pages
+    const otherPages = await glob.sync([
+      `${PAGES_DIR}/**/*.{js,jsx,ts,tsx,mdx}`,
+      `!${PAGES_DIR}/_*.{js,jsx,ts,tsx,mdx}`,
+      `!${PAGES_DIR}/api/**/*`,
+      `!${PAGES_DIR}/blog/**/*`
+    ]);
+    
+    const pagePaths = otherPages
       .map(page => {
         const path = page
           .replace(PAGES_DIR, '')
@@ -44,9 +75,15 @@ async function generateSitemap() {
           .replace(/]/g, '')
           .replace(/index$/, '');
         
-        return path || '/';
+        return path ? {
+          url: path,
+          changefreq: 'weekly',
+          priority: path.split('/').length <= 2 ? 0.7 : 0.6,
+          lastmod: new Date().toISOString()
+        } : null;
       })
-      .filter(path => !EXCLUDED_PATHS.some(excluded => path.startsWith(excluded)));
+      .filter(Boolean)
+      .filter(page => !EXCLUDED_PATHS.some(excluded => page.url.startsWith(excluded)));
 
     // Combine all routes
     const allRoutes = [

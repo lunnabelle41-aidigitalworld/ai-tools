@@ -167,8 +167,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <NextHead>
-        <title>AI Tools Directory - Digital Superorganism</title>
-        <meta name="description" content="Discover 1000+ battle-tested AI tools across 300+ categories. Find the perfect AI solutions for writing, image generation, video animation, productivity, and more. Zero mercy edition." />
+        <title>Cerebrum - The AI Search Engine & Intelligence Platform</title>
+        <meta name="description" content="The world's most advanced search engine and real-time intelligence platform exclusively for Artificial Intelligence. Discover, compare, and master 1000+ AI tools across all industries." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="keywords" content="AI tools, artificial intelligence, machine learning, digital tools, productivity tools, AI directory, image generation, writing tools, video animation" />
         <meta name="author" content="AI Vault Team" />
@@ -351,21 +351,40 @@ export default function Home() {
             <div className={`transition-all duration-2000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
               <h1 className="text-6xl md:text-8xl font-black mb-6 leading-tight">
                 <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-text-shine drop-shadow-2xl" style={{textShadow: '0 0 30px rgba(59, 130, 246, 0.8)'}}>
-                  DIGITAL
+                  CEREBRUM
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-purple-300 via-pink-300 to-cyan-300 bg-clip-text text-transparent animate-text-shine-delayed drop-shadow-2xl" style={{textShadow: '0 0 30px rgba(168, 85, 247, 0.8)'}}>
-                  SUPERORGANISM
+                  AI INTELLIGENCE PLATFORM
                 </span>
               </h1>
               
               {/* Subtitle with Premium Typography */}
               <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-300 to-orange-300 font-bold" style={{textShadow: '0 0 20px rgba(239, 68, 68, 0.6)'}}>Not a Website</span> – 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300 font-bold" style={{textShadow: '0 0 20px rgba(59, 130, 246, 0.6)'}}> A Digital Superorganism</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300 font-bold" style={{textShadow: '0 0 20px rgba(59, 130, 246, 0.6)'}}>Neural Search Engine</span> – 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300 font-bold" style={{textShadow: '0 0 20px rgba(59, 130, 246, 0.6)'}}> Real-Time AI Ecosystem Intelligence</span>
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 font-bold" style={{textShadow: '0 0 20px rgba(168, 85, 247, 0.6)'}}>1,000+ Battle-Tested Digital Weapons - Zero Mercy Edition</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 font-bold" style={{textShadow: '0 0 20px rgba(168, 85, 247, 0.6)'}}>1,000+ AI Tools - Intent-Based Discovery</span>
               </p>
+
+              {/* Neural Search Features */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 max-w-4xl mx-auto">
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4">
+                  <div className="text-2xl mb-2">🧠</div>
+                  <h3 className="font-bold text-lg mb-1">Neural Search</h3>
+                  <p className="text-sm text-gray-300">Conversational query input with real-time suggestions</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4">
+                  <div className="text-2xl mb-2">🔍</div>
+                  <h3 className="font-bold text-lg mb-1">Multi-Modal Search</h3>
+                  <p className="text-sm text-gray-300">Task, industry, and technical specs dimensions</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4">
+                  <div className="text-2xl mb-2">⚡</div>
+                  <h3 className="font-bold text-lg mb-1">Real-Time Intelligence</h3>
+                  <p className="text-sm text-gray-300">Live AI ecosystem pulse dashboard</p>
+                </div>
+              </div>
 
               {/* Tool of Destiny - Central Holographic Display */}
               <div className="relative max-w-4xl mx-auto mb-12">

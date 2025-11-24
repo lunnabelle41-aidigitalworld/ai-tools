@@ -1,7 +1,11 @@
 import { sign, verify } from 'jsonwebtoken';
-import { cookies } from 'next/headers';
 import { SignJWT, jwtVerify } from 'jose';
 import { User, UserWithoutPassword } from '@/types/user';
+import { NextApiRequest } from 'next';
+
+const COOKIE_NAME = 'auth-token';
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_EXPIRES_IN = '30d';
 
 // Type for cookie options
 interface CookieOptions {
@@ -11,12 +15,6 @@ interface CookieOptions {
   maxAge: number;
   path: string;
 }
-
-const COOKIE_NAME = 'auth-token';
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-const JWT_EXPIRES_IN = '30d';
-
-type CookieStore = ReturnType<typeof cookies>;
 
 export async function hashPassword(password: string): Promise<string> {
   const bcrypt = await import('bcryptjs');
@@ -40,27 +38,18 @@ export async function createToken(user: UserWithoutPassword): Promise<string> {
 }
 
 export async function setAuthCookie(token: string): Promise<void> {
-  const cookieStore = await cookies();
-  cookieStore.set({
-    name: COOKIE_NAME,
-    value: token,
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
-    path: '/',
-    maxAge: 60 * 60 * 24 * 30, // 30 days
-  });
+  // This function is not used in API routes
+  throw new Error('setAuthCookie should not be called in API routes');
 }
 
 export async function removeAuthCookie(): Promise<void> {
-  const cookieStore = await cookies();
-  cookieStore.delete(COOKIE_NAME);
+  // This function is not used in API routes
+  throw new Error('removeAuthCookie should not be called in API routes');
 }
 
-export async function getCurrentUser(): Promise<UserWithoutPassword | null> {
+export async function getCurrentUser(req: NextApiRequest): Promise<UserWithoutPassword | null> {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get(COOKIE_NAME)?.value;
+    const token = req.cookies[COOKIE_NAME];
     
     if (!token) return null;
     

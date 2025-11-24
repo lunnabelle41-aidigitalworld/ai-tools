@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 import Script from 'next/script';
 
 export default function Document() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ai-vault.example.com';
+  const siteUrl = 'https://aether-nexus.vercel.app';
   const siteName = 'AI Vault - Discover & Compare AI Tools';
   const description = 'Comprehensive directory of AI tools with detailed comparisons, user reviews, and expert recommendations to help you find the perfect AI solution.';
   const defaultImage = `${siteUrl}/images/og-default.jpg`;
@@ -31,9 +31,7 @@ export default function Document() {
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        
-        {/* Google Search Console Verification */}
-        <meta name="google-site-verification" content="_xAnSYTjZ9yWZeJ4e2YXlHtZ7Of6p3A5TFCMbgDeO-I" />
+        <link rel="canonical" href={siteUrl} />
         
         {/* Bing Webmaster Tools Verification */}
         <meta name="msvalidate.01" content="843BA93192F072AE3F606EF8C86137D2" />
