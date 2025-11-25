@@ -176,6 +176,10 @@ export default function Home() {
         <link rel="alternate" hrefLang="en-US" href="https://aether-nexus.vercel.app" />
         <link rel="alternate" hrefLang="x-default" href="https://aether-nexus.vercel.app" />
         
+        {/* Search Engine Verification Tags */}
+        <meta name="google-site-verification" content="_xAnSYTjZ9yWZeJ4e2YXlHtZ7Of6p3A5TFCMbgDeO-I" />
+        <meta name="msvalidate.01" content="843BA93192F072AE3F606EF8C86137D2" />
+        
         {/* Open Graph meta tags */}
         <meta property="og:title" content="AI Tools Directory - Digital Superorganism" />
         <meta property="og:description" content="Discover 1000+ battle-tested AI tools across 300+ categories. Find the perfect AI solutions for writing, image generation, video animation, productivity, and more." />
@@ -268,6 +272,46 @@ export default function Home() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "2025 has seen breakthrough AI tools in areas like agentic AI, multimodal models, and specialized industry solutions. Our 'New Tools' section highlights the latest additions to our directory with detailed reviews and comparisons."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which AI tools are best for SEO optimization?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For SEO optimization, we recommend tools like Surfer SEO for content optimization, Ahrefs for backlink analysis, SEMrush for keyword research, and Frase for AI-powered content creation. These tools help improve search rankings and drive organic traffic to your website."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What AI tools can help with social media management?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Popular AI tools for social media management include Hootsuite for scheduling and analytics, Buffer for content planning, Later for visual content management, and Chatfuel for AI chatbots. These tools automate posting, analyze performance, and engage with your audience more effectively."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can AI improve email marketing campaigns?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AI enhances email marketing through personalized content generation with tools like Persado, automated segmentation with Seventh Sense, send time optimization with SendGrid, and subject line optimization with Phrasee. These tools increase open rates, engagement, and conversions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the top AI tools for video editing?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Leading AI video editing tools include Runway ML for AI-powered effects, Descript for transcription and editing, Pictory for automatic video creation from text, and Synthesia for AI avatar videos. These tools simplify the editing process and enable non-experts to create professional-quality videos."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which AI tools are best for customer service?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Top AI customer service tools include Zendesk for ticket management with AI suggestions, Intercom for live chat bots, Drift for conversational marketing, and Freshdesk for automated responses. These tools reduce response times and improve customer satisfaction through 24/7 availability."
                 }
               }
             ]
