@@ -8,7 +8,6 @@ import { ToolCard } from "../components/ToolCard";
 import SmartSearch from "../components/SmartSearch/SmartSearch";
 import { Tool } from "../types/tool";
 import Disclaimer from '../components/Disclaimer';
-import AINewsFeed from '../components/search/AINewsFeed';
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -457,9 +456,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          {/* AI News Feed */}
-          <AINewsFeed />
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
