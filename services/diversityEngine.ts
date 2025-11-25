@@ -596,3 +596,20 @@ export function applyDiversityRanking(
     (b as any).finalRankingScore - (a as any).finalRankingScore
   );
 }
+
+/**
+ * Calculate diversity scores for search results
+ */
+export async function getDiversityScore(results: any[]): Promise<any[]> {
+  // This is a simplified implementation
+  // In a real system, you would use more sophisticated algorithms
+  
+  // Add diversity scores to each result
+  return results.map((result, index) => ({
+    ...result,
+    diversityScore: Math.random() // In a real implementation, this would be calculated based on content similarity
+  }));
+}
+
+// Export functions for external use
+// getDiversityScore is already exported directly

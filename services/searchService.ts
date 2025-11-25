@@ -2,6 +2,9 @@ import * as use from '@tensorflow-models/universal-sentence-encoder';
 import * as tf from '@tensorflow/tfjs';
 import { fuzzyDocumentSearch } from './fuzzySearch';
 import { processNaturalLanguageQuery, enhanceSearchResults } from './naturalLanguageProcessor';
+import { clusterSearchResults, getClusterStats } from './searchClustering';
+import { boostDocumentsForUser, PersonalizedSearchOptions } from './personalizationService';
+import { advancedClusterSearchResults, getAdvancedClusterStats } from './advancedSearchClustering';
 
 export type ContentType = 'tool' | 'blog' | 'news' | 'update';
 
@@ -20,10 +23,13 @@ export interface Document {
   category?: string;
   subcategory?: string;
   tags?: string[];
+  features?: string[];
+  launchDate?: string;
+  lastUpdated?: string;
   
   // Tool-specific fields
   rating?: number;
-  pricing?: string;
+  pricing?: string | { free?: boolean; paid?: boolean; plans?: string[] };
   favicon?: string;
   
   // Blog/News specific fields
@@ -188,12 +194,49 @@ export interface SearchOptions {
     subcategory?: string | string[];
     pricingType?: 'Free' | 'Freemium' | 'Paid' | 'Contact' | 'Open Source';
     minReviews?: number;
+    title?: string | string[];
+    date?: string;
+    // Advanced filters
+    features?: string | string[];
+    launchDateFrom?: string;
+    launchDateTo?: string;
+    lastUpdatedFrom?: string;
+    lastUpdatedTo?: string;
+    hasFreePlan?: boolean;
+    hasPaidPlan?: boolean;
+    // Additional advanced filters
+    minPopularity?: number;
+    maxPopularity?: number;
+    trendingScore?: number;
+    hasAPI?: boolean;
+    hasMobileApp?: boolean;
+    hasChromeExtension?: boolean;
+    integrationCount?: number;
+    updateFrequency?: 'daily' | 'weekly' | 'monthly' | 'yearly';
+    toolAge?: 'new' | 'established' | 'legacy';
+    vendorSize?: 'startup' | 'midsize' | 'enterprise';
   };
-  sortBy?: 'relevance' | 'date' | 'rating' | 'title' | 'reviews';
+  sortBy?: 'relevance' | 'date' | 'rating' | 'title' | 'reviews' | 'popularity' | 'trending' | 'lastUpdated' | 'launchDate';
   sortOrder?: 'asc' | 'desc';
   // Personalization options
   userId?: string;
   boostFavorites?: boolean;
+  boostHistory?: boolean;
+  excludeDisliked?: boolean;
+  personalizedRanking?: boolean;
+  // Clustering options
+  clusterResults?: boolean;
+  clusterCount?: number;
+  advancedClustering?: boolean;
+  // Advanced search options
+  includeSnippets?: boolean;
+  highlightTerms?: boolean;
+  fuzzyMatch?: boolean;
+  fuzzyThreshold?: number;
+  // Semantic search options
+  semanticWeight?: number;
+  keywordWeight?: number;
+  phraseMatchBoost?: number;
 }
 
 // Initialize model with proper type
@@ -376,17 +419,148 @@ function applyFilters(documents: Document[], filters: SearchOptions['filters'] =
     // Filter by price (for tools)
     if (filters.maxPrice !== undefined && doc.pricing) {
       // Simple price extraction - you might want to enhance this
-      const priceMatch = doc.pricing.match(/\$([\d.]+)/);
-      if (priceMatch) {
-        const price = parseFloat(priceMatch[1]);
-        if (price > filters.maxPrice) return false;
+      if (typeof doc.pricing === 'string') {
+        const priceMatch = doc.pricing.match(/\$([\d.]+)/);
+        if (priceMatch) {
+          const price = parseFloat(priceMatch[1]);
+          if (price > filters.maxPrice) return false;
+        }
       }
     }
     
     // Filter by pricing type
     if (filters.pricingType && doc.pricing) {
       const pricingType = filters.pricingType.toLowerCase();
-      if (!doc.pricing.toLowerCase().includes(pricingType)) return false;
+      if (typeof doc.pricing === 'string' && !doc.pricing.toLowerCase().includes(pricingType)) return false;
+    }
+    
+    // Filter by title (for brand/tool searches)
+    if (filters.title && doc.title) {
+      const titles = Array.isArray(filters.title) ? filters.title : [filters.title];
+      if (!titles.some(title => 
+        doc.title?.toLowerCase().includes(title.toLowerCase())
+      )) return false;
+    }
+    
+    // Filter by date
+    if (filters.date && doc.publishedAt) {
+      const filterDate = new Date(filters.date);
+      const docDate = new Date(doc.publishedAt);
+      // For now, we'll just check if the document was published after the filter date
+      if (docDate < filterDate) return false;
+    }
+    
+    // Filter by features
+    if (filters.features && doc.features?.length) {
+      const filterFeatures = Array.isArray(filters.features) ? filters.features : [filters.features];
+      const docFeatures = new Set(doc.features.map((f: string) => f.toLowerCase()));
+      if (!filterFeatures.some(feature => docFeatures.has(feature.toLowerCase()))) {
+        return false;
+      }
+    }
+    
+    // Filter by launch date range
+    if ((filters.launchDateFrom || filters.launchDateTo) && doc.launchDate) {
+      const docLaunchDate = new Date(doc.launchDate);
+      if (filters.launchDateFrom) {
+        const fromDate = new Date(filters.launchDateFrom);
+        if (docLaunchDate < fromDate) return false;
+      }
+      if (filters.launchDateTo) {
+        const toDate = new Date(filters.launchDateTo);
+        if (docLaunchDate > toDate) return false;
+      }
+    }
+    
+    // Filter by last updated date range
+    if ((filters.lastUpdatedFrom || filters.lastUpdatedTo) && doc.lastUpdated) {
+      const docLastUpdated = new Date(doc.lastUpdated);
+      if (filters.lastUpdatedFrom) {
+        const fromDate = new Date(filters.lastUpdatedFrom);
+        if (docLastUpdated < fromDate) return false;
+      }
+      if (filters.lastUpdatedTo) {
+        const toDate = new Date(filters.lastUpdatedTo);
+        if (docLastUpdated > toDate) return false;
+      }
+    }
+    
+    // Filter by free plan availability
+    if (filters.hasFreePlan !== undefined && doc.pricing) {
+      // Check if the pricing object has a free property
+      if (typeof doc.pricing === 'object' && doc.pricing !== null && 'free' in doc.pricing) {
+        const pricingObj = doc.pricing as { free?: boolean };
+        if (filters.hasFreePlan !== pricingObj.free) return false;
+      } else if (filters.hasFreePlan) {
+        // If pricing is a string, check if it contains "free"
+        if (typeof doc.pricing === 'string' && !doc.pricing.toLowerCase().includes('free')) return false;
+      }
+    }
+    
+    // Filter by paid plan availability
+    if (filters.hasPaidPlan !== undefined && doc.pricing) {
+      // Check if the pricing object has a paid property
+      if (typeof doc.pricing === 'object' && doc.pricing !== null && 'paid' in doc.pricing) {
+        const pricingObj = doc.pricing as { paid?: boolean };
+        if (filters.hasPaidPlan !== pricingObj.paid) return false;
+      } else if (filters.hasPaidPlan) {
+        // If pricing is a string, check if it contains paid-related terms
+        if (typeof doc.pricing === 'string' && 
+            !(doc.pricing.toLowerCase().includes('paid') || 
+              doc.pricing.toLowerCase().includes('$') || 
+              doc.pricing.toLowerCase().includes('plan'))) return false;
+      }
+    }
+    
+    // Filter by API availability
+    if (filters.hasAPI !== undefined && doc.features) {
+      const hasAPI = doc.features.some((f: string) => 
+        f.toLowerCase().includes('api') || f.toLowerCase().includes('sdk')
+      );
+      if (filters.hasAPI !== hasAPI) return false;
+    }
+    
+    // Filter by mobile app availability
+    if (filters.hasMobileApp !== undefined && doc.features) {
+      const hasMobileApp = doc.features.some((f: string) => 
+        f.toLowerCase().includes('mobile') || f.toLowerCase().includes('app')
+      );
+      if (filters.hasMobileApp !== hasMobileApp) return false;
+    }
+    
+    // Filter by Chrome extension availability
+    if (filters.hasChromeExtension !== undefined && doc.features) {
+      const hasChromeExtension = doc.features.some((f: string) => 
+        f.toLowerCase().includes('chrome') || f.toLowerCase().includes('extension')
+      );
+      if (filters.hasChromeExtension !== hasChromeExtension) return false;
+    }
+    
+    // Filter by integration count
+    if (filters.integrationCount !== undefined && doc.features) {
+      const integrationCount = doc.features.filter((f: string) => 
+        f.toLowerCase().includes('integration') || f.toLowerCase().includes('connect')
+      ).length;
+      if (integrationCount < filters.integrationCount) return false;
+    }
+    
+    // Filter by tool age
+    if (filters.toolAge && doc.launchDate) {
+      const launchDate = new Date(doc.launchDate);
+      const now = new Date();
+      const yearsSinceLaunch = (now.getTime() - launchDate.getTime()) / (1000 * 60 * 60 * 24 * 365);
+      
+      switch (filters.toolAge) {
+        case 'new':
+          if (yearsSinceLaunch >= 1) return false;
+          break;
+        case 'established':
+          if (yearsSinceLaunch < 1 || yearsSinceLaunch >= 3) return false;
+          break;
+        case 'legacy':
+          if (yearsSinceLaunch < 3) return false;
+          break;
+      }
     }
     
     return true;
@@ -422,6 +596,40 @@ function sortResults(results: SearchResult[], options: SearchOptions = {}): Sear
         
       case 'title':
         comparison = a.title.localeCompare(b.title);
+        break;
+        
+      case 'popularity':
+        // Use a combination of rating and reviews for popularity
+        const popularityA = (a.rating || 0) * (a.reviews || 1);
+        const popularityB = (b.rating || 0) * (b.reviews || 1);
+        comparison = popularityB - popularityA;
+        break;
+        
+      case 'trending':
+        // For trending, prioritize recently updated items with good ratings
+        const nowTrending = Date.now();
+        const lastUpdatedATrending = a.lastUpdated ? new Date(a.lastUpdated).getTime() : 0;
+        const lastUpdatedBTrending = b.lastUpdated ? new Date(b.lastUpdated).getTime() : 0;
+        const daysSinceUpdateATrending = (nowTrending - lastUpdatedATrending) / (1000 * 60 * 60 * 24);
+        const daysSinceUpdateBTrending = (nowTrending - lastUpdatedBTrending) / (1000 * 60 * 60 * 24);
+        
+        // Weight by recency (inverse) and rating
+        const trendingScoreA = (a.rating || 0) / (1 + daysSinceUpdateATrending / 7); // Weight by weeks
+        const trendingScoreB = (b.rating || 0) / (1 + daysSinceUpdateBTrending / 7);
+        
+        comparison = trendingScoreB - trendingScoreA;
+        break;
+        
+      case 'lastUpdated':
+        const lastUpdatedValA = a.lastUpdated ? new Date(a.lastUpdated).getTime() : 0;
+        const lastUpdatedValB = b.lastUpdated ? new Date(b.lastUpdated).getTime() : 0;
+        comparison = lastUpdatedValB - lastUpdatedValA;
+        break;
+        
+      case 'launchDate':
+        const launchDateValA = a.launchDate ? new Date(a.launchDate).getTime() : 0;
+        const launchDateValB = b.launchDate ? new Date(b.launchDate).getTime() : 0;
+        comparison = launchDateValB - launchDateValA;
         break;
         
       case 'relevance':
@@ -733,7 +941,38 @@ export const semanticSearch = async (
     }
     
     // Enhance results based on query intent
-    const enhancedResults = enhanceSearchResults(finalResults, processedQuery.intent);
+    let enhancedResults = enhanceSearchResults(finalResults, processedQuery.intent);
+    
+    // Apply personalization if user ID is provided
+    if (mergedOptions.userId) {
+      enhancedResults = boostDocumentsForUser(enhancedResults, mergedOptions.userId, {
+        boostFavorites: mergedOptions.boostFavorites || false,
+        boostHistory: mergedOptions.boostHistory || false,
+        excludeDisliked: mergedOptions.excludeDisliked || false,
+        personalizedRanking: mergedOptions.personalizedRanking || false
+      });
+      
+      // Re-sort by boosted scores
+      enhancedResults = sortResults(enhancedResults, mergedOptions);
+    }
+    
+    // Apply clustering if requested
+    if (mergedOptions.clusterResults) {
+      const clusteredResults = mergedOptions.advancedClustering 
+        ? advancedClusterSearchResults(enhancedResults, mergedOptions.clusterCount || 8)
+        : clusterSearchResults(enhancedResults);
+      
+      // Flatten clusters back to results with cluster information
+      enhancedResults = clusteredResults.flatMap(cluster => 
+        cluster.results.map(result => ({
+          ...result,
+          clusterId: cluster.id,
+          clusterTitle: cluster.title,
+          clusterDescription: (cluster as any).description, // Only in advanced clustering
+          clusterRating: (cluster as any).averageRating // Only in advanced clustering
+        }))
+      );
+    }
     
     // Cache the results
     searchResultCache.set(cacheKey, enhancedResults);
@@ -852,3 +1091,9 @@ export const loadDocuments = async (): Promise<Document[]> => {
     ...staticDocuments
   ];
 };
+
+// Export clustering functions
+export { clusterSearchResults, getClusterStats } from './searchClustering';
+
+// Export types and functions for external use
+// Types and functions are already exported directly above

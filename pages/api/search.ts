@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { semanticSearch, Document, ContentType, SearchOptions } from '../../services/searchService';
 import { initializeAutocomplete } from '../../services/autocomplete';
 import { clusterSearchResults, getClusterStats } from '../../services/searchClustering';
+import { logSearchQuery } from '../../services/searchAnalytics';
 import path from 'path';
 import fs from 'fs/promises';
 import { tools as allTools } from '../../data/tools';
@@ -24,6 +25,9 @@ function loadAITools(): Document[] {
       rating: tool.rating || 0,
       pricing: tool.pricing || 'Unknown',
       tags: tool.tags || [],
+      features: tool.features || [],
+      launchDate: tool.launch_date || undefined,
+      lastUpdated: tool.last_updated || undefined,
       favicon: tool.favicon || '',
       publishedAt: new Date(), // Use current date or add a published date to your tools
       summary: tool.description || ''
@@ -241,7 +245,18 @@ export default async function handler(
     pricingType,
     sortBy,
     sortOrder,
-    cluster = 'false'
+    hasAPI,
+    hasMobileApp,
+    hasChromeExtension,
+    integrationCount,
+    toolAge,
+    cluster = 'false',
+    advancedClustering = 'false',
+    clusterCount,
+    userId,
+    boostFavorites = 'false',
+    boostHistory = 'false',
+    excludeDisliked = 'false'
   } = req.query;
 
   if (!query || typeof query !== 'string') {
@@ -307,11 +322,26 @@ export default async function handler(
         ...(minRating && { minRating: Number(minRating) }),
         ...(minReviews && { minReviews: Number(minReviews) }),
         ...(maxPrice && { maxPrice: Number(maxPrice) }),
-        ...(pricingType && { pricingType: pricingType as any })
-      }
+        ...(pricingType && { pricingType: pricingType as any }),
+        ...(hasAPI && { hasAPI: hasAPI === 'true' }),
+        ...(hasMobileApp && { hasMobileApp: hasMobileApp === 'true' }),
+        ...(hasChromeExtension && { hasChromeExtension: hasChromeExtension === 'true' }),
+        ...(integrationCount && { integrationCount: Number(integrationCount) }),
+        ...(toolAge && { toolAge: toolAge as any })
+      },
+      // Personalization options
+      ...(userId && { userId: userId as string }),
+      boostFavorites: boostFavorites === 'true',
+      boostHistory: boostHistory === 'true',
+      excludeDisliked: excludeDisliked === 'true',
+      // Clustering options
+      clusterResults: cluster === 'true',
+      advancedClustering: advancedClustering === 'true',
+      ...(clusterCount && { clusterCount: Number(clusterCount) })
     };
 
     // Perform search with timing
+    const startTime = Date.now();
     console.time(`Search API - ${query}`);
     const results = await semanticSearch(query, cachedDocuments, searchOptions);
     console.timeEnd(`Search API - ${query}`);
@@ -324,6 +354,21 @@ export default async function handler(
       ? filteredResults.slice(0, searchOptions.limit)
       : filteredResults.slice(0, 30); // Default limit
 
+    // Log search query for analytics
+    const endTime = Date.now();
+    const responseTime = endTime - startTime;
+    
+    logSearchQuery({
+      id: `${Date.now()}-${Math.random()}`,
+      query: query as string,
+      timestamp: new Date(),
+      resultsCount: limitedResults.length,
+      responseTime,
+      filtersApplied: searchOptions.filters || {},
+      sortBy: searchOptions.sortBy || 'relevance',
+      userId: undefined // In a real app, this would come from auth/session
+    });
+    
     return res.status(200).json({ 
       success: true,
       query,

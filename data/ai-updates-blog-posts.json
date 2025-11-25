@@ -1,0 +1,162 @@
+[
+  {
+    "type": "product_launch",
+    "title": "Claude 3.5 Sonnet Released",
+    "summary": "Anthropic's latest model beats GPT-4 on several benchmarks",
+    "date": "2024-01-20",
+    "source": "Official Announcement",
+    "tools_mentioned": ["Claude", "ChatGPT"]
+  },
+  {
+    "type": "update",
+    "title": "Midjourney v6.5 Alpha Access",
+    "summary": "Major improvements in photorealism and prompt understanding",
+    "date": "2024-01-19", 
+    "source": "Discord Announcement",
+    "tools_mentioned": ["Midjourney"]
+  },
+  {
+    "type": "tutorial",
+    "title": "Building AI Agents with LangGraph",
+    "summary": "Step-by-step guide to creating autonomous AI workflows",
+    "date": "2024-01-18",
+    "author": "AI Engineering Team",
+    "tools_mentioned": ["LangGraph", "OpenAI", "Anthropic"]
+  },
+  {
+    "type": "news",
+    "title": "Google DeepMind Unveils Gemini 2.0",
+    "summary": "Multimodal AI system demonstrates human-level performance on complex reasoning tasks",
+    "date": "2024-01-17",
+    "source": "TechCrunch",
+    "tools_mentioned": ["Gemini"]
+  },
+  {
+    "type": "product_launch",
+    "title": "Runway ML Gen-3 Alpha",
+    "summary": "Next-generation video generation with unprecedented control and quality",
+    "date": "2024-01-16",
+    "source": "Runway Blog",
+    "tools_mentioned": ["Runway"]
+  },
+  {
+    "type": "update",
+    "title": "GitHub Copilot X Enhancements",
+    "summary": "New features include chat interface, terminal command suggestions, and pull request explanations",
+    "date": "2024-01-15",
+    "source": "GitHub Blog",
+    "tools_mentioned": ["GitHub Copilot"]
+  },
+  {
+    "type": "tutorial",
+    "title": "Fine-tuning LLMs for Domain-Specific Applications",
+    "summary": "Best practices for adapting large language models to specialized business needs",
+    "date": "2024-01-14",
+    "author": "Dr. Sarah Chen",
+    "tools_mentioned": ["Hugging Face", "OpenAI", "Anthropic"]
+  },
+  {
+    "type": "news",
+    "title": "OpenAI Announces GPT-5 Development Timeline",
+    "summary": "Company reveals plans for next-generation model with enhanced reasoning capabilities",
+    "date": "2024-01-13",
+    "source": "Official Press Release",
+    "tools_mentioned": ["ChatGPT"]
+  },
+  {
+    "type": "product_launch",
+    "title": "Adobe Firefly 3.0 with Vector Graphics Support",
+    "summary": "Creative suite now includes AI-powered vector illustration and logo design tools",
+    "date": "2024-01-12",
+    "source": "Adobe MAX Conference",
+    "tools_mentioned": ["Adobe Firefly"]
+  },
+  {
+    "type": "update",
+    "title": "Notion AI Workspace Collaboration Features",
+    "summary": "Enhanced team collaboration with real-time AI assistance and document synchronization",
+    "date": "2024-01-11",
+    "source": "Notion Blog",
+    "tools_mentioned": ["Notion AI"]
+  },
+  {
+    "type": "tutorial",
+    "title": "Implementing Retrieval-Augmented Generation (RAG)",
+    "summary": "How to build AI applications that combine LLMs with external knowledge bases",
+    "date": "2024-01-10",
+    "author": "Michael Rodriguez",
+    "tools_mentioned": ["Pinecone", "LangChain", "OpenAI"]
+  },
+  {
+    "type": "news",
+    "title": "Microsoft Integrates Copilot Across Office Suite",
+    "summary": "AI assistant now available in Word, Excel, PowerPoint, and Teams with contextual awareness",
+    "date": "2024-01-09",
+    "source": "Microsoft Ignite",
+    "tools_mentioned": ["Microsoft 365 Copilot"]
+  },
+  {
+    "type": "product_launch",
+    "title": "ElevenLabs Voice Isolation 2.0",
+    "summary": "Advanced audio separation technology for professional podcast and video production",
+    "date": "2024-01-08",
+    "source": "ElevenLabs Newsletter",
+    "tools_mentioned": ["ElevenLabs"]
+  },
+  {
+    "type": "update",
+    "title": "Stable Diffusion 3.0 Performance Improvements",
+    "summary": "50% faster inference times and enhanced prompt understanding for complex creative tasks",
+    "date": "2024-01-07",
+    "source": "Stability AI Blog",
+    "tools_mentioned": ["Stable Diffusion"]
+  },
+  {
+    "type": "tutorial",
+    "title": "Building Chatbots with Function Calling",
+    "summary": "Leveraging tool usage capabilities in LLMs for complex problem-solving applications",
+    "date": "2024-01-06",
+    "author": "Jennifer Park",
+    "tools_mentioned": ["OpenAI", "Anthropic", "Replit"]
+  },
+  {
+    "type": "news",
+    "title": "Anthropic Raises $2B Series C for AI Safety Research",
+    "summary": "Funding will support development of more interpretable and controllable AI systems",
+    "date": "2024-01-05",
+    "source": "Reuters",
+    "tools_mentioned": ["Claude"]
+  },
+  {
+    "type": "product_launch",
+    "title": "Descript Overdub 3.0 with Emotion Control",
+    "summary": "Voice cloning technology now supports emotional tone and style customization",
+    "date": "2024-01-04",
+    "source": "Descript Blog",
+    "tools_mentioned": ["Descript"]
+  },
+  {
+    "type": "update",
+    "title": "Perplexity AI Pro Adds Custom Model Training",
+    "summary": "Enterprise users can now fine-tune models on proprietary data for specialized applications",
+    "date": "2024-01-03",
+    "source": "Perplexity Newsletter",
+    "tools_mentioned": ["Perplexity AI"]
+  },
+  {
+    "type": "tutorial",
+    "title": "Prompt Engineering for Image Generation",
+    "summary": "Advanced techniques for creating detailed and consistent visual content with AI",
+    "date": "2024-01-02",
+    "author": "Alex Thompson",
+    "tools_mentioned": ["Midjourney", "DALL-E 3", "Stable Diffusion"]
+  },
+  {
+    "type": "news",
+    "title": "Google Introduces PaLM 3 with 10x Context Window",
+    "summary": "Next-generation language model supports 128K token inputs for long-document processing",
+    "date": "2024-01-01",
+    "source": "Google AI Blog",
+    "tools_mentioned": ["Google Bard"]
+  }
+]

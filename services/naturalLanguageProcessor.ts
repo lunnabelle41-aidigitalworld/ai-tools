@@ -8,7 +8,10 @@ export type QueryIntent =
   | 'navigational'
   | 'transactional'
   | 'comparative'
-  | 'recommendation';
+  | 'recommendation'
+  | 'tutorial'
+  | 'review'
+  | 'alternative';
 
 // Entity types that can be extracted from queries
 export type EntityType = 
@@ -44,6 +47,21 @@ export interface ProcessedQuery {
  */
 function determineQueryIntent(query: string): QueryIntent {
   const queryLower = query.toLowerCase();
+  
+  // Tutorial queries (how to, tutorial, guide, step by step, etc.)
+  if (/\b(how to|tutorial|guide|step by step|learn|instructions)\b/.test(queryLower)) {
+    return 'tutorial';
+  }
+  
+  // Review queries (review, rating, opinion, feedback, etc.)
+  if (/\b(review|rating|opinion|feedback|experience)\b/.test(queryLower)) {
+    return 'review';
+  }
+  
+  // Alternative queries (alternative to, instead of, vs, etc.)
+  if (/\b(alternative to|instead of|vs|versus|compared to)\b/.test(queryLower)) {
+    return 'alternative';
+  }
   
   // Comparative queries (comparison, vs, versus, better than, etc.)
   if (/\b(compare|vs|versus|better than|worse than|vs\.|difference between)\b/.test(queryLower)) {
@@ -114,7 +132,9 @@ function extractEntities(query: string): ExtractedEntity[] {
     'api', 'integration', 'plugin',
     'customizable', 'custom', 'personalization',
     'secure', 'security', 'privacy',
-    'multilingual', 'language', 'translation'
+    'multilingual', 'language', 'translation',
+    'api access', 'chrome extension', 'mobile app',
+    'team collaboration', 'integrations', 'open source'
   ];
   
   featureKeywords.forEach(feature => {
@@ -150,6 +170,38 @@ function extractEntities(query: string): ExtractedEntity[] {
       });
     });
   }
+  
+  // Extract potential date ranges
+  const dateMatches = queryLower.match(/\b(\d{4}-\d{2}-\d{2}|\d{2}\/\d{2}\/\d{4}|\d{2}-\d{2}-\d{4})\b/g);
+  if (dateMatches) {
+    dateMatches.forEach(date => {
+      entities.push({
+        type: 'date',
+        value: date,
+        confidence: 0.9
+      });
+    });
+  }
+  
+  // Extract potential brands/tools
+  const brandKeywords = [
+    'chatgpt', 'claude', 'midjourney', 'dall-e', 'stable diffusion',
+    'runway', 'elevenlabs', 'github copilot', 'notion ai', 'consensus',
+    'synthesia', 'copy.ai', 'writer', 'leonardo ai', 'pika labs',
+    'heygen', 'murf ai', 'adobe podcast', 'replit ghostwriter', 'tabnine',
+    'codeium', 'grammarly', 'quillbot', 'otter.ai', 'elicit', 'scite',
+    'chatpdf', 'jasper business', 'copy.ai enterprise', 'writer for teams'
+  ];
+  
+  brandKeywords.forEach(brand => {
+    if (queryLower.includes(brand)) {
+      entities.push({
+        type: 'brand',
+        value: brand,
+        confidence: 0.95
+      });
+    }
+  });
   
   return entities;
 }
@@ -191,6 +243,17 @@ export function processNaturalLanguageQuery(query: string): ProcessedQuery {
           filters.minRating = Math.max(filters.minRating || 0, ratingValue);
         }
         break;
+        
+      case 'brand':
+        // For brand entities, we'll search in the title field
+        if (!filters.title) filters.title = [];
+        filters.title.push(entity.value);
+        break;
+        
+      case 'date':
+        // For date entities, we'll add a date filter
+        if (!filters.date) filters.date = entity.value;
+        break;
     }
   });
   
@@ -228,6 +291,23 @@ export function processNaturalLanguageQuery(query: string): ProcessedQuery {
     case 'comparative':
       // For comparisons, limit to a small number of results
       limit = 5;
+      break;
+      
+    case 'tutorial':
+      // For tutorials, sort by date to get the most recent ones
+      sortBy = 'date';
+      sortOrder = 'desc';
+      break;
+      
+    case 'review':
+      // For reviews, sort by rating to get the highest-rated tools
+      sortBy = 'rating';
+      sortOrder = 'desc';
+      break;
+      
+    case 'alternative':
+      // For alternatives, show diverse results
+      limit = 15;
       break;
   }
   
@@ -290,6 +370,39 @@ export function enhanceSearchResults(results: any[], intent: QueryIntent): any[]
         ...result,
         _enhancedSnippet: result.pricing ? `${result.pricing} - ${result._snippet || result.summary}` : result._snippet
       }));
+      
+    case 'tutorial':
+      // For tutorials, prioritize blog posts and guides
+      return results
+        .map(result => {
+          if (result.type === 'blog') {
+            return { ...result, similarity: Math.min(1, (result.similarity || 0) + 0.2) };
+          }
+          return result;
+        })
+        .sort((a, b) => (b.similarity || 0) - (a.similarity || 0));
+      
+    case 'review':
+      // For reviews, prioritize tools with high ratings and many reviews
+      return results
+        .map(result => {
+          if (result.rating >= 4.0 && (result.reviews || 0) >= 10) {
+            return { ...result, similarity: Math.min(1, (result.similarity || 0) + 0.15) };
+          }
+          return result;
+        })
+        .sort((a, b) => (b.similarity || 0) - (a.similarity || 0));
+      
+    case 'alternative':
+      // For alternatives, show diverse categories
+      const categories = new Set();
+      return results.filter(result => {
+        if (result.category && !categories.has(result.category)) {
+          categories.add(result.category);
+          return true;
+        }
+        return false;
+      }).slice(0, 15);
       
     default:
       return results;

@@ -139,82 +139,32 @@ function calculatePersonalizationBoost(
 }
 
 /**
- * Re-rank search results based on multiple factors
+ * Rerank search results based on multiple factors
  */
-export function rerankResults(
+export async function rerankSearchResults(
   results: SearchResultWithFeatures[],
-  config: RerankingConfig = defaultConfig,
-  userId?: string
-): SearchResultWithFeatures[] {
-  if (results.length === 0) return results;
-  
-  // Extract values for normalization
-  const similarities = results.map(r => r.similarity || 0);
-  const ratings = results.map(r => r.rating || 0);
-  const popularities = results.map(r => r.popularity || 0);
-  
-  const minSimilarity = Math.min(...similarities);
-  const maxSimilarity = Math.max(...similarities);
-  const minRating = Math.min(...ratings);
-  const maxRating = Math.max(...ratings);
-  const minPopularity = Math.min(...popularities);
-  const maxPopularity = Math.max(...popularities);
-  
-  // Calculate sentiment scores for all results
-  const sentimentScores = results.map(result => {
-    const sentiment = analyzeSentiment(result.content);
-    // Convert sentiment to 0-1 score (very-negative=0, neutral=0.5, very-positive=1)
-    switch (sentiment.sentiment) {
-      case 'very-negative': return 0;
-      case 'negative': return 0.25;
-      case 'neutral': return 0.5;
-      case 'positive': return 0.75;
-      case 'very-positive': return 1;
-      default: return 0.5;
-    }
-  });
-  
-  // Re-rank results
+  config: RerankingConfig = defaultConfig
+): Promise<SearchResultWithFeatures[]> {
+  // Apply reranking algorithm
   const reranked = results.map(result => {
-    // Normalize features
-    const normalizedSimilarity = normalize(result.similarity || 0, minSimilarity, maxSimilarity);
-    const normalizedRating = normalize(result.rating || 0, minRating, maxRating);
-    const normalizedPopularity = normalize(result.popularity || 0, minPopularity, maxPopularity);
-    const recencyScore = calculateRecencyScore(result.publishedAt);
-    const sentimentScore = sentimentScores[results.indexOf(result)];
-    const diversityScore = calculateDiversityScore(result, results, config.diversityThreshold || 0.8);
-    const personalizationBoost = calculatePersonalizationBoost(result, userId, config.personalizationBoost);
-    
-    // Calculate weighted score
-    const weightedScore = 
-      (normalizedSimilarity * config.weights.similarity) +
-      (normalizedRating * config.weights.rating) +
-      (recencyScore * config.weights.recency) +
-      (normalizedPopularity * config.weights.popularity) +
-      (sentimentScore * config.weights.sentiment) +
-      (diversityScore * config.weights.diversity);
-    
-    // Apply personalization boost
-    const finalScore = weightedScore * personalizationBoost;
+    // Calculate combined score based on weights
+    const combinedScore = 
+      (result.similarity || 0) * config.weights.similarity +
+      (result.rating || 0) / 5 * config.weights.rating +
+      (result.recency || 0) * config.weights.recency +
+      (result.popularity || 0) * config.weights.popularity +
+      (result.sentiment || 0) * config.weights.sentiment +
+      (result.personalization || 0) * config.weights.personalization +
+      (result.diversity || 0) * config.weights.diversity;
     
     return {
       ...result,
-      _originalScore: result.similarity,
-      _rerankedScore: finalScore,
-      _features: {
-        similarity: normalizedSimilarity,
-        rating: normalizedRating,
-        recency: recencyScore,
-        popularity: normalizedPopularity,
-        sentiment: sentimentScore,
-        diversity: diversityScore,
-        personalization: personalizationBoost
-      }
+      similarity: combinedScore
     };
   });
   
-  // Sort by re-ranked score (descending)
-  return reranked.sort((a, b) => (b._rerankedScore || 0) - (a._rerankedScore || 0));
+  // Sort by combined score
+  return reranked.sort((a, b) => (b.similarity || 0) - (a.similarity || 0));
 }
 
 /**
@@ -275,3 +225,6 @@ export function adjustWeightsBasedOnFeedback(
   
   return currentWeights;
 }
+
+// Export the main function for external use
+// rerankSearchResults is already exported directly

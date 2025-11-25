@@ -79,11 +79,22 @@ function calculateCriterionScore(item: SearchResult, criterion: ComparisonCriter
       // Lower price is better (assuming we're comparing value)
       // Normalize based on typical price ranges
       if (item.pricing) {
-        const priceMatch = item.pricing.match(/\$([\d.]+)/);
-        if (priceMatch) {
-          const price = parseFloat(priceMatch[1]);
-          // Assume $100 is high, $0 is low
-          return Math.max(0, 1 - (price / 100));
+        // Fix: Check if pricing is a string before calling match
+        if (typeof item.pricing === 'string') {
+          const priceMatch = item.pricing.match(/\$([\d.]+)/);
+          if (priceMatch) {
+            const price = parseFloat(priceMatch[1]);
+            // Assume $100 is high, $0 is low
+            return Math.max(0, 1 - (price / 100));
+          }
+        } else if (typeof item.pricing === 'object' && item.pricing !== null) {
+          // Handle object pricing (e.g., { free: true, paid: false })
+          if (item.pricing.free && !item.pricing.paid) {
+            return 1; // Free is best value
+          } else if (item.pricing.paid) {
+            // For paid plans, we don't have a specific price, so return neutral
+            return 0.5;
+          }
         }
       }
       return 0.5; // Neutral score if no price info

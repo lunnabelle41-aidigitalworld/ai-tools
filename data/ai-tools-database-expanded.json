@@ -1,0 +1,1282 @@
+[
+  {
+    "name": "ChatGPT",
+    "category": ["text_generation", "productivity"],
+    "description": "AI-powered conversational assistant for writing, coding, and problem-solving",
+    "pricing": {"free": true, "paid": true, "plans": ["Plus", "Team", "Enterprise"]},
+    "features": ["conversational", "code generation", "file upload", "web browsing"],
+    "website": "https://chat.openai.com",
+    "launch_date": "2022-11-30",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Claude",
+    "category": ["text_generation", "productivity"],
+    "description": "AI assistant focused on being helpful, harmless, and honest",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Team"]},
+    "features": ["conversational", "document analysis", "code review", "creative writing"],
+    "website": "https://claude.ai",
+    "launch_date": "2023-03-20",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Jasper",
+    "category": ["text_generation", "productivity"],
+    "description": "AI content creation platform for marketing teams and copywriters",
+    "pricing": {"free": false, "paid": true, "plans": ["Creator", "Pro", "Team", "Business"]},
+    "features": ["content templates", "brand voice", "long-form assistant", "plagiarism checker"],
+    "website": "https://jasper.ai",
+    "launch_date": "2021-03-15",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Copy.ai",
+    "category": ["text_generation", "productivity"],
+    "description": "AI-powered copywriting platform for marketing content creation",
+    "pricing": {"free": true, "paid": true, "plans": ["Starter", "Pro", "Team"]},
+    "features": ["content templates", "brand settings", "custom tones", "content history"],
+    "website": "https://copy.ai",
+    "launch_date": "2020-10-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "Writer",
+    "category": ["text_generation", "productivity"],
+    "description": "AI writing assistant for enterprise teams with brand voice management",
+    "pricing": {"free": false, "paid": true, "plans": ["Professional", "Team", "Enterprise"]},
+    "features": ["brand voice", "style guide", "content analytics", "collaboration tools"],
+    "website": "https://writer.com",
+    "launch_date": "2019-06-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Midjourney",
+    "category": ["image_generation"],
+    "description": "AI art generator that creates images from text descriptions",
+    "pricing": {"free": false, "paid": true, "plans": ["Basic", "Standard", "Pro"]},
+    "features": ["image generation", "style customization", "upscale", "variations"],
+    "website": "https://midjourney.com",
+    "launch_date": "2022-07-12",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "DALL-E 3",
+    "category": ["image_generation"],
+    "description": "OpenAI's advanced text-to-image generation model",
+    "pricing": {"free": false, "paid": true, "plans": ["API Access"]},
+    "features": ["high-resolution images", "text understanding", "style control", "consistent characters"],
+    "website": "https://openai.com/dall-e-3",
+    "launch_date": "2023-10-03",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Stable Diffusion",
+    "category": ["image_generation"],
+    "description": "Open-source text-to-image generation model with local deployment",
+    "pricing": {"free": true, "paid": false, "plans": []},
+    "features": ["open source", "local deployment", "custom training", "community models"],
+    "website": "https://stability.ai",
+    "launch_date": "2022-08-22",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Leonardo AI",
+    "category": ["image_generation"],
+    "description": "AI art generation platform with custom model training",
+    "pricing": {"free": true, "paid": true, "plans": ["Alchemist", "Premium"]},
+    "features": ["custom models", "model training", "prompt generation", "community sharing"],
+    "website": "https://leonardo.ai",
+    "launch_date": "2022-12-10",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Runway",
+    "category": ["video_ai"],
+    "description": "AI-powered video editing and generation platform for creators",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Team", "Enterprise"]},
+    "features": ["video editing", "green screen removal", "text to video", "object removal"],
+    "website": "https://runwayml.com",
+    "launch_date": "2018-06-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Pika Labs",
+    "category": ["video_ai"],
+    "description": "AI video generation platform for creating animated content",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["text to video", "video editing", "style transfer", "motion control"],
+    "website": "https://pika.art",
+    "launch_date": "2023-11-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "HeyGen",
+    "category": ["video_ai"],
+    "description": "AI video generation platform for creating talking avatar videos",
+    "pricing": {"free": true, "paid": true, "plans": ["Starter", "Pro", "Enterprise"]},
+    "features": ["avatar creation", "text to video", "voice cloning", "multilingual support"],
+    "website": "https://heygen.com",
+    "launch_date": "2022-09-15",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Synthesia",
+    "category": ["video_ai"],
+    "description": "AI video generation platform for creating professional videos with avatars",
+    "pricing": {"free": false, "paid": true, "plans": ["Starter", "Business", "Enterprise"]},
+    "features": ["avatar creation", "text to video", "voiceover", "multilingual support"],
+    "website": "https://synthesia.io",
+    "launch_date": "2017-05-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "Murf AI",
+    "category": ["audio_ai"],
+    "description": "AI voice generator for creating natural-sounding voiceovers",
+    "pricing": {"free": true, "paid": true, "plans": ["Basic", "Pro", "Enterprise"]},
+    "features": ["voice cloning", "text to speech", "voice modulation", "multilingual support"],
+    "website": "https://murf.ai",
+    "launch_date": "2021-08-15",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "ElevenLabs",
+    "category": ["audio_ai"],
+    "description": "AI voice generation and text-to-speech platform with realistic voices",
+    "pricing": {"free": true, "paid": true, "plans": ["Starter", "Creator", "Pro", "Enterprise"]},
+    "features": ["voice cloning", "text to speech", "voice design", "multilingual support"],
+    "website": "https://elevenlabs.io",
+    "launch_date": "2023-02-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Adobe Podcast",
+    "category": ["audio_ai"],
+    "description": "AI-powered audio recording and editing tool for podcasters",
+    "pricing": {"free": true, "paid": true, "plans": ["Premium"]},
+    "features": ["noise reduction", "voice enhancement", "auto editing", "transcription"],
+    "website": "https://podcast.adobe.com",
+    "launch_date": "2022-05-10",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "GitHub Copilot",
+    "category": ["code_ai"],
+    "description": "AI pair programmer that helps developers write code faster",
+    "pricing": {"free": false, "paid": true, "plans": ["Individual", "Business", "Enterprise"]},
+    "features": ["code completion", "code generation", "code explanation", "multi-language support"],
+    "website": "https://github.com/features/copilot",
+    "launch_date": "2021-10-29",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Replit Ghostwriter",
+    "category": ["code_ai"],
+    "description": "AI coding assistant integrated into the Replit development environment",
+    "pricing": {"free": true, "paid": true, "plans": ["Core", "Teams", "Enterprise"]},
+    "features": ["code completion", "code generation", "debugging assistance", "multi-language support"],
+    "website": "https://replit.com/site/ghostwriter",
+    "launch_date": "2022-07-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Tabnine",
+    "category": ["code_ai"],
+    "description": "AI code assistant that predicts and completes code in real-time",
+    "pricing": {"free": true, "paid": true, "plans": ["Basic", "Pro", "Enterprise"]},
+    "features": ["code completion", "code generation", "code refactoring", "multi-language support"],
+    "website": "https://tabnine.com",
+    "launch_date": "2018-03-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Codeium",
+    "category": ["code_ai"],
+    "description": "Free AI-powered toolkit for developers with code completion and chat",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Enterprise"]},
+    "features": ["code completion", "code chat", "code explanation", "multi-language support"],
+    "website": "https://codeium.com",
+    "launch_date": "2022-12-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Notion AI",
+    "category": ["productivity"],
+    "description": "AI-powered workspace for writing, planning, and collaboration",
+    "pricing": {"free": true, "paid": true, "plans": ["Plus", "Enterprise"]},
+    "features": ["writing assistance", "task management", "summarization", "content generation"],
+    "website": "https://notion.so/ai",
+    "launch_date": "2023-03-14",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Grammarly",
+    "category": ["productivity"],
+    "description": "AI-powered writing assistant for grammar, style, and clarity improvements",
+    "pricing": {"free": true, "paid": true, "plans": ["Premium", "Business", "Enterprise"]},
+    "features": ["grammar checking", "style improvement", "tone adjustment", "plagiarism detection"],
+    "website": "https://grammarly.com",
+    "launch_date": "2009-07-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "QuillBot",
+    "category": ["productivity"],
+    "description": "AI-powered paraphrasing tool and writing assistant",
+    "pricing": {"free": true, "paid": true, "plans": ["Premium", "Team", "Business"]},
+    "features": ["paraphrasing", "summarization", "grammar checking", "citation generation"],
+    "website": "https://quillbot.com",
+    "launch_date": "2017-04-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Otter.ai",
+    "category": ["productivity"],
+    "description": "AI-powered transcription and meeting assistant",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Business", "Enterprise"]},
+    "features": ["speech to text", "meeting recording", "action items", "speaker identification"],
+    "website": "https://otter.ai",
+    "launch_date": "2017-09-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Consensus",
+    "category": ["research"],
+    "description": "AI research assistant that finds answers from scientific papers",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["scientific research", "paper search", "evidence-based answers", "citation tracking"],
+    "website": "https://consensus.app",
+    "launch_date": "2022-11-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Elicit",
+    "category": ["research"],
+    "description": "AI research assistant for literature review and hypothesis generation",
+    "pricing": {"free": true, "paid": false, "plans": []},
+    "features": ["literature review", "hypothesis generation", "paper search", "research workflow"],
+    "website": "https://elicit.org",
+    "launch_date": "2022-06-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Scite",
+    "category": ["research"],
+    "description": "AI-powered platform for discovering and evaluating scientific literature",
+    "pricing": {"free": true, "paid": true, "plans": ["Premium", "Institution"]},
+    "features": ["citation verification", "smart citation", "literature search", "research metrics"],
+    "website": "https://scite.ai",
+    "launch_date": "2018-01-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "ChatPDF",
+    "category": ["research"],
+    "description": "AI-powered PDF reader that allows conversation with documents",
+    "pricing": {"free": true, "paid": true, "plans": ["Plus"]},
+    "features": ["pdf chat", "document analysis", "summarization", "question answering"],
+    "website": "https://chatpdf.com",
+    "launch_date": "2023-03-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Jasper Business",
+    "category": ["business"],
+    "description": "Enterprise AI content platform for marketing and sales teams",
+    "pricing": {"free": false, "paid": true, "plans": ["Business", "Enterprise"]},
+    "features": ["brand management", "team collaboration", "content workflow", "analytics"],
+    "website": "https://jasper.ai/business",
+    "launch_date": "2022-05-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Copy.ai Enterprise",
+    "category": ["business"],
+    "description": "Enterprise AI writing platform with advanced security and compliance",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["enterprise security", "custom integrations", "dedicated support", "SLA guarantees"],
+    "website": "https://copy.ai/enterprise",
+    "launch_date": "2021-12-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Writer for Teams",
+    "category": ["business"],
+    "description": "Enterprise AI writing assistant with brand voice management",
+    "pricing": {"free": false, "paid": true, "plans": ["Team", "Enterprise"]},
+    "features": ["brand voice", "style guide", "content analytics", "team collaboration"],
+    "website": "https://writer.com/teams",
+    "launch_date": "2020-09-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "Cohere",
+    "category": ["text_generation"],
+    "description": "Enterprise AI platform for natural language processing and generation",
+    "pricing": {"free": true, "paid": true, "plans": ["Trial", "Pay-as-you-go", "Enterprise"]},
+    "features": ["text generation", "semantic search", "classification", "API access"],
+    "website": "https://cohere.ai",
+    "launch_date": "2021-12-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Anthropic Claude Pro",
+    "category": ["text_generation"],
+    "description": "Advanced AI assistant with improved reasoning and reduced harmful outputs",
+    "pricing": {"free": false, "paid": true, "plans": ["Pro"]},
+    "features": ["advanced reasoning", "harm reduction", "document analysis", "code generation"],
+    "website": "https://anthropic.com",
+    "launch_date": "2023-07-11",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Google Bard",
+    "category": ["text_generation"],
+    "description": "Conversational AI service powered by Google's language models",
+    "pricing": {"free": true, "paid": false, "plans": []},
+    "features": ["conversational", "web search", "code generation", "multilingual support"],
+    "website": "https://bard.google.com",
+    "launch_date": "2023-02-06",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Character.AI",
+    "category": ["text_generation"],
+    "description": "AI platform for creating and chatting with fictional characters",
+    "pricing": {"free": true, "paid": false, "plans": []},
+    "features": ["character creation", "role playing", "story generation", "community sharing"],
+    "website": "https://character.ai",
+    "launch_date": "2022-09-16",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Stable Diffusion XL",
+    "category": ["image_generation"],
+    "description": "Advanced open-source text-to-image generation model with higher resolution",
+    "pricing": {"free": true, "paid": false, "plans": []},
+    "features": ["high-resolution images", "refiner model", "open source", "custom training"],
+    "website": "https://stability.ai",
+    "launch_date": "2023-07-26",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Imagen",
+    "category": ["image_generation"],
+    "description": "Google's text-to-image diffusion models with photorealistic quality",
+    "pricing": {"free": false, "paid": true, "plans": ["Vertex AI"]},
+    "features": ["photorealistic quality", "deep language understanding", "resolution control", "API access"],
+    "website": "https://imagen.research.google",
+    "launch_date": "2022-05-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Adobe Firefly",
+    "category": ["image_generation"],
+    "description": "Creative AI models for generating images, text effects, and more",
+    "pricing": {"free": true, "paid": true, "plans": ["Firefly Free", "All Apps"]},
+    "features": ["text to image", "generative fill", "text effects", "creative tools"],
+    "website": "https://firefly.adobe.com",
+    "launch_date": "2023-03-21",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Krea.ai",
+    "category": ["image_generation"],
+    "description": "Real-time collaborative platform for AI image generation",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["real-time generation", "collaboration", "prompt exploration", "model comparison"],
+    "website": "https://krea.ai",
+    "launch_date": "2023-04-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Lumen5",
+    "category": ["video_ai"],
+    "description": "AI video creation platform that turns blog posts into videos",
+    "pricing": {"free": true, "paid": true, "plans": ["Starter", "Professional", "Business", "Enterprise"]},
+    "features": ["blog to video", "automated editing", "brand customization", "stock library"],
+    "website": "https://lumen5.com",
+    "launch_date": "2016-01-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "InVideo",
+    "category": ["video_ai"],
+    "description": "AI-powered video creation platform for social media and marketing",
+    "pricing": {"free": true, "paid": true, "plans": ["Business", "Unlimited"]},
+    "features": ["template library", "text to video", "auto editing", "voiceover generation"],
+    "website": "https://invideo.io",
+    "launch_date": "2018-01-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Descript",
+    "category": ["video_ai"],
+    "description": "AI-powered video and podcast editing platform with text-based editing",
+    "pricing": {"free": true, "paid": true, "plans": ["Creator", "Pro", "Team", "Enterprise"]},
+    "features": ["text-based editing", "overdub", "screen recording", "collaboration"],
+    "website": "https://descript.com",
+    "launch_date": "2017-01-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "AssemblyAI",
+    "category": ["audio_ai"],
+    "description": "AI-powered speech-to-text API with advanced audio intelligence",
+    "pricing": {"free": true, "paid": true, "plans": ["Pay-as-you-go", "Enterprise"]},
+    "features": ["speech to text", "speaker diarization", "sentiment analysis", "content moderation"],
+    "website": "https://assemblyai.com",
+    "launch_date": "2017-01-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Rev",
+    "category": ["audio_ai"],
+    "description": "Speech recognition and transcription services with human-in-the-loop",
+    "pricing": {"free": false, "paid": true, "plans": ["Pay-per-minute", "Rev AI"]},
+    "features": ["human transcription", "automated transcription", "captioning", "translation"],
+    "website": "https://rev.com",
+    "launch_date": "2010-01-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Amazon Transcribe",
+    "category": ["audio_ai"],
+    "description": "AWS service for automatic speech recognition and transcription",
+    "pricing": {"free": true, "paid": true, "plans": ["Pay-as-you-use"]},
+    "features": ["speech to text", "speaker identification", "custom vocabulary", "multi-language support"],
+    "website": "https://aws.amazon.com/transcribe",
+    "launch_date": "2017-11-29",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Amazon CodeWhisperer",
+    "category": ["code_ai"],
+    "description": "AI coding companion from AWS that generates code suggestions",
+    "pricing": {"free": true, "paid": true, "plans": ["Professional", "Enterprise"]},
+    "features": ["code completion", "code generation", "security scanning", "reference tracking"],
+    "website": "https://aws.amazon.com/codewhisperer",
+    "launch_date": "2022-06-23",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Microsoft Copilot",
+    "category": ["code_ai"],
+    "description": "AI-powered coding assistant integrated into Visual Studio and GitHub",
+    "pricing": {"free": true, "paid": true, "plans": ["Free", "Pro", "Enterprise"]},
+    "features": ["code completion", "code generation", "chat interface", "multi-language support"],
+    "website": "https://copilot.microsoft.com",
+    "launch_date": "2023-03-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Replit",
+    "category": ["code_ai"],
+    "description": "Collaborative browser-based IDE with integrated AI coding assistant",
+    "pricing": {"free": true, "paid": true, "plans": ["Core", "Teams", "Enterprise"]},
+    "features": ["browser IDE", "real-time collaboration", "AI assistant", "deployment tools"],
+    "website": "https://replit.com",
+    "launch_date": "2016-01-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Cursor",
+    "category": ["code_ai"],
+    "description": "AI-first code editor built for pair programming with AI",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["AI chat", "code generation", "refactoring", "multi-language support"],
+    "website": "https://cursor.sh",
+    "launch_date": "2023-03-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "Slack AI",
+    "category": ["productivity"],
+    "description": "AI-powered assistant integrated into Slack for summarization and assistance",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise Grid"]},
+    "features": ["message summarization", "channel recaps", "question answering", "workflow automation"],
+    "website": "https://slack.com/features/ai",
+    "launch_date": "2023-10-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Microsoft 365 Copilot",
+    "category": ["productivity"],
+    "description": "AI-powered assistant integrated into Microsoft 365 applications",
+    "pricing": {"free": false, "paid": true, "plans": ["Microsoft 365 E3/E5"]},
+    "features": ["Word assistance", "Excel analysis", "PowerPoint creation", "Teams collaboration"],
+    "website": "https://microsoft.com/microsoft-365/copilot",
+    "launch_date": "2023-03-16",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Google Workspace AI",
+    "category": ["productivity"],
+    "description": "AI features integrated into Google Docs, Sheets, Slides, and Gmail",
+    "pricing": {"free": true, "paid": true, "plans": ["Google Workspace"]},
+    "features": ["smart compose", "document suggestions", "slide creation", "email prioritization"],
+    "website": "https://workspace.google.com/ai",
+    "launch_date": "2023-05-10",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Sana",
+    "category": ["research"],
+    "description": "AI research assistant for finding and summarizing scientific papers",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["paper search", "summarization", "citation tracking", "research organization"],
+    "website": "https://sanapublic.com",
+    "launch_date": "2023-01-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Genei",
+    "category": ["research"],
+    "description": "AI-powered research assistant for summarizing articles and documents",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["document summarization", "research automation", "citation extraction", "time saving"],
+    "website": "https://genei.io",
+    "launch_date": "2020-01-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Iris.ai",
+    "category": ["research"],
+    "description": "AI-powered research assistant for scientific literature mapping",
+    "pricing": {"free": true, "paid": true, "plans": ["Explorer", "Pro", "Enterprise"]},
+    "features": ["literature mapping", "research strategy", "knowledge discovery", "expert identification"],
+    "website": "https://iris.ai",
+    "launch_date": "2015-01-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Salesforce Einstein",
+    "category": ["business"],
+    "description": "AI-powered CRM platform for sales, service, marketing, and analytics",
+    "pricing": {"free": false, "paid": true, "plans": ["Einstein Analytics", "Einstein Discovery"]},
+    "features": ["predictive analytics", "automated insights", "lead scoring", "customer intelligence"],
+    "website": "https://einstein.ai",
+    "launch_date": "2016-10-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "SAP AI Core",
+    "category": ["business"],
+    "description": "Enterprise AI platform for building, deploying, and managing AI applications",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["model management", "data orchestration", "scalable deployment", "enterprise security"],
+    "website": "https://sap.com",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "IBM Watson Assistant",
+    "category": ["business"],
+    "description": "AI-powered virtual assistant for customer service and business operations",
+    "pricing": {"free": true, "paid": true, "plans": ["Plus", "Enterprise"]},
+    "features": ["chatbot creation", "voice assistants", "integration capabilities", "analytics dashboard"],
+    "website": "https://ibm.com/watson/assistant",
+    "launch_date": "2010-01-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "Perplexity AI",
+    "category": ["text_generation"],
+    "description": "AI-powered search engine that provides answers with cited sources",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["conversational search", "source citations", "web browsing", "document analysis"],
+    "website": "https://perplexity.ai",
+    "launch_date": "2022-12-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Hugging Face",
+    "category": ["text_generation"],
+    "description": "Platform for building, training, and deploying machine learning models",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Enterprise"]},
+    "features": ["model hub", "training platform", "inference API", "community collaboration"],
+    "website": "https://huggingface.co",
+    "launch_date": "2016-01-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Replicate",
+    "category": ["image_generation"],
+    "description": "Platform for running machine learning models in the cloud",
+    "pricing": {"free": true, "paid": true, "plans": ["Pay-as-you-use"]},
+    "features": ["model deployment", "API access", "pre-trained models", "custom training"],
+    "website": "https://replicate.com",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Artflow.ai",
+    "category": ["image_generation"],
+    "description": "AI character creation and animation platform",
+    "pricing": {"free": true, "paid": true, "plans": ["Premium"]},
+    "features": ["character creation", "animation", "style customization", "export options"],
+    "website": "https://artflow.ai",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "VidIQ",
+    "category": ["video_ai"],
+    "description": "YouTube analytics and optimization platform with AI-powered suggestions",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Business", "Enterprise"]},
+    "features": ["keyword research", "video optimization", "analytics dashboard", "content suggestions"],
+    "website": "https://vidiq.com",
+    "launch_date": "2014-01-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Synthesizer",
+    "category": ["audio_ai"],
+    "description": "AI voice generation platform for creating natural-sounding voices",
+    "pricing": {"free": true, "paid": true, "plans": ["Personal", "Professional", "Enterprise"]},
+    "features": ["voice cloning", "text to speech", "voice modulation", "multilingual support"],
+    "website": "https://synthesizer.io",
+    "launch_date": "2020-01-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Deepgram",
+    "category": ["audio_ai"],
+    "description": "AI-powered speech recognition platform with real-time transcription",
+    "pricing": {"free": true, "paid": true, "plans": ["Essential", "Pro", "Enterprise"]},
+    "features": ["real-time transcription", "speaker diarization", "custom models", "API access"],
+    "website": "https://deepgram.com",
+    "launch_date": "2015-01-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Sourcegraph Cody",
+    "category": ["code_ai"],
+    "description": "AI coding assistant that understands your entire codebase",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Enterprise"]},
+    "features": ["codebase understanding", "code generation", "code explanation", "security scanning"],
+    "website": "https://sourcegraph.com/cody",
+    "launch_date": "2023-05-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "JetBrains AI Assistant",
+    "category": ["code_ai"],
+    "description": "AI-powered coding assistant integrated into JetBrains IDEs",
+    "pricing": {"free": true, "paid": true, "plans": ["All Products Pack"]},
+    "features": ["code completion", "code generation", "code explanation", "IDE integration"],
+    "website": "https://jetbrains.com",
+    "launch_date": "2023-06-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "Linear",
+    "category": ["productivity"],
+    "description": "Issue tracking tool with AI-powered features for software teams",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Team", "Enterprise"]},
+    "features": ["issue tracking", "sprint planning", "AI suggestions", "team collaboration"],
+    "website": "https://linear.app",
+    "launch_date": "2019-01-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Superhuman",
+    "category": ["productivity"],
+    "description": "AI-powered email client that helps users achieve email inbox zero",
+    "pricing": {"free": false, "paid": true, "plans": ["Professional"]},
+    "features": ["email acceleration", "smart templates", "inbox organization", "reply suggestions"],
+    "website": "https://superhuman.com",
+    "launch_date": "2014-01-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Obsidian",
+    "category": ["productivity"],
+    "description": "Knowledge base and note-taking app with AI-powered features",
+    "pricing": {"free": true, "paid": true, "plans": ["Catalyst", "Commercial"]},
+    "features": ["linked note-taking", "graph view", "AI plugins", "markdown support"],
+    "website": "https://obsidian.md",
+    "launch_date": "2020-01-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Connected Papers",
+    "category": ["research"],
+    "description": "AI-powered tool for visualizing and exploring academic literature",
+    "pricing": {"free": true, "paid": true, "plans": ["Premium"]},
+    "features": ["paper visualization", "literature exploration", "citation mapping", "research discovery"],
+    "website": "https://connectedpapers.com",
+    "launch_date": "2020-01-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Research Rabbit",
+    "category": ["research"],
+    "description": "AI-powered research tool for discovering and organizing academic papers",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["paper discovery", "citation tracking", "research organization", "collaboration tools"],
+    "website": "https://researchrabbit.ai",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Oracle Adaptive Intelligent Apps",
+    "category": ["business"],
+    "description": "AI-powered business applications for CRM, ERP, and HCM",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["predictive analytics", "automated insights", "process optimization", "real-time intelligence"],
+    "website": "https://oracle.com",
+    "launch_date": "2017-01-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "UiPath AI Center",
+    "category": ["business"],
+    "description": "AI-powered automation platform for enterprise process automation",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["process automation", "AI integration", "bot management", "analytics dashboard"],
+    "website": "https://uipath.com",
+    "launch_date": "2016-01-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "DataRobot",
+    "category": ["business"],
+    "description": "Enterprise AI platform for building and deploying machine learning models",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["automated machine learning", "model deployment", "model monitoring", "enterprise security"],
+    "website": "https://datarobot.com",
+    "launch_date": "2012-01-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Bard Advanced",
+    "category": ["text_generation"],
+    "description": "Advanced version of Google's conversational AI with enhanced capabilities",
+    "pricing": {"free": true, "paid": false, "plans": []},
+    "features": ["advanced reasoning", "code generation", "multimodal understanding", "web integration"],
+    "website": "https://bard.google.com",
+    "launch_date": "2023-05-10",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "You.com",
+    "category": ["text_generation"],
+    "description": "AI-powered search engine with chat and productivity features",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["AI chat", "search enhancement", "writing tools", "productivity apps"],
+    "website": "https://you.com",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Ideogram",
+    "category": ["image_generation"],
+    "description": "AI image generation platform with precise text rendering capabilities",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["text rendering", "image generation", "style control", "high resolution"],
+    "website": "https://ideogram.ai",
+    "launch_date": "2023-08-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Playground AI",
+    "category": ["image_generation"],
+    "description": "Online AI image creator with a variety of models and tools",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["multiple models", "editing tools", "community sharing", "style presets"],
+    "website": "https://playgroundai.com",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Pictory",
+    "category": ["video_ai"],
+    "description": "AI video creation platform that turns text and articles into videos",
+    "pricing": {"free": true, "paid": true, "plans": ["Starter", "Professional", "Teams"]},
+    "features": ["text to video", "article to video", "auto editing", "stock library"],
+    "website": "https://pictory.ai",
+    "launch_date": "2019-01-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Wisecut",
+    "category": ["video_ai"],
+    "description": "AI-powered video editing tool for automatic editing and enhancement",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["auto editing", "voice recognition", "subtitle generation", "background music"],
+    "website": "https://wisecut.ai",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Audo AI",
+    "category": ["audio_ai"],
+    "description": "AI-powered audio editing and enhancement platform",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["noise removal", "voice enhancement", "audio separation", "automatic editing"],
+    "website": "https://audo.ai",
+    "launch_date": "2020-01-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Cleanvoice AI",
+    "category": ["audio_ai"],
+    "description": "AI-powered tool for removing filler words and mouth sounds from audio",
+    "pricing": {"free": true, "paid": true, "plans": ["Basic", "Pro"]},
+    "features": ["filler word removal", "mouth sound removal", "audio enhancement", "transcription"],
+    "website": "https://cleanvoice.ai",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Amazon CodeGuru",
+    "category": ["code_ai"],
+    "description": "ML-powered service for automated code review and application performance optimization",
+    "pricing": {"free": true, "paid": true, "plans": ["Pay-as-you-use"]},
+    "features": ["code review", "performance optimization", "security scanning", "cost optimization"],
+    "website": "https://aws.amazon.com/codeguru",
+    "launch_date": "2019-12-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Kite",
+    "category": ["code_ai"],
+    "description": "AI-powered code completion tool for Python and JavaScript developers",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["code completion", "documentation search", "error detection", "line-of-code database"],
+    "website": "https://kite.com",
+    "launch_date": "2018-01-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "CodiumAI",
+    "category": ["code_ai"],
+    "description": "AI-powered tool for generating meaningful tests for code",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Enterprise"]},
+    "features": ["test generation", "code analysis", "bug detection", "coverage improvement"],
+    "website": "https://codium.ai",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "ClickUp AI",
+    "category": ["productivity"],
+    "description": "AI-powered workspace for tasks, docs, and collaboration",
+    "pricing": {"free": true, "paid": true, "plans": ["Unlimited", "Business", "Enterprise"]},
+    "features": ["task automation", "content generation", "meeting notes", "time tracking"],
+    "website": "https://clickup.com/ai",
+    "launch_date": "2023-03-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Motion AI",
+    "category": ["productivity"],
+    "description": "AI-powered calendar and scheduling assistant",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Business"]},
+    "features": ["smart scheduling", "calendar optimization", "meeting automation", "time blocking"],
+    "website": "https://motion.ai",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Mem.ai",
+    "category": ["productivity"],
+    "description": "AI-powered workspace for capturing, organizing, and retrieving information",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["information capture", "smart organization", "search and retrieval", "knowledge base"],
+    "website": "https://mem.ai",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Semantic Scholar",
+    "category": ["research"],
+    "description": "AI-powered scientific literature search engine",
+    "pricing": {"free": true, "paid": false, "plans": []},
+    "features": ["scientific search", "paper recommendation", "citation analysis", "research trends"],
+    "website": "https://semanticscholar.org",
+    "launch_date": "2015-01-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Litmaps",
+    "category": ["research"],
+    "description": "AI-powered research tool for mapping and visualizing literature",
+    "pricing": {"free": true, "paid": true, "plans": ["Researcher", "Team"]},
+    "features": ["literature mapping", "citation visualization", "research discovery", "collaboration"],
+    "website": "https://litmaps.com",
+    "launch_date": "2020-01-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Dimensions AI",
+    "category": ["research"],
+    "description": "AI-powered research database for publications, grants, and clinical trials",
+    "pricing": {"free": true, "paid": true, "plans": ["Premium", "Enterprise"]},
+    "features": ["publication search", "grant tracking", "citation analysis", "research metrics"],
+    "website": "https://dimensions.ai",
+    "launch_date": "2018-01-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Sage AI",
+    "category": ["business"],
+    "description": "AI-powered ERP and business management platform",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["financial management", "supply chain", "human resources", "business intelligence"],
+    "website": "https://sage.com",
+    "launch_date": "2020-01-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Workday AI",
+    "category": ["business"],
+    "description": "AI-powered human resources and financial management platform",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["HR management", "financial planning", "workforce analytics", "predictive insights"],
+    "website": "https://workday.com",
+    "launch_date": "2019-01-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "ServiceNow AI",
+    "category": ["business"],
+    "description": "AI-powered platform for workflow automation and IT service management",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["workflow automation", "IT service management", "employee experience", "security operations"],
+    "website": "https://servicenow.com",
+    "launch_date": "2018-01-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Writesonic",
+    "category": ["text_generation"],
+    "description": "AI writing assistant for marketing copy, blog posts, and content creation",
+    "pricing": {"free": true, "paid": true, "plans": ["Short-form", "Long-form", "Business"]},
+    "features": ["content generation", "blog writing", "copywriting templates", "SEO optimization"],
+    "website": "https://writesonic.com",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Rytr",
+    "category": ["text_generation"],
+    "description": "AI writing assistant for various content types and use cases",
+    "pricing": {"free": true, "paid": true, "plans": ["Saver", "Unlimited", "Enterprise"]},
+    "features": ["use case library", "tone adjustment", "language support", "content export"],
+    "website": "https://rytr.me",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Lexica",
+    "category": ["image_generation"],
+    "description": "Search engine and prompt library for Stable Diffusion images",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["prompt search", "image gallery", "prompt generation", "model comparison"],
+    "website": "https://lexica.art",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Craiyon",
+    "category": ["image_generation"],
+    "description": "Free AI image generator formerly known as DALL-E Mini",
+    "pricing": {"free": true, "paid": true, "plans": ["Craiyon Pro"]},
+    "features": ["text to image", "free to use", "community sharing", "style variety"],
+    "website": "https://craiyon.com",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Animoto",
+    "category": ["video_ai"],
+    "description": "AI-powered video creation platform for social media and marketing",
+    "pricing": {"free": true, "paid": true, "plans": ["Starter", "Professional", "Business"]},
+    "features": ["template library", "auto editing", "music library", "brand customization"],
+    "website": "https://animoto.com",
+    "launch_date": "2006-01-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Magisto",
+    "category": ["video_ai"],
+    "description": "AI-powered video editor for creating professional videos automatically",
+    "pricing": {"free": true, "paid": true, "plans": ["Basic", "Pro", "Business"]},
+    "features": ["auto editing", "music synchronization", "branding tools", "social sharing"],
+    "website": "https://magisto.com",
+    "launch_date": "2011-01-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Auphonic",
+    "category": ["audio_ai"],
+    "description": "AI-powered audio post-production service for podcasts and videos",
+    "pricing": {"free": true, "paid": true, "plans": ["Level 1", "Level 2", "Production"]},
+    "features": ["automatic leveling", "noise reduction", "speech recognition", "file conversion"],
+    "website": "https://auphonic.com",
+    "launch_date": "2012-01-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Trint",
+    "category": ["audio_ai"],
+    "description": "AI-powered transcription and audio editing platform",
+    "pricing": {"free": true, "paid": true, "plans": ["Solo", "Growing Team", "Business"]},
+    "features": ["speech to text", "audio editing", "collaboration", "integration capabilities"],
+    "website": "https://trint.com",
+    "launch_date": "2015-01-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "Blackbox AI",
+    "category": ["code_ai"],
+    "description": "AI-powered coding assistant that works in any application",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["universal code assistant", "chat interface", "code search", "multi-language support"],
+    "website": "https://blackbox.ai",
+    "launch_date": "2023-01-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "CodePen AI",
+    "category": ["code_ai"],
+    "description": "AI-powered frontend development tool integrated into CodePen",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["code completion", "bug detection", "performance suggestions", "frontend assistance"],
+    "website": "https://codepen.io",
+    "launch_date": "2023-01-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Mintlify",
+    "category": ["code_ai"],
+    "description": "AI-powered documentation generator for code and APIs",
+    "pricing": {"free": true, "paid": true, "plans": ["Starter", "Growth", "Enterprise"]},
+    "features": ["documentation generation", "code explanation", "API documentation", "SEO optimization"],
+    "website": "https://mintlify.com",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Tome",
+    "category": ["productivity"],
+    "description": "AI-powered storytelling platform for creating presentations and narratives",
+    "pricing": {"free": true, "paid": true, "plans": ["Free", "Pro", "Team"]},
+    "features": ["storytelling AI", "presentation creation", "content generation", "team collaboration"],
+    "website": "https://tome.app",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Gamma",
+    "category": ["productivity"],
+    "description": "AI-powered presentation and document creation platform",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Team"]},
+    "features": ["AI writing", "presentation design", "content templates", "team collaboration"],
+    "website": "https://gamma.app",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Canva Text to Image",
+    "category": ["productivity"],
+    "description": "AI image generation feature integrated into Canva design platform",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Enterprise"]},
+    "features": ["text to image", "design integration", "brand kit", "collaboration tools"],
+    "website": "https://canva.com",
+    "launch_date": "2023-03-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Zotero AI",
+    "category": ["research"],
+    "description": "AI-powered research assistant integrated into Zotero reference manager",
+    "pricing": {"free": true, "paid": false, "plans": []},
+    "features": ["citation management", "research organization", "PDF annotation", "collaboration tools"],
+    "website": "https://zotero.org",
+    "launch_date": "2023-01-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Mendeley AI",
+    "category": ["research"],
+    "description": "AI-powered research platform for reference management and collaboration",
+    "pricing": {"free": true, "paid": true, "plans": ["Premium", "Institution"]},
+    "features": ["reference management", "PDF annotation", "research collaboration", "citation tracking"],
+    "website": "https://mendeley.com",
+    "launch_date": "2023-01-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Paperpile AI",
+    "category": ["research"],
+    "description": "AI-powered reference management and research workflow tool",
+    "pricing": {"free": true, "paid": true, "plans": ["Individual", "Team"]},
+    "features": ["citation management", "PDF organization", "research workflow", "Google Docs integration"],
+    "website": "https://paperpile.com",
+    "launch_date": "2023-01-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "Salesforce Tableau",
+    "category": ["business"],
+    "description": "AI-powered data visualization and business intelligence platform",
+    "pricing": {"free": true, "paid": true, "plans": ["Creator", "Explorer", "Viewer", "Enterprise"]},
+    "features": ["data visualization", "predictive analytics", "dashboard creation", "data storytelling"],
+    "website": "https://tableau.com",
+    "launch_date": "2003-01-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Looker",
+    "category": ["business"],
+    "description": "AI-powered data platform for business intelligence and analytics",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["data modeling", "visualization", "embedded analytics", "real-time insights"],
+    "website": "https://looker.com",
+    "launch_date": "2012-01-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Qlik Sense",
+    "category": ["business"],
+    "description": "AI-powered analytics platform for data visualization and business intelligence",
+    "pricing": {"free": true, "paid": true, "plans": ["Business", "Enterprise"]},
+    "features": ["associative analytics", "data visualization", "embedded analytics", "governed self-service"],
+    "website": "https://qlik.com",
+    "launch_date": "2014-01-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "AI21 Labs",
+    "category": ["text_generation"],
+    "description": "AI research lab creating advanced language models and applications",
+    "pricing": {"free": true, "paid": true, "plans": ["Studio", "Enterprise"]},
+    "features": ["language models", "text generation", "paraphrasing", "summarization"],
+    "website": "https://ai21.com",
+    "launch_date": "2020-01-01",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Aleph Alpha",
+    "category": ["text_generation"],
+    "description": "European AI company developing multimodal language models",
+    "pricing": {"free": false, "paid": true, "plans": ["Enterprise"]},
+    "features": ["multimodal models", "language understanding", "reasoning capabilities", "European data protection"],
+    "website": "https://aleph-alpha.com",
+    "launch_date": "2019-01-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "NightCafe",
+    "category": ["image_generation"],
+    "description": "AI art generation platform with various artistic styles and techniques",
+    "pricing": {"free": true, "paid": true, "plans": ["Standard", "Pro"]},
+    "features": ["multiple algorithms", "style transfer", "community features", "NFT creation"],
+    "website": "https://nightcafe.studio",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "BlueWillow",
+    "category": ["image_generation"],
+    "description": "AI art generation platform with Discord-based community interface",
+    "pricing": {"free": true, "paid": false, "plans": []},
+    "features": ["Discord integration", "community sharing", "style variety", "free to use"],
+    "website": "https://bluewillow.ai",
+    "launch_date": "2022-01-01",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "name": "Veed.io",
+    "category": ["video_ai"],
+    "description": "Online video editing platform with AI-powered features",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Business", "Enterprise"]},
+    "features": ["video editing", "auto-subtitles", "text to speech", "video translation"],
+    "website": "https://veed.io",
+    "launch_date": "2017-01-01",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "name": "Kapwing",
+    "category": ["video_ai"],
+    "description": "Collaborative online video editor with AI-powered tools",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro", "Teams", "Enterprise"]},
+    "features": ["video editing", "auto-subtitles", "text to video", "team collaboration"],
+    "website": "https://kapwing.com",
+    "launch_date": "2017-01-01",
+    "last_updated": "2024-01-08"
+  },
+  {
+    "name": "AIVA",
+    "category": ["audio_ai"],
+    "description": "AI composer that creates original musical compositions",
+    "pricing": {"free": true, "paid": true, "plans": ["Indie", "Pro", "Business"]},
+    "features": ["music composition", "style variety", "royalty-free", "export options"],
+    "website": "https://aiva.ai",
+    "launch_date": "2016-01-01",
+    "last_updated": "2024-01-14"
+  },
+  {
+    "name": "Soundraw",
+    "category": ["audio_ai"],
+    "description": "AI-powered music generation platform for content creators",
+    "pricing": {"free": true, "paid": true, "plans": ["Pro"]},
+    "features": ["music generation", "mood-based search", "royalty-free", "customization"],
+    "website": "https://soundraw.io",
+    "launch_date": "2021-01-01",
+    "last_updated": "2024-01-16"
+  },
+  {
+    "name": "Replit Ghostwriter Chat",
+    "category": ["code_ai"],
+    "description": "Conversational AI coding assistant integrated into Replit",
+    "pricing": {"free": true, "paid": true, "plans": ["Core", "Teams", "Enterprise"]},
+    "features": ["chat interface", "code generation", "debugging assistance", "multi-language support"],
+    "website": "https://replit.com/site/ghostwriter",
+    "launch_date": "2023-01-01",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "name": "Amazon Q",
+    "category": ["code_ai"],
+    "description": "AI-powered assistant for developers and technical workers",
+    "pricing": {"free": false, "paid": true, "plans": ["Developer", "Business"]},
+    "features": ["code generation", "infrastructure management", "security scanning", "AWS integration"],
+    "website": "https://aws.amazon.com/q",
+    "launch_date": "2023-11-28",
+    "last_updated": "2024-01-09"
+  },
+  {
+    "name": "Miro AI",
+    "category": ["productivity"],
+    "description": "AI-powered collaborative whiteboard platform for brainstorming and planning",
+    "pricing": {"free": true, "paid": true, "plans": ["Team", "Business", "Enterprise"]},
+    "features": ["whiteboard collaboration", "brainstorming tools", "content generation", "template library"],
+    "website": "https://miro.com/ai",
+    "launch_date": "2023-03-01",
+    "last_updated": "2024-01-13"
+  },
+  {
+    "name": "Figma AI",
+    "category": ["productivity"],
+    "description": "AI-powered design tools integrated into Figma platform",
+    "pricing": {"free": true, "paid": true, "plans": ["Professional", "Organization"]},
+    "features": ["design assistance", "content generation", "component suggestions", "collaboration tools"],
+    "website": "https://figma.com",
+    "launch_date": "2023-05-01",
+    "last_updated": "2024-01-15"
+  },
+  {
+    "name": "Miro Mindmap AI",
+    "category": ["productivity"],
+    "description": "AI-powered mind mapping tool for organizing ideas and planning",
+    "pricing": {"free": true, "paid": true, "plans": ["Team", "Business"]},
+    "features": ["mind mapping", "idea organization", "collaboration", "presentation tools"],
+    "website": "https://miro.com/mind-map",
+    "launch_date": "2023-01-01",
+    "last_updated": "2024-01-15"
+  }
+]
