@@ -1,6 +1,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { default as NextHead } from "next/head";
+import Link from "next/link";
 import { categories } from "../data/categories";
 import { tools } from "../data/tools";
 import CategoryCard from "../components/CategoryCard";
@@ -1012,10 +1013,10 @@ export default function Home() {
                <div>
                  <h4 className="text-xl font-bold text-white mb-6">Quick Links</h4>
                  <ul className="space-y-4">
-                   <li><a href="/compare" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Compare Tools</a></li>
-                   <li><a href="/new-tools" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">New Tools</a></li>
-                   <li><a href="/suggest-tool" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Suggest a Tool</a></li>
-                   <li><a href="/blog" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Blog</a></li>
+                   <li><Link href="/compare" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Compare Tools</Link></li>
+                   <li><Link href="/new-tools" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">New Tools</Link></li>
+                   <li><Link href="/suggest-tool" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Suggest a Tool</Link></li>
+                   <li><Link href="/blog" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Blog</Link></li>
                    <li><a href="#community" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Community</a></li>
                  </ul>
                </div>
@@ -1024,10 +1025,10 @@ export default function Home() {
                <div>
                  <h4 className="text-xl font-bold text-white mb-6">Legal</h4>
                  <ul className="space-y-4">
-                   <li><a href="/terms-of-service" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Terms of Service</a></li>
-                   <li><a href="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Privacy Policy</a></li>
-                   <li><a href="/ai-updates" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">AI Updates</a></li>
-                   <li><a href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact Us</a></li>
+                   <li><Link href="/terms-of-service" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Terms of Service</Link></li>
+                   <li><Link href="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Privacy Policy</Link></li>
+                   <li><Link href="/ai-updates" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">AI Updates</Link></li>
+                   <li><Link href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact Us</Link></li>
                  </ul>
                </div>
              </div>
