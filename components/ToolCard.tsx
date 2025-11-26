@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface ToolCardProps {
   name: string;
@@ -65,7 +66,7 @@ export const ToolCard: React.FC<ToolCardProps> = ({
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center">
             {favicon ? (
-              <img src={favicon} alt={name} className="w-10 h-10 rounded-lg mr-3" />
+              <Image src={favicon} alt={name} className="w-10 h-10 rounded-lg mr-3" width={40} height={40} />
             ) : (
               <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mr-3">
                 <span className="text-white font-bold text-sm">{name.charAt(0)}</span>
@@ -119,7 +120,7 @@ export const ToolCard: React.FC<ToolCardProps> = ({
       }`}>
         <div className="flex items-center mb-4">
           {favicon ? (
-            <img src={favicon} alt={name} className="w-12 h-12 rounded-lg mr-3" />
+            <Image src={favicon} alt={name} className="w-12 h-12 rounded-lg mr-3" width={48} height={48} />
           ) : (
             <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mr-3">
               <span className="text-white font-bold">{name.charAt(0)}</span>

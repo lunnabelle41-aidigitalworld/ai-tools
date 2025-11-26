@@ -3162,7 +3162,7 @@ export default function AIUpdateDetail() {
         });
       }
     }
-  }, [id]);
+  }, [id, sampleUpdates]);
 
   // Get impact color
   const getImpactColor = (impact: string) => {

@@ -14,7 +14,7 @@ export default function StackSynergy({ tools, userPreferences, onReady }: StackS
 
   useEffect(() => {
     onReady();
-  }, []);
+  }, [onReady]);
 
   // Mock compatibility data
   const getCompatibilityScore = (tool1: string, tool2: string) => {

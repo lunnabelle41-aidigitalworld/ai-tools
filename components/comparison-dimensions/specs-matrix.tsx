@@ -68,7 +68,7 @@ export default function SpecsMatrix({ tools, userPreferences, onReady }: SpecsMa
 
   useEffect(() => {
     onReady();
-  }, []);
+  }, [onReady]);
 
   const getFeatureValue = (tool: any, feature: string) => {
     // Mock feature values - in real implementation, this would come from tool data

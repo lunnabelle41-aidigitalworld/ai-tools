@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faCalendarAlt, 
@@ -43,10 +44,12 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, query = '' }) => {
     <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
       {post.imageUrl && (
         <div className="h-48 bg-gray-100 overflow-hidden">
-          <img 
+          <Image 
             src={post.imageUrl} 
             alt={post.title}
             className="w-full h-full object-cover"
+            width={400}
+            height={200}
           />
         </div>
       )}
