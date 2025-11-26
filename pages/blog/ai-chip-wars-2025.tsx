@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const AIChipWars = () => {
   // AI Chip Comparison Data
@@ -250,10 +251,12 @@ const AIChipWars = () => {
             </div>
 
             <figure className="my-8">
-              <img 
+              <Image 
                 className="w-full rounded-lg border border-gray-200"
                 src="/images/ai-chip-market-2025.png" 
                 alt="AI Chip Market Share 2025"
+                width={800}
+                height={600}
               />
               <figcaption className="mt-2 text-sm text-center text-gray-500">
                 Figure 1: AI Accelerator Market Share in 2025 (Source: AI Vault Research)

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Tool } from '@/types/tool';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faRandom } from '@fortawesome/free-solid-svg-icons';
 
@@ -102,16 +103,12 @@ const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
               <div className="flex items-center mb-3">
                 {tool.logo && (
                   <div className="w-10 h-10 rounded-full bg-white dark:bg-gray-700 flex items-center justify-center mr-3 overflow-hidden">
-                    <img 
+                    <Image 
                       src={tool.logo} 
                       alt={`${tool.name} logo`} 
                       className="w-8 h-8 object-contain"
-                      onError={(e) => {
-                        // Fallback to a placeholder if image fails to load
-                        const target = e.target as HTMLImageElement;
-                        target.onerror = null;
-                        target.src = '/placeholder-logo.svg';
-                      }}
+                      width={32}
+                      height={32}
                     />
                   </div>
                 )}

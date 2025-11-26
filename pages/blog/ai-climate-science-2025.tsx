@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { FiActivity, FiAlertCircle, FiBarChart2, FiCalendar, FiClock, FiCloud, FiCloudRain, FiCpu, FiDatabase, FiDroplet, FiFilter, FiGlobe, FiLayers, FiMap, FiPieChart, FiSun, FiThermometer, FiTrendingUp, FiWind, FiZap } from 'react-icons/fi';
@@ -117,10 +118,12 @@ const AIClimateScience: NextPage = () => {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <img
+                  <Image
                     className="h-10 w-10 rounded-full"
                     src="/images/authors/ai-vault-environmental-team.jpg"
                     alt="AI Vault Environmental Team"
+                    width={40}
+                    height={40}
                   />
                 </div>
                 <div className="ml-3">
