@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faSearch, 
@@ -550,13 +551,12 @@ export default function SearchPage() {
                                 <div className="flex items-start">
                                   {result.imageUrl && (
                                     <div className="flex-shrink-0 mr-3 sm:mr-4">
-                                      <img 
+                                      <Image 
                                         src={result.imageUrl} 
                                         alt={result.title}
                                         className="h-12 w-12 sm:h-16 sm:w-16 object-cover rounded-md"
-                                        onError={(e) => {
-                                          (e.target as HTMLImageElement).style.display = 'none';
-                                        }}
+                                        width={64}
+                                        height={64}
                                       />
                                     </div>
                                   )}
@@ -676,13 +676,12 @@ export default function SearchPage() {
                           <div className="flex items-start">
                             {result.imageUrl && (
                               <div className="flex-shrink-0 mr-3 sm:mr-4">
-                                <img 
+                                <Image 
                                   src={result.imageUrl} 
                                   alt={result.title}
                                   className="h-12 w-12 sm:h-16 sm:w-16 object-cover rounded-md"
-                                  onError={(e) => {
-                                    (e.target as HTMLImageElement).style.display = 'none';
-                                  }}
+                                  width={64}
+                                  height={64}
                                 />
                               </div>
                             )}

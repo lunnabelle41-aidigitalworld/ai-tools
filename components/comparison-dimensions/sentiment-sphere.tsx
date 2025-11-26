@@ -15,7 +15,7 @@ export default function SentimentSphere({ tools, userPreferences, onReady }: Sen
 
   useEffect(() => {
     onReady();
-  }, []);
+  }, [onReady]);
 
   // Mock sentiment data
   const getSentimentData = (toolName: string) => {

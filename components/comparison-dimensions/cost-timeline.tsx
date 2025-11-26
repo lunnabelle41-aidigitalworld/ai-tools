@@ -15,7 +15,7 @@ export default function CostTimeline({ tools, userPreferences, onReady }: CostTi
 
   useEffect(() => {
     onReady();
-  }, []);
+  }, [onReady]);
 
   // Mock pricing data
   const getPricingData = (toolName: string) => {

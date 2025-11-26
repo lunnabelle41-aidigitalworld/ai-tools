@@ -79,10 +79,10 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Resources</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm transition-colors">Tutorials</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm transition-colors">Documentation</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm transition-colors">Guides</a></li>
+              <li><Link href="/blog" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm transition-colors">Blog</Link></li>
+              <li><Link href="/tutorials" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm transition-colors">Tutorials</Link></li>
+              <li><Link href="/documentation" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm transition-colors">Documentation</Link></li>
+              <li><Link href="/guides" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 text-sm transition-colors">Guides</Link></li>
             </ul>
           </div>
           

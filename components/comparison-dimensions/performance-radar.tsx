@@ -73,7 +73,7 @@ export default function PerformanceRadar({ tools, userPreferences, onReady }: Pe
 
   useEffect(() => {
     onReady();
-  }, []);
+  }, [onReady]);
 
   const renderRadarChart = () => {
     if (tools.length === 0 || selectedMetrics.length === 0) {

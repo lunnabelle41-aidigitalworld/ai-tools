@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -164,32 +164,7 @@ export default function EnhancedSearchPage() {
     responseTime: 0
   });
 
-  // Update URL when filters or sort change
-  useEffect(() => {
-    const query: any = {};
-    if (searchQuery) query.q = searchQuery;
-    if (activeFilters.type.length) query.type = activeFilters.type[0];
-    if (activeFilters.category.length) query.category = activeFilters.category[0];
-    if (activeFilters.price.length) query.price = activeFilters.price[0];
-    if (sortBy) query.sort = sortBy;
-    
-    router.replace({
-      pathname: router.pathname,
-      query
-    }, undefined, { shallow: true });
-    
-    // Perform search when query or filters change
-    performSearch();
-  }, [searchQuery, activeFilters, sortBy]);
-
-  // Initial search on page load
-  useEffect(() => {
-    if (q) {
-      performSearch();
-    }
-  }, []);
-
-  const performSearch = async () => {
+  const performSearch = useCallback(async () => {
     if (!searchQuery.trim()) {
       setResults([]);
       return;
@@ -220,7 +195,32 @@ export default function EnhancedSearchPage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [searchQuery, activeFilters, sortBy]);
+
+  // Update URL when filters or sort change
+  useEffect(() => {
+    const query: any = {};
+    if (searchQuery) query.q = searchQuery;
+    if (activeFilters.type.length) query.type = activeFilters.type[0];
+    if (activeFilters.category.length) query.category = activeFilters.category[0];
+    if (activeFilters.price.length) query.price = activeFilters.price[0];
+    if (sortBy) query.sort = sortBy;
+    
+    router.replace({
+      pathname: router.pathname,
+      query
+    }, undefined, { shallow: true });
+    
+    // Perform search when query or filters change
+    performSearch();
+  }, [searchQuery, activeFilters, sortBy, performSearch]);
+
+  // Initial search on page load
+  useEffect(() => {
+    if (q) {
+      performSearch();
+    }
+  }, [q, performSearch, router]);
 
   const handleFilterToggle = (filterType: 'type' | 'category' | 'price', value: string) => {
     setActiveFilters(prev => ({

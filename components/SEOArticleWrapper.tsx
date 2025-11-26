@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { KnowledgeNode } from '../lib/adaptive-stream';
 import StructuredDataFabric from '../lib/structured-data-fabric';
 import SEOAutomationEngine from '../lib/seo-automation';
@@ -217,9 +218,9 @@ const SEOArticleWrapper: React.FC<SEOArticleWrapperProps> = ({
               {index === breadcrumbs.length - 1 ? (
                 <span className="text-gray-900 font-medium">{crumb.name}</span>
               ) : (
-                <a href={crumb.url} className="hover:text-blue-600 transition-colors">
+                <Link href={crumb.url} className="hover:text-blue-600 transition-colors">
                   {crumb.name}
-                </a>
+                </Link>
               )}
             </li>
           ))}
@@ -324,12 +325,12 @@ const SEOArticleWrapper: React.FC<SEOArticleWrapperProps> = ({
                 <div key={index} className="bg-white rounded-lg p-6 border border-gray-200 hover:border-blue-300 transition-colors">
                   <h3 className="font-semibold text-gray-900 mb-2">{tool.name}</h3>
                   <p className="text-gray-600 text-sm mb-3">AI-powered tool for enhanced productivity</p>
-                  <a 
+                  <Link 
                     href={tool.url || `/tools/${tool.id}`}
                     className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                   >
                     Learn more →
-                  </a>
+                  </Link>
                 </div>
               ))}
             </div>

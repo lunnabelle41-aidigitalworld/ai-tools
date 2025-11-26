@@ -18,7 +18,7 @@ export default function AIAnalyst({ tools, userPreferences, onReady }: AIAnalyst
       runAnalysis();
     }
     onReady();
-  }, [tools]);
+  }, [tools, onReady]);
 
   const runAnalysis = async () => {
     setIsAnalyzing(true);
