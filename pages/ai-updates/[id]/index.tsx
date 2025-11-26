@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -1579,7 +1579,7 @@ export default function AIUpdateDetail() {
   const [update, setUpdate] = useState<AIUpdate | null>(null);
 
   // Sample AI updates data - in a real app, this would come from an API
-  const sampleUpdates: AIUpdate[] = [
+  const sampleUpdates: AIUpdate[] = useMemo(() => [
     {
       id: '1',
       title: 'GPT-5 Breakthrough in Reasoning',
@@ -3140,7 +3140,7 @@ export default function AIUpdateDetail() {
       imageUrl: '/images/autonomous-research-ai.jpg',
       content: updateDetails['130'] || ''
     }
-  ];
+  ], []);
 
   useEffect(() => {
     if (id) {

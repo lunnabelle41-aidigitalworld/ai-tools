@@ -204,12 +204,12 @@ function calculateArrayScore(
  * Check if document has an exact match for the query
  */
 function hasExactMatch(doc: Document, query: string): boolean {
-  const exactMatch = new RegExp(`\\b${query}\\b`, 'i');
+  const exactMatch = new RegExp(`\b${query}\b`, 'i');
   return (
     exactMatch.test(doc.title) ||
-    (doc.summary && exactMatch.test(doc.summary)) ||
+    (doc.summary ? exactMatch.test(doc.summary) : false) ||
     exactMatch.test(doc.content) ||
-    (doc.tags && doc.tags.some(tag => exactMatch.test(tag)))
+    (doc.tags ? doc.tags.some(tag => exactMatch.test(tag)) : false)
   );
 }
 

@@ -463,9 +463,12 @@ const RealTimeDataManager: React.FC<RealTimeDataManagerProps> = ({
 
   // Cleanup connections on unmount
   useEffect(() => {
+    // Copy ref value to variable to satisfy react-hooks/exhaustive-deps rule
+    const wsManager = wsManagerRef.current;
+    
     return () => {
       connections.forEach(conn => {
-        wsManagerRef.current.disconnect(conn.connection_id);
+        wsManager.disconnect(conn.connection_id);
       });
     };
   }, [connections]);
