@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { FiActivity, FiAlertTriangle, FiBarChart2, FiCalendar, FiCheckCircle, FiClock, FiCode, FiCpu, FiDownload, FiEye, FiFileText, FiFilter, FiGitBranch, FiGlobe, FiHeart, FiLayers, FiLifeBuoy, FiList, FiMonitor, FiPieChart, FiPhoneCall, FiRefreshCw, FiScissors, FiServer, FiSettings, FiShield, FiSmartphone, FiTrendingUp, FiUserCheck, FiUserX, FiUsers, FiZap } from 'react-icons/fi';
@@ -1158,9 +1159,9 @@ torch.save(trained_global_model.state_dict(), 'federated_medical_model.pt')`}
           <div className="md:flex md:items-center md:justify-between">
             <div className="flex justify-center md:justify-start">
               <div className="flex-shrink-0">
-                <a href="/" className="flex items-center">
+                <Link href="/" className="flex items-center">
                   <span className="text-xl font-bold">AI Vault</span>
-                </a>
+                </Link>
                 <p className="mt-2 text-sm text-gray-400">Advancing healthcare through responsible AI innovation.</p>
               </div>
             </div>

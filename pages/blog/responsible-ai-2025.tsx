@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { FiAlertTriangle, FiCalendar, FiCheckCircle, FiClock, FiCode, FiDownload, FiEye, FiLock, FiShield, FiUsers } from 'react-icons/fi';
@@ -648,9 +649,9 @@ for feature in X_train.columns[:3]:  # Top 3 features
           <div className="md:flex md:items-center md:justify-between">
             <div className="flex justify-center md:justify-start">
               <div className="flex-shrink-0">
-                <a href="/" className="flex items-center">
+                <Link href="/" className="flex items-center">
                   <span className="text-xl font-bold">AI Vault</span>
-                </a>
+                </Link>
                 <p className="mt-2 text-sm text-gray-400">Empowering AI innovation through responsible practices and ethical considerations.</p>
               </div>
             </div>

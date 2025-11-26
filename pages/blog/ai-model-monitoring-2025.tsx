@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { FiActivity, FiAlertTriangle, FiBarChart2, FiCalendar, FiCheckCircle, FiClock, FiCode, FiCpu, FiDatabase, FiDownload, FiEye, FiFilter, FiGitBranch, FiGlobe, FiHardDrive, FiLayers, FiList, FiMonitor, FiPieChart, FiRefreshCw, FiServer, FiSettings, FiShield, FiTrendingUp, FiZap } from 'react-icons/fi';
@@ -1032,9 +1033,9 @@ scrape_configs:
           <div className="md:flex md:items-center md:justify-between">
             <div className="flex justify-center md:justify-start">
               <div className="flex-shrink-0">
-                <a href="/" className="flex items-center">
+                <Link href="/" className="flex items-center">
                   <span className="text-xl font-bold">AI Vault</span>
-                </a>
+                </Link>
                 <p className="mt-2 text-sm text-gray-400">Empowering AI innovation through reliable and observable machine learning systems.</p>
               </div>
             </div>

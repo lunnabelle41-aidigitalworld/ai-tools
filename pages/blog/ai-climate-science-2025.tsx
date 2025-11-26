@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { FiActivity, FiAlertCircle, FiBarChart2, FiCalendar, FiClock, FiCloud, FiCloudRain, FiCpu, FiDatabase, FiDroplet, FiFilter, FiGlobe, FiLayers, FiMap, FiPieChart, FiSun, FiThermometer, FiTrendingUp, FiWind, FiZap } from 'react-icons/fi';
@@ -853,9 +854,9 @@ if __name__ == "__main__":
           <div className="md:flex md:items-center md:justify-between">
             <div className="flex justify-center md:justify-start">
               <div className="flex-shrink-0">
-                <a href="/" className="flex items-center">
+                <Link href="/" className="flex items-center">
                   <span className="text-xl font-bold">AI Vault</span>
-                </a>
+                </Link>
                 <p className="mt-2 text-sm text-gray-400">Harnessing AI for a sustainable future.</p>
               </div>
             </div>
