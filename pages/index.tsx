@@ -484,19 +484,46 @@ export default function Home() {
                 ))}
               </div>
 
-              {/* Smart Search 2.0 */}
-              <div className="w-full max-w-4xl mx-auto mb-12 px-4">
-                <SmartSearch
-                  search={search}
-                  onSearchChange={setSearch}
-                  onFilterChange={(filters) => {
-                    setPricing(filters.pricing || []);
-                    setMinRating(filters.minRating || 0);
-                    setSelectedTags(filters.tags || []);
-                  }}
-                  allTags={allTags}
-                  tools={validTools as Tool[]}
-                />
+              {/* Enhanced Smart Search - Making it more search-engine-like */}
+              <div className="w-full max-w-6xl mx-auto mb-12 px-4">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 md:p-8 shadow-2xl">
+                  <div className="text-center mb-6">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                      Search the AI Universe
+                    </h2>
+                    <p className="text-gray-300 max-w-2xl mx-auto">
+                      Discover 1,000+ AI tools, resources, and insights with our neural search engine
+                    </p>
+                  </div>
+                  
+                  <SmartSearch
+                    search={search}
+                    onSearchChange={setSearch}
+                    onFilterChange={(filters) => {
+                      setPricing(filters.pricing || []);
+                      setMinRating(filters.minRating || 0);
+                      setSelectedTags(filters.tags || []);
+                    }}
+                    allTags={allTags}
+                    tools={validTools as Tool[]}
+                  />
+                  
+                  {/* Search Tips */}
+                  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                    <div className="bg-white/5 rounded-xl p-4">
+                      <div className="font-semibold text-blue-300 mb-1">Try natural queries</div>
+                      <div className="text-sm text-gray-400">"Best image generators for 2025"</div>
+                    </div>
+                    <div className="bg-white/5 rounded-xl p-4">
+                      <div className="font-semibold text-purple-300 mb-1">Filter by rating</div>
+                      <div className="text-sm text-gray-400">"4+ stars free writing tools"</div>
+                    </div>
+                    <div className="bg-white/5 rounded-xl p-4">
+                      <div className="font-semibold text-cyan-300 mb-1">Use category tags</div>
+                      <div className="text-sm text-gray-400">"#SEO #content #free"</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

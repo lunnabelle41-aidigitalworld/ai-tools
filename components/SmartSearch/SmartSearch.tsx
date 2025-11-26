@@ -2664,15 +2664,18 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
   }, [searchFeedback]);
 
   return (
-    <div style={styles.searchContainer} ref={searchRef}>
+    <div style={{...styles.searchContainer, maxWidth: '100%'}} ref={searchRef}>
       <div 
         style={{
           ...styles.searchBar,
-          ...(isFocused ? styles.focused : {})
+          ...(isFocused ? styles.focused : {}),
+          borderRadius: '50px',
+          padding: '0.75rem 1.5rem',
+          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)'
         }}
       >
-        <div style={styles.searchIcon}>
-          <FiSearch size={20} />
+        <div style={{...styles.searchIcon, padding: '0 1rem'}}>
+          <FiSearch size={24} />
         </div>
         <input
           ref={inputRef}
@@ -2682,18 +2685,26 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
           onKeyDown={handleKeyDown}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-          style={styles.searchInput}
-          placeholder="Search AI tools... Try 'best image generators' or '#SEO'"
+          style={{
+            ...styles.searchInput,
+            fontSize: '1.1rem',
+            padding: '0.75rem 0'
+          }}
+          placeholder="Search millions of AI tools, articles, and resources..."
           aria-label="Search AI tools"
         />
         {search && (
           <button
             type="button"
             onClick={clearSearch}
-            style={styles.clearButton}
+            style={{
+              ...styles.clearButton,
+              padding: '0.75rem',
+              marginRight: '0.5rem'
+            }}
             aria-label="Clear search"
           >
-            <FiX size={20} />
+            <FiX size={24} />
           </button>
         )}
         <button
@@ -2703,123 +2714,45 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
             ...styles.filterButton,
             ...(filters.pricing.length > 0 || filters.tags.length > 0 || filters.minRating > 0
               ? styles.activeFilter
-              : {})
+              : {}),
+            padding: '0.75rem',
+            margin: '0 0.5rem'
           }}
           aria-label="Toggle filters"
         >
-          <FiFilter size={20} />
+          <FiFilter size={24} />
         </button>
         <button
           type="button"
           onClick={() => handleSearch(search)}
-          style={styles.searchButton}
+          style={{
+            ...styles.searchButton,
+            padding: '0.75rem 2rem',
+            fontSize: '1.1rem',
+            borderRadius: '50px'
+          }}
           aria-label="Search"
         >
           Search
         </button>
-        <button
-          type="button"
-          onClick={exportSearchFeedback}
-          style={{
-            ...styles.filterButton,
-            marginLeft: '0.5rem',
-            background: 'rgba(99, 102, 241, 0.1)',
-            color: '#a5b4fc',
-            border: '1px solid rgba(99, 102, 241, 0.3)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(99, 102, 241, 0.2)';
-            e.currentTarget.style.color = '#c7d2fe';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(99, 102, 241, 0.1)';
-            e.currentTarget.style.color = '#a5b4fc';
-          }}
-          aria-label="Export feedback data"
-        >
-          Export Data
-        </button>
-        <button
-          type="button"
-          onClick={() => document.getElementById('import-feedback-input')?.click()}
-          style={{
-            ...styles.filterButton,
-            marginLeft: '0.5rem',
-            background: 'rgba(99, 102, 241, 0.1)',
-            color: '#a5b4fc',
-            border: '1px solid rgba(99, 102, 241, 0.3)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(99, 102, 241, 0.2)';
-            e.currentTarget.style.color = '#c7d2fe';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(99, 102, 241, 0.1)';
-            e.currentTarget.style.color = '#a5b4fc';
-          }}
-          aria-label="Import feedback data"
-        >
-          Import Data
-        </button>
-        <button
-          type="button"
-          onClick={resetSearchFeedback}
-          style={{
-            ...styles.filterButton,
-            marginLeft: '0.5rem',
-            background: 'rgba(239, 68, 68, 0.1)',
-            color: '#fecaca',
-            border: '1px solid rgba(239, 68, 68, 0.3)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(239, 68, 68, 0.2)';
-            e.currentTarget.style.color = '#fecaca';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
-            e.currentTarget.style.color = '#fecaca';
-          }}
-          aria-label="Reset feedback data"
-        >
-          Reset Data
-        </button>
-        <button
-          type="button"
-          onClick={displaySearchStatistics}
-          style={{
-            ...styles.filterButton,
-            marginLeft: '0.5rem',
-            background: 'rgba(16, 185, 129, 0.1)',
-            color: '#6ee7b7',
-            border: '1px solid rgba(16, 185, 129, 0.3)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(16, 185, 129, 0.2)';
-            e.currentTarget.style.color = '#6ee7b7';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(16, 185, 129, 0.1)';
-            e.currentTarget.style.color = '#6ee7b7';
-          }}
-          aria-label="View search statistics"
-        >
-          View Stats
-        </button>
-        <input
-          id="import-feedback-input"
-          type="file"
-          accept=".json"
-          onChange={importSearchFeedback}
-          style={{ display: 'none' }}
-        />
       </div>
 
       {isFocused && suggestions.length > 0 && (
-        <div style={styles.suggestionsContainer}>
+        <div style={{
+          ...styles.suggestionsContainer,
+          borderRadius: '16px',
+          marginTop: '1rem',
+          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
+        }}>
           {suggestions.map((suggestion, index) => (
             <div
               key={`${suggestion.type}-${index}`}
-              style={styles.suggestionItem as React.CSSProperties}
+              style={{
+                ...styles.suggestionItem,
+                padding: '1rem 1.5rem',
+                gap: '1rem',
+                borderBottom: index < suggestions.length - 1 ? '1px solid rgba(255, 255, 255, 0.1)' : 'none'
+              }}
               onClick={() => {
                 if (suggestion.type === 'intent' && suggestion.category) {
                   // For intent-based suggestions, search by category
@@ -2888,10 +2821,14 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
             >
               {suggestion.icon}
               <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <span>{suggestion.text}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ fontSize: '1.1rem' }}>{suggestion.text}</span>
                   {(suggestion.type === 'intent' || suggestion.type === 'insight' || suggestion.type === 'question' || suggestion.type === 'workflow') && (
-                    <span style={styles.aiPoweredBadge}>
+                    <span style={{
+                      ...styles.aiPoweredBadge,
+                      fontSize: '0.75rem',
+                      padding: '0.25rem 0.75rem'
+                    }}>
                       {suggestion.type === 'intent' ? 'AI-Powered' : 
                        suggestion.type === 'question' ? 'Question' : 
                        suggestion.type === 'workflow' ? 'Workflow' : 'Insight'}
@@ -2900,18 +2837,19 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
                 </div>
                 {suggestion.description && (
                   <div style={{ 
-                    fontSize: '0.75rem', 
+                    fontSize: '0.9rem', 
                     color: 'rgba(255, 255, 255, 0.7)',
-                    marginTop: '0.25rem'
+                    marginTop: '0.5rem',
+                    lineHeight: '1.4'
                   }}>
-                    {suggestion.description.substring(0, 80)}...
+                    {suggestion.description.substring(0, 120)}...
                   </div>
                 )}
                 {suggestion.category && (
                   <div style={{ 
-                    fontSize: '0.7rem', 
+                    fontSize: '0.85rem', 
                     color: 'rgba(99, 102, 241, 0.8)',
-                    marginTop: '0.1rem'
+                    marginTop: '0.25rem'
                   }}>
                     {suggestion.category}
                   </div>
@@ -2920,7 +2858,7 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
               {suggestion.count && (
                 <span style={{ 
                   marginLeft: 'auto', 
-                  fontSize: '0.75rem', 
+                  fontSize: '0.9rem', 
                   color: 'rgba(255, 255, 255, 0.5)' 
                 }}>
                   {suggestion.count.toLocaleString()} tools
@@ -2937,33 +2875,60 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
           top: '100%',
           right: 0,
           background: 'rgba(30, 30, 40, 0.95)',
-          borderRadius: '8px',
-          padding: '1rem',
-          marginTop: '0.5rem',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
+          borderRadius: '16px',
+          padding: '1.5rem',
+          marginTop: '1rem',
+          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
           zIndex: 100,
-          width: '300px'
+          width: '350px'
         }}>
-          <h3 style={{ marginTop: 0, marginBottom: '1rem' }}>Filters</h3>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+            <h3 style={{ marginTop: 0, marginBottom: 0, fontSize: '1.25rem' }}>Filters</h3>
+            <button
+              type="button"
+              onClick={() => setShowFilters(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'rgba(255, 255, 255, 0.6)',
+                cursor: 'pointer',
+                padding: '0.5rem',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+              aria-label="Close filters"
+            >
+              <FiX size={20} />
+            </button>
+          </div>
           
-          <div style={{ marginBottom: '1rem' }}>
-            <h4 style={{ margin: '0 0 0.5rem 0' }}>Pricing</h4>
-            {['Free', 'Freemium', 'Paid', 'Contact for Pricing', 'Free Trial', 'Deals'].map(option => (
-              <label key={option} style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-                <input
-                  type="checkbox"
-                  checked={filters.pricing.includes(option)}
-                  onChange={() => toggleFilter('pricing', option)}
-                  style={{ marginRight: '0.5rem' }}
-                />
-                {option}
-              </label>
-            ))}
+          <div style={{ marginBottom: '1.5rem' }}>
+            <h4 style={{ margin: '0 0 0.75rem 0', fontSize: '1.1rem' }}>Pricing</h4>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              {['Free', 'Freemium', 'Paid', 'Contact for Pricing', 'Free Trial', 'Deals'].map(option => (
+                <label key={option} style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem', cursor: 'pointer' }}>
+                  <input
+                    type="checkbox"
+                    checked={filters.pricing.includes(option)}
+                    onChange={() => toggleFilter('pricing', option)}
+                    style={{ 
+                      marginRight: '0.75rem',
+                      width: '18px',
+                      height: '18px',
+                      accentColor: '#6366f1'
+                    }}
+                  />
+                  <span style={{ fontSize: '0.95rem' }}>{option}</span>
+                </label>
+              ))}
+            </div>
           </div>
 
-          <div style={{ marginBottom: '1rem' }}>
-            <h4 style={{ margin: '0 0 0.5rem 0' }}>Minimum Rating</h4>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div style={{ marginBottom: '1.5rem' }}>
+            <h4 style={{ margin: '0 0 0.75rem 0', fontSize: '1.1rem' }}>Minimum Rating</h4>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               {[1, 2, 3, 4, 5].map(rating => (
                 <button
                   key={rating}
@@ -2977,35 +2942,95 @@ const SmartSearch: React.FC<SmartSearchProps> = ({
                     border: 'none',
                     color: rating <= filters.minRating ? '#f59e0b' : 'rgba(255, 255, 255, 0.6)',
                     cursor: 'pointer',
-                    fontSize: '1.25rem',
-                    padding: 0
+                    fontSize: '1.5rem',
+                    padding: '0.25rem'
                   }}
                   aria-label={`${rating} star${rating !== 1 ? 's' : ''}`}
                 >
                   ★
                 </button>
               ))}
-              <span style={{ marginLeft: '0.5rem', fontSize: '0.875rem' }}>
+              <span style={{ marginLeft: '0.75rem', fontSize: '1rem' }}>
                 {filters.minRating > 0 ? `${filters.minRating}+` : 'Any'}
               </span>
             </div>
           </div>
 
           <div>
-            <h4 style={{ margin: '0 0 0.5rem 0' }}>Tags</h4>
-            <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+            <h4 style={{ margin: '0 0 0.75rem 0', fontSize: '1.1rem' }}>Tags</h4>
+            <div style={{ 
+              maxHeight: '250px', 
+              overflowY: 'auto',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '0.5rem'
+            }}>
               {allTags.map(tag => (
-                <label key={tag} style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <label 
+                  key={tag} 
+                  style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    marginBottom: '0.5rem',
+                    cursor: 'pointer',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '8px',
+                    backgroundColor: filters.tags.includes(tag) ? 'rgba(99, 102, 241, 0.2)' : 'transparent',
+                    transition: 'background-color 0.2s ease'
+                  }}
+                >
                   <input
                     type="checkbox"
                     checked={filters.tags.includes(tag)}
                     onChange={() => toggleFilter('tag', tag)}
-                    style={{ marginRight: '0.5rem' }}
+                    style={{ 
+                      marginRight: '0.5rem',
+                      width: '16px',
+                      height: '16px',
+                      accentColor: '#6366f1'
+                    }}
                   />
-                  {tag}
+                  <span style={{ fontSize: '0.9rem' }}>#{tag}</span>
                 </label>
               ))}
             </div>
+          </div>
+          
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            marginTop: '1.5rem',
+            paddingTop: '1rem',
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+          }}>
+            <button
+              onClick={resetSearchFeedback}
+              style={{
+                background: 'rgba(239, 68, 68, 0.1)',
+                color: '#fecaca',
+                border: '1px solid rgba(239, 68, 68, 0.3)',
+                borderRadius: '8px',
+                padding: '0.5rem 1rem',
+                cursor: 'pointer',
+                fontSize: '0.9rem'
+              }}
+            >
+              Reset Data
+            </button>
+            <button
+              onClick={displaySearchStatistics}
+              style={{
+                background: 'rgba(16, 185, 129, 0.1)',
+                color: '#6ee7b7',
+                border: '1px solid rgba(16, 185, 129, 0.3)',
+                borderRadius: '8px',
+                padding: '0.5rem 1rem',
+                cursor: 'pointer',
+                fontSize: '0.9rem'
+              }}
+            >
+              View Stats
+            </button>
           </div>
         </div>
       )}
