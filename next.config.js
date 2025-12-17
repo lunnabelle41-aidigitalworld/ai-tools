@@ -89,6 +89,10 @@ const nextConfig = {
   output: 'standalone',
   productionBrowserSourceMaps: false, // Disable in production for better performance
   
+  // Vercel-specific optimizations
+  poweredByHeader: false,
+  generateEtags: false
+  
   // Webpack configuration for additional optimizations
   webpack: (config, { dev, isServer }) => {
     // Add polyfills for Node.js modules

@@ -9,11 +9,6 @@
       }
     }
   ],
-  "build": {
-    "env": {
-      "NEXT_TELEMETRY_DISABLED": "1"
-    }
-  },
   "github": {
     "silent": true
   },
