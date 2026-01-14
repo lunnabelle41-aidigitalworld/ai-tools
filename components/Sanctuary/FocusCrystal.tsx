@@ -28,8 +28,8 @@ export default function FocusCrystal() {
     const favoriteTools: Tool[] = [];
     favorites.forEach(favId => {
       const tool = tools.find(t => t && t.id === favId);
-      if (tool) {
-        favoriteTools.push(tool);
+      if (tool && tool.name) {
+        favoriteTools.push(tool as Tool);
       }
     });
     const categories = new Set(favoriteTools.map(tool => tool.category)).size;
