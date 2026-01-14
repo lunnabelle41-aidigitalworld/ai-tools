@@ -18,7 +18,7 @@ const AdSense = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.adsbygoogle = window.adsbygoogle || [];
-      window.adsbygoogle.push({});
+      // No need to push an empty object - just initialize the array
       console.log('AdSense initialized');
     }
   }, []);
