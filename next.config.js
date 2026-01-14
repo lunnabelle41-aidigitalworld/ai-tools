@@ -91,7 +91,7 @@ const nextConfig = {
   
   // Vercel-specific optimizations
   poweredByHeader: false,
-  generateEtags: false
+  generateEtags: false,
   
   // Webpack configuration for additional optimizations
   webpack: (config, { dev, isServer }) => {
