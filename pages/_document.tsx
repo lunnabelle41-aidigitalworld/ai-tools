@@ -36,9 +36,7 @@ export default function Document() {
         <meta name="theme-color" content="#111827" />
         
         {/* Monetag Verification */}
-        <meta name="monetag" content="266fa89bd5abbfe8652d2b601af893dd" />
-        {/* Additional Monetag Verification */}
-        <meta name="monetag" content="266fa89bd5abbfe8652d2b601af893dd" />
+        <meta name="monetag" content="7632c4bb7c6972e31954c698c4bec5e4" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
