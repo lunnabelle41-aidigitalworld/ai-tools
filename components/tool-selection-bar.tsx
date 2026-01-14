@@ -24,9 +24,9 @@ export default function ToolSelectionBar({
   const [searchTerm, setSearchTerm] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const selectedToolData = availableTools.filter(tool => tool !== undefined && tools.includes(tool.name)) as Tool[];
+  const selectedToolData = availableTools.filter(tool => tool !== undefined && tool.name && tools.includes(tool.name)) as Tool[];
   const filteredSuggestions = availableTools.filter(tool => tool !== undefined && 
-    !tools.includes(tool.name) &&
+    tool.name && !tools.includes(tool.name) &&
     tool.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
     tools.length < maxTools
   ) as Tool[];
@@ -57,9 +57,11 @@ export default function ToolSelectionBar({
                         <button
                           key={tool.name}
                           onClick={() => {
-                            onAddTool(tool.name);
-                            setSearchTerm('');
-                            setShowSuggestions(false);
+                            if (tool.name) {
+                              onAddTool(tool.name);
+                              setSearchTerm('');
+                              setShowSuggestions(false);
+                            }
                           }}
                           className="w-full p-3 hover:bg-white/20 transition-colors text-left"
                         >
@@ -72,13 +74,13 @@ export default function ToolSelectionBar({
                                   return 'example.com';
                                 }
                               })() : 'example.com'}&sz=24`}
-                              alt={tool.name}
+                              alt={tool.name || 'tool'}
                               width={24}
                               height={24}
                               className="rounded"
                             />
                             <div className="flex-1">
-                              <div className="font-medium text-white">{tool.name}</div>
+                              <div className="font-medium text-white">{tool.name || 'Unknown Tool'}</div>
                               <div className="text-sm text-gray-400">{tool.category} • {tool.subcategory}</div>
                             </div>
                             <div className="text-sm text-blue-400">+ Add</div>
@@ -108,7 +110,7 @@ export default function ToolSelectionBar({
             <div className="flex flex-wrap gap-3">
               {selectedToolData.map((tool) => (
                 <div
-                  key={tool.name}
+                  key={tool.name || tool.id}
                   className="group relative bg-white/10 border border-white/20 rounded-lg p-3 hover:bg-white/20 transition-all duration-300"
                 >
                   <div className="flex items-center gap-3">
@@ -120,17 +122,17 @@ export default function ToolSelectionBar({
                           return 'example.com';
                         }
                       })() : 'example.com'}&sz=32`}
-                      alt={tool.name}
+                      alt={tool.name || 'tool'}
                       width={32}
                       height={32}
                       className="rounded"
                     />
                     <div>
-                      <div className="font-medium text-white">{tool.name}</div>
+                      <div className="font-medium text-white">{tool.name || 'Unknown Tool'}</div>
                       <div className="text-sm text-gray-400">{tool.category}</div>
                     </div>
                     <button
-                      onClick={() => onRemoveTool(tool.name)}
+                      onClick={() => tool.name && onRemoveTool(tool.name)}
                       className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-red-400 hover:text-red-300"
                     >
                       ✕
