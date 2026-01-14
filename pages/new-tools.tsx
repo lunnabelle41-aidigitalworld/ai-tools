@@ -14,8 +14,8 @@ export default function NewToolsPage() {
       // Add type guard to ensure tool is not undefined
       if (!tool) return false;
       
-      const matchesSearch = tool.name.toLowerCase().includes(search.toLowerCase()) ||
-        tool.description.toLowerCase().includes(search.toLowerCase());
+      const matchesSearch = tool.name && tool.name.toLowerCase().includes(search.toLowerCase()) ||
+        tool.description && tool.description.toLowerCase().includes(search.toLowerCase());
       const matchesCategory = !selectedCategory || tool.category === selectedCategory;
       return matchesSearch && matchesCategory;
     })
@@ -27,7 +27,7 @@ export default function NewToolsPage() {
         case "rating":
           return (b.rating || 0) - (a.rating || 0);
         case "name":
-          return a.name.localeCompare(b.name);
+          return (a.name || '').localeCompare(b.name || '');
         case "newest":
         default:
           return 0; // In a real app, you'd sort by date added
@@ -105,17 +105,17 @@ export default function NewToolsPage() {
                 {filteredTools.map((tool, index) => (
                   // Add type guard for mapping
                   tool ? (
-                    <div key={tool.name} style={{ animationDelay: `${index * 100}ms` }}>
+                    <div key={tool.name || tool.id} style={{ animationDelay: `${index * 100}ms` }}>
                       <ToolCard
-                        name={tool.name}
-                        category={tool.category}
-                        subcategory={tool.subcategory}
-                        rating={tool.rating}
-                        description={tool.description}
-                        pricing={tool.pricing}
-                        tags={tool.tags}
-                        url={tool.url}
-                        favicon={tool.favicon}
+                        name={tool.name || 'Unknown Tool'}
+                        category={tool.category || 'Uncategorized'}
+                        subcategory={tool.subcategory || 'General'}
+                        rating={tool.rating || 0}
+                        description={tool.description || 'No description available'}
+                        pricing={tool.pricing || 'Unknown'}
+                        tags={tool.tags || []}
+                        url={tool.url || '#'}
+                        favicon={tool.favicon || '/favicon.ico'}
                       />
                     </div>
                   ) : null
