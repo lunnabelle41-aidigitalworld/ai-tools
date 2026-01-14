@@ -37,6 +37,8 @@ export default function Document() {
         
         {/* Monetag Verification */}
         <meta name="monetag" content="266fa89bd5abbfe8652d2b601af893dd" />
+        {/* Additional Monetag Verification */}
+        <meta name="monetag" content="266fa89bd5abbfe8652d2b601af893dd" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
