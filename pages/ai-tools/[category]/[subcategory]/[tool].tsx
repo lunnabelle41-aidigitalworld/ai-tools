@@ -14,7 +14,7 @@ export default function ToolDetailPage() {
   const router = useRouter();
   const { tool, category, subcategory } = router.query;
   const toolData = tools.find(
-    (t) => t && t.name.toLowerCase().replace(/\s+/g, "-") === tool
+    (t) => t && t.name && t.name.toLowerCase().replace(/\s+/g, "-") === tool
   );
 
   const [reviews, setReviews] = useState(mockReviews);
@@ -42,15 +42,15 @@ export default function ToolDetailPage() {
   return (
     <>
       <Head>
-        <title>{toolData.name} | AI Tools Directory</title>
-        <meta name="description" content={toolData.description} />
+        <title>{toolData?.name || 'Tool'} | AI Tools Directory</title>
+        <meta name="description" content={toolData?.description || ''} />
         <link rel="canonical" href={`https://aitoolsdirectory.com/ai-tools/${category}/${subcategory}/${tool}`} />
         <link rel="alternate" hrefLang="en-US" href={`https://aitoolsdirectory.com/ai-tools/${category}/${subcategory}/${tool}`} />
         <link rel="alternate" hrefLang="x-default" href={`https://aitoolsdirectory.com/ai-tools/${category}/${subcategory}/${tool}`} />
         
         {/* Open Graph meta tags */}
-        <meta property="og:title" content={`${toolData.name} - AI Tool Review & Comparison`} />
-        <meta property="og:description" content={toolData.description} />
+        <meta property="og:title" content={`${toolData?.name || 'Tool'} - AI Tool Review & Comparison`} />
+        <meta property="og:description" content={toolData?.description || ''} />
         <meta property="og:url" content={`https://aitoolsdirectory.com/ai-tools/${category}/${subcategory}/${tool}`} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="AI Tools Directory" />
@@ -61,14 +61,14 @@ export default function ToolDetailPage() {
         
         {/* Twitter meta tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${toolData.name} - AI Tool Review & Comparison`} />
-        <meta name="twitter:description" content={toolData.description} />
+        <meta name="twitter:title" content={`${toolData?.name || 'Tool'} - AI Tool Review & Comparison`} />
+        <meta name="twitter:description" content={toolData?.description || ''} />
         <meta name="twitter:image" content={toolData.favicon || '/twitter-image.jpg'} />
         <meta name="twitter:site" content="@aitoolsdirectory" />
         
         {/* Article-specific meta tags */}
-        <meta property="article:section" content={toolData.category} />
-        <meta property="article:tag" content={toolData.subcategory} />
+        <meta property="article:section" content={toolData?.category || ''} />
+        <meta property="article:tag" content={toolData?.subcategory || ''} />
         {toolData.tags && toolData.tags.map(tag => (
           <meta key={tag} property="article:tag" content={tag} />
         ))}
@@ -77,9 +77,9 @@ export default function ToolDetailPage() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": toolData.name,
-            "description": toolData.description,
-            "url": toolData.url,
+            "name": toolData?.name || 'Tool',
+            "description": toolData?.description || '',
+            "url": toolData?.url || '',
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web",
             "offers": {
@@ -109,31 +109,31 @@ export default function ToolDetailPage() {
             <div className="mb-4">
               <Image
                 src={toolData.favicon || "/favicon.ico"}
-                alt={toolData.name + " favicon"}
+                alt={(toolData?.name || 'Tool') + " favicon"}
                 width={64}
                 height={64}
                 className="rounded shadow"
               />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-              {toolData.name}
+              {toolData?.name || 'Tool'}
             </h1>
             <div className="flex flex-wrap gap-3 mb-4">
               <span className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-semibold rounded-full">
-                {toolData.category}
+                {toolData?.category || 'Category'}
               </span>
               <span className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-semibold rounded-full">
-                {toolData.subcategory}
+                {toolData?.subcategory || 'Subcategory'}
               </span>
               <span className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-semibold rounded-full">
-                {toolData.pricing}
+                {toolData?.pricing || 'Pricing'}
               </span>
               <span className="px-4 py-2 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white text-sm font-semibold rounded-full">
-                {toolData.rating}★
+                {(toolData?.rating || 0)}★
               </span>
             </div>
             <a
-              href={toolData.url}
+              href={toolData?.url || '#'}
               target="_blank"
               rel="noopener noreferrer"
               className="mb-4 px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
@@ -142,7 +142,7 @@ export default function ToolDetailPage() {
             </a>
           </div>
           {/* Description */}
-          <p className="text-lg text-gray-200 mb-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>{toolData.description}</p>
+          <p className="text-lg text-gray-200 mb-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>{toolData?.description || 'No description available'}</p>
           {/* Tags */}
           {toolData.tags && (
             <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
