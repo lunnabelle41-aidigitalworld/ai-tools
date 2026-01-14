@@ -44,8 +44,9 @@ export default function DigitalGardener() {
     const favoriteTools: Tool[] = [];
     favorites.forEach(favId => {
       const tool = tools.find(t => t && t.id === favId);
-      if (tool) {
-        favoriteTools.push(tool);
+      if (tool && tool.name) {  // Ensure tool exists and has a name
+        // Cast to Tool type since we've verified name exists
+        favoriteTools.push(tool as Tool);
       }
     });
     
